@@ -5,10 +5,11 @@ Link to Trello Board - https://trello.com/b/oGbblHkd/project-3-tasks-%F0%9F%92%A
 
 ## About eventMate
 MVP
-* eventMate is a full stack web application for viewing events and saying if you are attending.
-* It is designed as a Social Media app so that users can view which other users are attending events.
+* eventMate is a full stack web application for discovering events and saying if you are attending.
+* eventMate has some features of popular Social Media websites and users can see which other users are attending events.
 * Users will have their own profile where they can view upcoming and past events as well as leaving and viewing comments on events.
-* Logged in users will have write access so that they can leave their own comments.
+* Logged in users will be able to leave their own comments, create events and manage their own profile.
+* Unregistered users will have limited access to the app and will only be able to see information about events themselves such as the description and location.
 
 ## Wireframes
 
@@ -32,6 +33,7 @@ Excalidraw Link can be found here https://excalidraw.com/#room=611b02b78e961aedf
 * AAU, I want to be able to view different amounts of event information
 based on if I'm logged in or not
 * AAU, I want to be able to sign up and log in
+* AAU, I want to be able to delete my account
 * AAU, I want to have a personal profile page
 * AAU, I want to access my upcoming events and past events
 * AAU, I want to be able to confirm if I am attending an event
