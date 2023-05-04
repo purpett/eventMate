@@ -31,4 +31,23 @@ based on if I'm logged in or not
 * As An App Owner, I want to prevent users not logged in from 
 liking, commenting, creating or confirming if they are attending events
 
+## Component Hieracy
+```
+ App.js
+      Home
+       Events
+            Single Event
+               Comments
+                    Create Comments
+                    (Comment)
+        Create Event
+    Profile
+        Single Event
+        Upcoming Events
+        Past Events
+    Login
+    Sign In
+```
+
+
 
