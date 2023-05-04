@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dbConfig = require('./config/db');
+const eventRoutes = require('./routes/eventRoutes')
 
 const app = express();
 
@@ -14,6 +15,9 @@ db.on('connected', () => console.log(`MondoDB Connected: ${dbConfig}`));
 db.on('disconnected', () => console.log('MongoDB Disconnected'))
 
 app.use(express.json());
+
+// Mount the imported Routes
+app.use(eventRouter)
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

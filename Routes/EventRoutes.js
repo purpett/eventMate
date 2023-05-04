@@ -2,6 +2,7 @@ const express = require('express')
 
 const Event = require('../models/event')
 
+
 const router = express.Router()
 
 /* 
@@ -84,7 +85,7 @@ Description: Update an Event by its ID
 */
 
 router.put('/api/event/:id', (req, res) => {
-  Event.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  Event.findByIdAndUpdate(req.params.id, req.body.event, {new: true})
   .then(event => {
     if(event) {
       res.json({event: event})
