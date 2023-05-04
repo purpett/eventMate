@@ -39,5 +39,20 @@ router.get('/api/event/:id', (req, res) => {
   .catch((error) => res.status(500).json(error.message))
 })
 
+/*
+Action: CREATE
+Method: Post
+URI: /api/event
+Description: Create a new Event
+*/
+
+router.post('/api/event', (req, res) => {
+  Event.create(req.body.event)
+  // On a successful creation respond with 201 http status
+  // and the content of the new Event
+  .then((newEvent) => res.status(201).json({event: newEvent}))
+  // Catch any error that may occur
+  .catch((error) => res.status(500).json(error.message))
+})
 
 module.exports = router
