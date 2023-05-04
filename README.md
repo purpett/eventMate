@@ -6,7 +6,7 @@ Link to Trello Board - https://trello.com/b/oGbblHkd/project-3-tasks-%F0%9F%92%A
 ## About eventMate
 MVP
 * eventMate is a full stack web application for viewing events and saying if you are attending.
-* It is designed as a Social Media app so that users can which other users are attending events.
+* It is designed as a Social Media app so that users can view which other users are attending events.
 * Users will have their own profile where they can view upcoming and past events as well as leaving and viewing comments on events.
 * Logged in users will have write access so that they can leave their own comments.
 
