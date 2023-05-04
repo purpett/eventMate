@@ -55,4 +55,25 @@ router.post('/api/event', (req, res) => {
   .catch((error) => res.status(500).json(error.message))
 })
 
+/*
+Action: DESTROY
+Method: Delete
+URI: /api/event/e585b9q283u49
+Description: Delete an Event by its Event ID
+ */
+
+router.delete('/api/event/:id', (req, res) => {
+  Event.findByIdAndRemove(req.params.id)
+  .then((event) => {
+    if(event) {
+      res.json({event: event})
+      // If we cannot find an Event with the ID
+    } else {
+      res.status(404).json("The provided ID does not match any documents")
+    }
+  })
+  // Catch an error
+  .catch((error) => res.status(500).json(error.message))
+})
+
 module.exports = router
