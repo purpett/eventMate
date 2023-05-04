@@ -76,4 +76,25 @@ router.delete('/api/event/:id', (req, res) => {
   .catch((error) => res.status(500).json(error.message))
 })
 
+/*
+Action: UPDATE
+Method: Put/Patch
+URI: /api/event/e585b9q283u49
+Description: Update an Event by its ID
+*/
+
+router.put('/api/event/:id', (req, res) => {
+  Event.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(event => {
+    if(event) {
+      res.json({event: event})
+      // if we cannot find an Event matching the ID
+    } else {
+      res.status(404).json("The provided ID does not match any documents")
+    }
+  })
+  // Catch any error
+  .catch(error => res.status(500).json(error.message))
+})
+
 module.exports = router
