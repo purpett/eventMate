@@ -1,6 +1,8 @@
 # eventMate
 SEI Project 3 - Event Management App
 
+Excalidraw Link can be found here https://excalidraw.com/#room=611b02b78e961aedf070,TQcjd_mak94UCROWp1RbpQ
+
 ## Wireframes
 
 ![eventmate wireframes](https://user-images.githubusercontent.com/126505751/236216986-a70cb335-c768-4601-9244-0be826e333d4.gif)
