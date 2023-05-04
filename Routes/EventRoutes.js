@@ -19,5 +19,25 @@ router.get('/api/event'), (req, res) => {
   .catch((error) => res.status(500).json( {error: error.message}))
 }
 
+/* 
+Action: SHOW
+Method: Get
+URI: /api/event/e585b9q283u49
+Description: Get an Event by Event ID
+*/
+
+router.get('/api/event/:id', (req, res) => {
+  Event.findById(req.params.id)
+  .then((event) => {
+    if (event) {
+      res.json({event: event})
+      // If we cannot find an Event with the ID
+    } else {
+      res.status(404).json("The provided ID does not match any documents")
+    }
+  })
+  .catch((error) => res.status(500).json(error.message))
+})
+
 
 module.exports = router
