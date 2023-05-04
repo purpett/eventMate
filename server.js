@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dbConfig = require('./config/db');
-const eventRoutes = require('./routes/eventRoutes')
+const eventRouter = require('./routes/eventRoutes')
 
 const app = express();
 
