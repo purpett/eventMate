@@ -3,6 +3,8 @@ SEI Project 3 - Event Management App
 
 ## Wireframes
 
+![eventmate wireframes](https://user-images.githubusercontent.com/126505751/236216986-a70cb335-c768-4601-9244-0be826e333d4.gif)
+
 
 ## Schema
 
