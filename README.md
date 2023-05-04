@@ -1,4 +1,5 @@
 # eventMate
+# Created by *The Full Stack Squad*
 SEI Project 3 - Event Management App
 
 Link to Trello Board - https://trello.com/b/oGbblHkd/project-3-tasks-%F0%9F%92%AA%F0%9F%8F%BB
