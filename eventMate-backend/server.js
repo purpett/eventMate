@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const dbConfig = require('./config/db');
 const eventRouter = require('./routes/eventRoutes')
 const userRouter = require('./routes/userRoutes')
@@ -17,6 +18,11 @@ db.on('connected', () => console.log(`MondoDB Connected: ${dbConfig}`));
 db.on('disconnected', () => console.log('MongoDB Disconnected'))
 
 app.use(express.json());
+
+// Set CORS headers on response from this API using 'cors' npm package
+app.use(cors({
+  origin: 'http://localhost:3000'
+}))
 
 // Mount the imported Routes
 app.use(eventRouter)

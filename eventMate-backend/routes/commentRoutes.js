@@ -38,6 +38,7 @@ router.delete('/api/events/:id/comments/:commentId', (req, res) => {
     Event.findById(req.params.id)
         .then((event) => {
             const commentId = req.params.commentId
+            // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
             event.comments.id(commentId).deleteOne();
             event.save()
                 .then((event) => {
@@ -58,6 +59,7 @@ router.put('/api/events/:id/comments/:commentId', (req, res) => {
         .then((event) => {
             const commentId = req.params.commentId
 
+            // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
             const comment = event.comments.id(req.params.commentId)
             console.log(comment);
             comment.text = req.body.text;
