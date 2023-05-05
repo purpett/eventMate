@@ -1,5 +1,6 @@
 import { getAllEvents } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
+import EventPage from "./EventPage"
 import CreateEventPage from "./CreateEventPage"
 import { useState, useEffect } from "react"
 
@@ -20,6 +21,7 @@ export default function AllEventsPage() {
     <div>
       <button onClick={(giveMeOneEvent)}>One event</button>
       <CreateEventPage />
+      <EventPage />
     </div>
   )
 }
