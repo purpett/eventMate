@@ -5,7 +5,6 @@ const eventRouter = require('./routes/eventRoutes')
 const userRouter = require('./routes/userRoutes')
 const commentRouter = require('./routes/commentRoutes')
 
-
 const app = express();
 
 mongoose.connect(dbConfig);
@@ -23,7 +22,6 @@ app.use(express.json());
 app.use(eventRouter)
 app.use(userRouter)
 app.use(commentRouter)
-
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
