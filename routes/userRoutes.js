@@ -36,12 +36,11 @@ router.post('/api/users', (req, res) => {
         .catch(error => res.status(500).json(error.message))
         })
 
-
 /*
 Action: DESTROY
 Method: Delete
 URI: /api/users/6454c695fad21cb899116e53
-Description: Delete an Users by its Users ID
+Description: Delete an Users by its User ID
  */
 
 router.delete('/api/users/:id', (req, res) => {
@@ -56,5 +55,23 @@ router.delete('/api/users/:id', (req, res) => {
         .catch(error => res.status(500).json(error.message))
 })
 
+/*
+Action: UPDATE
+Method: Put/Patch
+URI: /api/users/e585b9q283u49
+Description: Update an Users by its User ID
+*/
+
+router.put('/api/users/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then(user => {
+            if (user) {
+                res.json({ user: user })
+            } else {
+                res.status(404).json('Provided id does not match any documents')
+            }
+        })
+        .catch(error => res.status(500).json(error.message))
+})
 
 module.exports = router
