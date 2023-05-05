@@ -21,7 +21,10 @@ export const CreateUser = (userInfo) => {
 
 // Delete single User
 export const DeleteUser = (id) => {
-  return fetch(`http://localhost:5002/api/users/${id}`)
+  return fetch(`http://localhost:5002/api/users/${id}`, {
+    method: 'DELETE'
+  }
+  )
 }
 
 // Update single User
