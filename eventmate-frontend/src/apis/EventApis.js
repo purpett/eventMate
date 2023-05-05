@@ -23,6 +23,15 @@ export const createEvent = (newEvent) => {
 }
 
 // Update/Edit one event (UPDATE)
+export const updateEvent = (id, updatedEvent) => {
+  return fetch(`http://localhost:5002/api/events/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedEvent)
+  })
+}
 
 // Delete one event (DESTROY)
 export const deleteEvent = (id) => {
