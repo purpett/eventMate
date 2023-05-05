@@ -24,18 +24,4 @@ router.post('/api/events/:id/comments', (req, res) => {
     })
 })
 
-/*
-Action: DESTROY
-Method: Delete
-URI: /api/comment/e585b9q283u49
-Description: Delete an Comment by its Comment ID
- */
-
-/*
-Action: UPDATE
-Method: Put/Patch
-URI: /api/comment/e585b9q283u49
-Description: Update an Comment by its ID
-*/
-
 module.exports = router
