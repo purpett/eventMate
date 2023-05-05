@@ -18,23 +18,15 @@ Description: Create a new Comment
 
 router.post('/api/events/:id/comments', (req, res) => {
     Event.findById(req.params.id)
-      .then((event) => {
-        const comment = req.body
-        event.comments.push(comment);
-        event.save()
-          .then((event) => {
-            res.status(201).json(event)
-          })
-      })
-  })
-
-
-
-
-
-
-
-
+        .then((event) => {
+            const comment = req.body
+            event.comments.push(comment);
+            event.save()
+                .then((event) => {
+                    res.status(201).json(event)
+                })
+        })
+})
 /*
 Action: DESTROY
 Method: Delete
