@@ -23,4 +23,21 @@ router.get('/api/users/:id', (req, res) => {
         .catch(error => res.status(500).json(error.message))
 })
 
+/*
+Action: CREATE
+Method: Post
+URI: /api/users/
+Description: Create a new User
+*/
+
+router.post('/api/users', (req, res) => {
+    User.create(req.body)
+        .then(newUser => res.status(201).json({ user: newUser }))
+        .catch(error => res.status(500).json(error.message))
+        })
+
+
+
+
+        
 module.exports = router
