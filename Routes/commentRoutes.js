@@ -15,6 +15,7 @@ Description: Create a new Comment
 
 
 
+
 router.post('/api/events/:id/comments', (req, res) => {
     Event.findById(req.params.id)
       .then((event) => {
@@ -32,8 +33,7 @@ router.post('/api/events/:id/comments', (req, res) => {
 
 
 
-// event.comments.push(comment)
-// event.save()
+
 
 /*
 Action: DESTROY
@@ -53,8 +53,6 @@ router.delete('/api/events/:id/comments/:commentId', (req, res) => {
                 })
         })
 })
-
-
 
 /*
 Action: UPDATE
