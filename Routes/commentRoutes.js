@@ -56,6 +56,26 @@ router.delete('/api/events/:id/comments/:commentId', (req, res) => {
 
 
 
+/*
+Action: UPDATE
+Method: Put/Patch
+URI: /api/comment/e585b9q283u49
+Description: Update an Comment by its ID
+*/
 
+router.put('/api/events/:id/comments/:commentId', (req, res) => {
+    Event.findById(req.params.id)
+        .then((event) => {
+            const commentId = req.params.commentId
+
+            const comment = event.comments.id(req.params.commentId)
+            console.log(comment);
+            comment.text = req.body.text;
+            event.save()
+                .then((event) => {
+                    res.status(201).json(event)
+                })
+        })
+})
 
 module.exports = router
