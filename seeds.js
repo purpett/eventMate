@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const Event = require('./models/event')
 const User = require('./models/user')
-const { Comment } = require('./models/comment')
 const dbConfig = require('./config/db');
 
 mongoose.connect(dbConfig)
@@ -37,13 +36,13 @@ const secondUser = new User({
 })
 
 
-const firstComment = new Comment({
+const firstComment = {
   text: 'This is a comment under the first event',
-})
+}
 
-const secondComment = new Comment({
+const secondComment = {
   text: 'This is a comment under the second event',
-})
+}
 
 
 firstComment.author = firstUser
@@ -71,10 +70,10 @@ secondEvent.save()
   .then(() => console.log('event saved'))
   .catch(() => console.log('event not saved'))
 
-firstComment.save()
-  .then(() => console.log('event saved'))
-  .catch(() => console.log('event not saved'))
+// firstComment.save()
+//   .then(() => console.log('event saved'))
+//   .catch(() => console.log('event not saved'))
 
-secondComment.save()
-  .then(() => console.log('event saved'))
-  .catch(() => console.log('event not saved'))
+// secondComment.save()
+//   .then(() => console.log('event saved'))
+//   .catch(() => console.log('event not saved'))
