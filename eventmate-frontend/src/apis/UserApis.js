@@ -1,13 +1,13 @@
 // Get a single User
-export const GetUser = (id) => {
+export const getUser = (id) => {
   return fetch(`http://localhost:5002/api/users/${id}`)
 }
 
 // Create single User
-export const CreateUser = (userInfo) => {
-  return fetch(`http://localhost:5002/api/users/`, {
+export const createUser = (userInfo) => {
+  return fetch(`http://localhost:5002/api/users`, {
     method: 'POST',
-    header: {
+    headers: {
       "Content-Type": "application/json",
       "Accept": "application/json", 
     },
@@ -20,7 +20,7 @@ export const CreateUser = (userInfo) => {
 }
 
 // Delete single User
-export const DeleteUser = (id) => {
+export const deleteUser = (id) => {
   return fetch(`http://localhost:5002/api/users/${id}`, {
     method: 'DELETE'
   }
@@ -28,7 +28,9 @@ export const DeleteUser = (id) => {
 }
 
 // Update single User
-export const UpdateUser = (id, userChanges, userInfo) => {
+export const updateUser = (id, userChanges, userInfo) => {
+  console.log(userInfo.attending)
+  console.log(userChanges.attending)
   return fetch(`http://localhost:5002/api/users/${id}`, {
     method: `PUT`,
     headers: {
