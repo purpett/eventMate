@@ -44,6 +44,3 @@ const [currentUser, setCurrentUser] = useState("")
 
     )
 }
-
-
-
