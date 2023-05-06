@@ -29,20 +29,22 @@ export default function SignUp(){
   }
 
    return (
-
-        <div>
-            <h2>Sign Up</h2>
+<>
+    <h2>Sign Up</h2>
+        <div className="sign-up-div">
+            
             <form>
                 <h3>Username</h3>
                 <input name='username' onChange={handleSignUpTextInput} placeholder="Enter Your Username"></input>
                 <h3>Password</h3>
                 <input name='password' onChange={handleSignUpTextInput} placeholder="Enter Your Password"></input>
-                <button onClick={(e) => {
+                <button className="sign-up-button" onClick={(e) => {
                     e.preventDefault();
                     createOneUser()
                     }}>Sign Up</button>
             </form>
         </div>
 
+</>
     )
 }
