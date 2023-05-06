@@ -1,6 +1,11 @@
 import { getAllEvents } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
-// import CreateEventPage from "./CreateEventPage"
+
+
+import CreateEventPage from "./CreateEventPage"
+import ProfilePage from "./ProfilePage"
+
+
 import { useState, useEffect } from "react"
 import SingleEventCard from "./SingleEventCard"
 
@@ -25,7 +30,10 @@ export default function AllEventsPage() {
   return (
     <div>
       <button onClick={(giveMeOneEvent)}>One event</button>
-      {/* <CreateEventPage /> */}
+
+   
+
+
       { 
       // Checks to see if there is anything in everyEvent before it maps through it.
       everyEvent.length ? 
@@ -38,6 +46,7 @@ export default function AllEventsPage() {
         />)
       }) : null
       }
+
     </div>
   )
 }
