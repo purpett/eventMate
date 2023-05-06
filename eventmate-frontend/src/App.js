@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import CreateEventPage from './components/CreateEventPage';
 import { useState, useEffect } from "react"
 import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' element={ <AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/> } />
         <Route path='/CreateEventPage' element={ <CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/>} />
         <Route path='/SignUp' element= {  <SignUp />} />
+        <Route path='/Login' element= {  <Login />} />
       </Routes>
       
 

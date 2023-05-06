@@ -8,7 +8,7 @@ export default function NavBar(){
             &nbsp; | &nbsp;
             <Link to='/ProfilePage'></Link>
             &nbsp; | &nbsp;
-            <Link to='/Login'></Link>
+            <Link to='/Login'>Sign In</Link>
             &nbsp; | &nbsp;
             <Link to='/SignUp'>Sign Up</Link>
             &nbsp; | &nbsp;
