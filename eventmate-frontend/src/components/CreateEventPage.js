@@ -1,34 +1,46 @@
+import React from "react";
 import { createEvent } from "../apis/EventApis";
+import { useState } from "react"
 
 export default function CreateEventPage() {
-  const event = {
-    title: 'An event',
-    description: 'bkbbasbfjk',
-    location: 'London',
-    date: '2023-07-01',
-    comments: [],
-    attendees: []
-  }
+  const [createdEvent, setCreatedEvent] = useState({
+  title: "",
+  description: "",
+  location: "",
+  date: "",
+  // organiser: "Miles",
+  comments: [],
+  attendees: []
 
+  })
+  
   function createOneEvent() {
-    createEvent(event)
+    createEvent(createdEvent)
       .then((event) => event.json())
       .then((data => console.log(data)))
+
+      console.log(createdEvent)
   }
 
-  // function handleFormSubmission
+  function handleTextInput (e) {
+    setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
+    console.log(createdEvent);
+  }
 
   return (
     <div>
       <form>
-        <input name='event-title' placeholder="Enter your Events Title"></input>
-        <input name='location' placeholder="Location"></input>
-        <input name='date' placeholder="Date"></input>
-        <input name='description' placeholder="Description"></input>
+        <input name='title' onChange={handleTextInput} placeholder="Enter your Events Title"></input>
+        <input name='location' onChange={handleTextInput} placeholder="Location"></input>
+        <input name='date' onChange={handleTextInput} placeholder="Date"></input>
+        <input name='description' onChange={handleTextInput} placeholder="Description"></input>
 
 
 
-        <button onClick={createOneEvent}>Create event</button>
+        <button onClick={(e) => {
+          e.preventDefault();
+          createOneEvent()
+          }}>Create event</button>
       </form>
     </div>
   )

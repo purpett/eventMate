@@ -4,11 +4,14 @@ import NavBar from './components/NavBar';
 import { Routes, Route } from 'react-router-dom';
 
 import CreateEventPage from './components/CreateEventPage';
+import { useState, useEffect } from "react"
 
 
 
 
 function App() {
+
+  const [everyEvent, setEveryEvent] = useState([])
 
   return (
     <div className="App">
@@ -17,8 +20,8 @@ function App() {
 
       
       <Routes>
-        <Route path='/' element={ <AllEventsPage /> } />
-        <Route path='/CreateEventPage' element={ <CreateEventPage />} />
+        <Route path='/' element={ <AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/> } />
+        <Route path='/CreateEventPage' element={ <CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/>} />
       </Routes>
       
 
