@@ -7,11 +7,11 @@ import SingleEventCard from "./SingleEventCard"
 export default function AllEventsPage() {
   const [everyEvent, setEveryEvent] = useState([])
   useEffect(() => {
+    // On load sends a fetch request to the backend to get every Event and then stores it into the state everyEvent
     getAllEvents()
       .then(events => events.json())
       .then((data => {
         setEveryEvent([...data.events])
-        // console.log(data.events)
       }))
       .catch((error) => error.message)
   }, [])
@@ -21,22 +21,20 @@ export default function AllEventsPage() {
       .then((event) => event.json())
       .then((data => console.log(data)))
   }
-  // everyEvent.map((eventInfo) => {
-  //   return (<EventPage eventInfo={eventInfo} key={eventInfo._id} />)
-  // })
+
   return (
     <div>
       <button onClick={(giveMeOneEvent)}>One event</button>
       <CreateEventPage />
-      
       { 
+      // Checks to see if there is anything in everyEvent before it maps through it.
       everyEvent.length ? 
-        everyEvent.map((eventInfo, index) => {
-          console.log(eventInfo)
+        everyEvent.map((eventInfo) => {
         return(
+          // Returns singleEventCard the same number of times as there is items in the array everyEvent and passes down the information for that individual event.
         <SingleEventCard  
         eventInfo={eventInfo} 
-        key={index}
+        key={eventInfo._id}
         />)
       }) : null
       }
