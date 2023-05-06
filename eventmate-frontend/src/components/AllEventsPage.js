@@ -18,15 +18,8 @@ export default function AllEventsPage() {
       .catch((error) => error.message)
   }, [])
 
-  function giveMeOneEvent() {
-    getOneEvent("64540e928db8b54dad9367d4")
-      .then((event) => event.json())
-      .then((data => console.log(data)))
-  }
-
   return (
     <div>
-      <button onClick={(giveMeOneEvent)}>One event</button>
       <CreateEventPage />
 
       { 
