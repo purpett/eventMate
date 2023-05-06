@@ -31,9 +31,6 @@ export default function AllEventsPage(props) {
     <div>
       <button onClick={(giveMeOneEvent)}>One event</button>
 
-   
-
-
       { 
       // Checks to see if there is anything in everyEvent before it maps through it.
       props.everyEvent.length ? 

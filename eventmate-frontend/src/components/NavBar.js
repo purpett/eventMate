@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
-export default function NavBar(){
+// export default function NavBar(){
+
 
     return(
         <nav>
@@ -15,8 +16,9 @@ export default function NavBar(){
             <Link to='/CreateEventPage'>Create Event</Link>
             &nbsp; | &nbsp;
 
+
             
-            <button> LOG OUT </button>
-        </nav>
-    )
-}
+//             <button> LOG OUT </button>
+//         </nav>
+//     )
+// }

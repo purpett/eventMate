@@ -1,7 +1,7 @@
 import './App.css';
 import AllEventsPage from './components/AllEventsPage';
-import NavBar from './components/NavBar';
-import { Routes, Route } from 'react-router-dom';
+// import NavBar from './components/NavBar';
+// import { Routes, Route } from 'react-router-dom';
 
 import CreateEventPage from './components/CreateEventPage';
 import { useState, useEffect } from "react"
@@ -17,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+
       <NavBar />
       <h1>EventMate by The Full Stack Squad</h1>
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/Login' element= {  <Login />} />
       </Routes>
       
+
 
     
     </div>
