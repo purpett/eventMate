@@ -5,6 +5,7 @@ export default function SingleEventCard({ eventInfo }) {
       <p>Title: {eventInfo.title}</p>
       <p>Location: {eventInfo.location}</p>
       <p>Date: {eventInfo.date}</p>
+      <hr/>
     </div>
   )
 }
