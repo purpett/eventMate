@@ -1,4 +1,17 @@
 .App {
-  /*  */
+  
+
+
+}
+.sign-up-div{
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
+.sign-up-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
