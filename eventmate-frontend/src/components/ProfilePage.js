@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getUser, createUser, deleteUser } from '../apis/UserApis'
 import UserEvent from './UserEvent'
 
-// export default function ProfilePage() {
+export default function ProfilePage() {
 
 const [userEvents, setUserEvents] = useState([])
 const [currentUser, setCurrentUser] = useState("")
@@ -33,7 +33,7 @@ const [currentUser, setCurrentUser] = useState("")
             <button>Edit profile</button>
         </div>
 
-//         <button onClick={ deleteUserProfile }>Delete account</button>
+        <button onClick={ deleteUserProfile }>Delete account</button>
 
         {userEvents.length ? userEvents.map((event, index) => {
             return <UserEvent event={event} index = {index} />
