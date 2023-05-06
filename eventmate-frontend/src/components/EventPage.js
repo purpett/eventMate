@@ -1,5 +1,7 @@
 import { deleteEvent } from "../apis/EventApis"
 import { updateEvent } from "../apis/EventApis"
+import Comments from "./Comments"
+import CreateCommentForm from "./CreateCommentForm"
 
 export default function EventPage() {
   const updatedEvent = {
@@ -22,6 +24,8 @@ export default function EventPage() {
     <div>
       <button onClick={deleteOneEvent}>Delete One Event</button>
       <button onClick={updateOneEvent}>Update One Event</button>
+      <CreateCommentForm />
+      <Comments />
     </div>
   )
 }
