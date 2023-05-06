@@ -16,10 +16,20 @@ export default function CreateEventPage() {
       .then((data => console.log(data)))
   }
 
+  // function handleFormSubmission
+
   return (
     <div>
+      <form>
+        <input name='event-title' placeholder="Enter your Events Title"></input>
+        <input name='location' placeholder="Location"></input>
+        <input name='date' placeholder="Date"></input>
+        <input name='description' placeholder="Description"></input>
 
-      <button onClick={createOneEvent}>Create event</button>
+
+
+        <button onClick={createOneEvent}>Create event</button>
+      </form>
     </div>
   )
 }
