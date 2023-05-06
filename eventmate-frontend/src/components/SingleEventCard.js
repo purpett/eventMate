@@ -1,3 +1,5 @@
+import { deleteEvent } from '../apis/EventApis'
+
 export default function SingleEventCard({ eventInfo }) {
   return(
     <div>
@@ -5,6 +7,12 @@ export default function SingleEventCard({ eventInfo }) {
       <p>Title: {eventInfo.title}</p>
       <p>Location: {eventInfo.location}</p>
       <p>Date: {eventInfo.date}</p>
+      {/* Purely for testing purposes */}
+      <button
+      onClick={() => {
+        deleteEvent(eventInfo._id)
+      }}
+      >Delete</button>
     </div>
   )
 }
