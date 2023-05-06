@@ -8,13 +8,13 @@ export default function UserEvent(props) {
 
     const [userEventsList, setUserEventsList] = useState([])
 
+    // Take the id's passed down from ProfilePage and add them to 
+        // the userEventsList
     useEffect(() => {
         getOneEvent(event)
         .then(newEvent => newEvent.json())
         .then(data => setUserEventsList(...userEventsList, data))
-        console.log(userEventsList)
     }, [])
-
 
         return(
             <>

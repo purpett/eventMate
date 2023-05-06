@@ -35,7 +35,7 @@ const [userEvents, setUserEvents] = useState([])
             return <UserEvent event={event} index = {index} />
         }
         ) : null}
-        
+
         </>
 
     )
