@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
-export default function NavBar(){
+// export default function NavBar(){
 
-    return(
-        <nav>
-            <Link to='/'>Home page</Link>
-            {/* <Link to='/ProfilePage'></Link>
-            <Link to='/Login'></Link>
-            <Link to='/SignUp'></Link> */}
+//     return(
+//         <nav>
+//             <Link to='/'>Home page</Link>
+//             {/* <Link to='/ProfilePage'></Link>
+//             <Link to='/Login'></Link>
+//             <Link to='/SignUp'></Link> */}
             
-            <button> LOG OUT </button>
-        </nav>
-    )
-}
+//             <button> LOG OUT </button>
+//         </nav>
+//     )
+// }

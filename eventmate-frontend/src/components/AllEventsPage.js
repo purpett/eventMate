@@ -28,7 +28,7 @@ export default function AllEventsPage() {
     <div>
       <button onClick={(giveMeOneEvent)}>One event</button>
       <CreateEventPage />
-
+    <ProfilePage />
       { 
       // Checks to see if there is anything in everyEvent before it maps through it.
       everyEvent.length ? 
