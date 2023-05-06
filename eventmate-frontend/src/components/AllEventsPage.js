@@ -2,10 +2,6 @@ import { getAllEvents } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
 
 
-import CreateEventPage from "./CreateEventPage"
-import ProfilePage from "./ProfilePage"
-
-
 import {  useEffect } from "react"
 import SingleEventCard from "./SingleEventCard"
 

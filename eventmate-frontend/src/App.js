@@ -1,7 +1,7 @@
 import './App.css';
 import AllEventsPage from './components/AllEventsPage';
-// import NavBar from './components/NavBar';
-// import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import { Routes, Route } from 'react-router-dom';
 import EventPage from './components/EventPage';
 
 import CreateEventPage from './components/CreateEventPage';
@@ -21,7 +21,6 @@ function App() {
 
       <NavBar />
       <h1>EventMate by The Full Stack Squad</h1>
-      <NavBar />
       <Routes>
         <Route path='/' element={ <AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/> } />
         <Route path='/CreateEventPage' element={ <CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/>} />
