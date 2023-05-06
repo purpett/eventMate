@@ -5,14 +5,16 @@ import UserEvent from './UserEvent'
 export default function ProfilePage() {
 
 const [userEvents, setUserEvents] = useState([])
+const [currentUser, setCurrentUser] = useState("")
 
 // Load the getUser api specific to the user id on page load
     useEffect(() => {
         getUser('6454c384f5c2e5818741f897')
         .then(user => user.json())
-        .then(data => setUserEvents(data.user.attending))
-        console.log(userEvents)
-
+        .then((data) => {
+            setUserEvents(data.user.attending); 
+            setCurrentUser(data.user.username)})
+        // console.log(userEvents)
     }, [])
 
 
@@ -26,6 +28,7 @@ const [userEvents, setUserEvents] = useState([])
     return(
         <>
         <div>
+            {currentUser}
             <button>Edit profile</button>
         </div>
 
