@@ -2,19 +2,22 @@ import { useState } from "react"
 import { createUser } from "../apis/UserApis";
 
 export default function SignUp(){
-    
+   
+    // create a state to hold the new user
    const [newUser, setNewUser] = useState({
     username: "",
     password: "",
     attending: []
    })
     
-
+   // function to set the username field in the state equal to the username input field
+   //and the same for the password
    function handleSignUpTextInput (e) {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
     console.log(newUser);
   }
 
+  // call the createUset api with the newUser as an argument
   function createOneUser () {
     createUser(newUser)
     .then((user) => user.json())
