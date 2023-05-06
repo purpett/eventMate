@@ -19,7 +19,9 @@ export default function CreateEventPage() {
   function createOneEvent() {
     createEvent(createdEvent)
       .then((event) => event.json())
-      .then((data => console.log(data)))
+      // .then((data => console.log(data)))
+      .catch((error) => console.log(error))
+      setCreatedEvent({});
 
       // console.log(createdEvent)
   }
