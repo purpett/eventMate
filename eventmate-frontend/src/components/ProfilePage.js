@@ -10,12 +10,12 @@ const [currentUser, setCurrentUser] = useState("")
 
 // Load the getUser api specific to the user id on page load
     useEffect(() => {
-        getUser('6454c384f5c2e5818741f897')
+        getUser('64577ed65683384e242cb228')
         .then(user => user.json())
         .then((data) => {
             setUserEvents(data.user.attending); 
             setCurrentUser(data.user.username)})
-        // console.log(userEvents)
+        
     }, [])
 
 
@@ -36,7 +36,8 @@ const [currentUser, setCurrentUser] = useState("")
         <button onClick={ deleteUserProfile }>Delete account</button>
 
         {userEvents.length ? userEvents.map((event, index) => {
-            return <UserEvent event={event} index = {index} />
+          console.log(event)
+            // return <UserEvent event={event} index = {index} />
         }
         ) : null}
 

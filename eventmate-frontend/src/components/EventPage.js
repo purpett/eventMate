@@ -50,11 +50,11 @@ export default function EventPage() {
         <button>I Want to Attend</button>
         <hr />
       </div>
+      <button onClick={deleteOneEvent}>Delete Event</button>
+      <button onClick={updateOneEvent}>Update Event</button>
       <button
       onClick={() => SetCreateAComment(!createAComment)}
       >Add Comment</button>
-      <button onClick={deleteOneEvent}>Delete Event</button>
-      <button onClick={updateOneEvent}>Update Event</button>
       {createAComment && <CreateCommentForm id={id}/>}
       <Comments/>
     </div>

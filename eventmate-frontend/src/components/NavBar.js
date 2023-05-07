@@ -15,7 +15,8 @@ export default function NavBar(){
             &nbsp; | &nbsp;
             <Link to='/CreateEventPage'>Create Event</Link>
             &nbsp; | &nbsp;
-
+            <Link to='/Profile'>My Profile</Link>
+            &nbsp; | &nbsp;
 
             
             <button> LOG OUT </button>
