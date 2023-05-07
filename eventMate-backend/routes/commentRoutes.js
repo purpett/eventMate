@@ -13,10 +13,10 @@ Description: Create a new Comment
 */
 
 
-
-
-
 router.post('/api/events/:id/comments', (req, res) => {
+    if (req.body.hideAuthor === "false"){
+      req.body.hideAuthor = false
+    }
     Event.findById(req.params.id)
         .then((event) => {
             const comment = req.body

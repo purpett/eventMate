@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom"
 
 export default function EventPage() {
   const [singleEvent, setSingleEvent] = useState([])
-  const [createAComment, SetCreateAComment] = useState(false)
+  const [createACommentForm, SetCreateACommentForm] = useState(false)
   const { id } = useParams()
 
   const giveOneEvent = (id) => {
@@ -53,10 +53,10 @@ export default function EventPage() {
       <button onClick={deleteOneEvent}>Delete Event</button>
       <button onClick={updateOneEvent}>Update Event</button>
       <button
-      onClick={() => SetCreateAComment(!createAComment)}
+      onClick={() => SetCreateACommentForm(!createACommentForm)}
       >Add Comment</button>
-      {createAComment && <CreateCommentForm id={id}/>}
-      <Comments/>
+      {createACommentForm && <CreateCommentForm id={id}/>}
+      <Comments singleEventForComments={singleEvent} />
     </div>
   )
 }

@@ -14,7 +14,9 @@ export default function CreateCommentForm({ id }){
   
   function handleTextInput (e) {
     setNewComment({ ...newComment, [e.target.name]: e.target.value });
-    console.log(newComment);
+  }
+  function handleHiddenNameInput (e) {
+    setNewComment({ ...newComment, [e.target.name]: e.target.checked})
   }
 
   return(
@@ -22,14 +24,18 @@ export default function CreateCommentForm({ id }){
       <h3>Comment Text</h3>
       <input placeholder="Comment Text"
       name="text"
+      onChange={handleTextInput}
       ></input>
       <p>Stay Annonymous</p>
       <input type="checkbox"
-      name="author"
-      onChange={(e) => console.log(e.target.checked)}
+      name="hideAuthor"
+      onChange={handleHiddenNameInput}
       ></input>
       <button
-      onClick={createOneComment}
+      onClick={(e) => {
+        createOneComment()
+        e.preventDefault()
+      }}
       >Create Comment</button>
     </form>
   )
