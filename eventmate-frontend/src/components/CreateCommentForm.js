@@ -2,8 +2,9 @@ import { createComment } from "../apis/CommentApis";
 import { useState } from "react"
 export default function CreateCommentForm({ id }){
   const [ newComment, setNewComment ] = useState({
-    author: "Anonymous",
-    text: ""
+    author: "64577ed65683384e242cb229",
+    text: "",
+    hideAuthor: "false"
   })
   const createOneComment = () => {
     createComment(id, newComment)
@@ -16,7 +17,7 @@ export default function CreateCommentForm({ id }){
     setNewComment({ ...newComment, [e.target.name]: e.target.value });
   }
   function handleHiddenNameInput (e) {
-    setNewComment({ ...newComment, [e.target.name]: e.target.checked})
+    setNewComment({ ...newComment, [e.target.name]: `${e.target.checked}`})
   }
 
   return(
