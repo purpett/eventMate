@@ -7,7 +7,7 @@ export default function NavBar(){
         <nav>
             <Link to='/'>Home page</Link>
             &nbsp; | &nbsp;
-            <Link to='/ProfilePage'></Link>
+            <Link to='/ProfilePage'>My Profile</Link>
             &nbsp; | &nbsp;
             <Link to='/Login'>Sign In</Link>
             &nbsp; | &nbsp;

@@ -9,6 +9,7 @@ import { useState, useEffect } from "react"
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ProfilePage from './components/ProfilePage';
+import ProfilePage from './components/ProfilePage';
 
 
 
@@ -27,7 +28,7 @@ function App() {
         <Route path='/CreateEventPage' element={ <CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/>} />
         <Route path='/SignUp' element= {  <SignUp />} />
         <Route path='/Login' element= {  <Login />} />
-        <Route path="/Profile" element={<ProfilePage />} />
+        <Route path='/ProfilePage' element= {  <ProfilePage />} />
 
         <Route path='/:id' element={<EventPage />} />
       </Routes>

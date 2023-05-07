@@ -21,13 +21,16 @@ const [currentUser, setCurrentUser] = useState("")
 
 // Function to call the deleteUser api
     function deleteUserProfile(){
-        deleteUser('64566df14521ec5fa483a68e')
+        deleteUser('6454d6ac11419d1077ddf1a6')
         .then(deletedUser => deletedUser.json())
         .then(data => console.log(data))
     }
 
+//add functionality to show upcoming and past events
+
     return(
         <>
+        <h1>Profile</h1>
         <div>
             {currentUser}
             <button>Edit profile</button>
@@ -35,9 +38,8 @@ const [currentUser, setCurrentUser] = useState("")
 
         <button onClick={ deleteUserProfile }>Delete account</button>
 
-        {userEvents.length ? userEvents.map((event, index) => {
-          console.log(event)
-            // return <UserEvent event={event} index = {index} />
+        {userEvents.length ? userEvents.map((event) => {
+            return <UserEvent event={event} key = {event._id} />
         }
         ) : null}
 
