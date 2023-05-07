@@ -13,6 +13,7 @@ Description: Get a User by User ID
 
 router.get('/api/users/:id', (req, res) => {
     User.findById(req.params.id)
+        .populate("attending")
         .then(user => {
             if (user) {
                 res.json({ user: user })
