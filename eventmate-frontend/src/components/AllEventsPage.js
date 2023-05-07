@@ -18,15 +18,16 @@ export default function AllEventsPage(props) {
   }, [])
 
   return (
-    <div>
+    <div className="home-page-container" >
 
       { 
       // Checks to see if there is anything in everyEvent before it maps through it.
       props.everyEvent.length ? 
-        props.everyEvent.map((eventInfo) => {
+        props.everyEvent.map((eventInfo, index) => {
         return(
           // Returns singleEventCard the same number of times as there is items in the array everyEvent and passes down the information for that individual event.
-        <SingleEventCard  
+        <SingleEventCard 
+        index={index}
         eventInfo={eventInfo} 
         key={eventInfo._id}
         />)
