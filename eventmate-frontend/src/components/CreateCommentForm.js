@@ -1,7 +1,7 @@
 import { createComment } from "../apis/CommentApis";
 
-export default function CreateCommentForm(){
-  const eventId = "645416a1cdb6ffdcebe066a4"
+export default function CreateCommentForm({ id }){
+  const eventId = id
   const newComment = {
     text: "Brand new comment"
   }
