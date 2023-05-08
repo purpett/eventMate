@@ -2,29 +2,34 @@ import { deleteEvent, updateEvent } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
 import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useParams } from "react-router-dom"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
   const [singleEvent, setSingleEvent] = useState([])
+  const [commentArray, setCommentArray] = useState([])
   // This state is used as a switch for the create comment form
   const [createACommentForm, SetCreateACommentForm] = useState(false)
   // Grab the event Id from the url and store it in the variable called id.
   const { id } = useParams()
 
   // Function that calls the fetch request get one event and then sets it in the singleEvent state
-  const giveOneEvent = () => {
+  const giveOneEvent = useCallback(() => {
     getOneEvent(id)
       .then((event) => event.json())
       .then((data => setSingleEvent(data.event)))
       .catch((error) => console.log(error.message))
-  }
+  }, [])
 
     // On page load the function that grabs the event information is called and fed the id of the event.
   useEffect(() => {
     giveOneEvent(id)
   }, [])
+
+  useEffect(() => {
+    setCommentArray(singleEvent.comments)
+  }, [singleEvent])
 
   // For testing purposes
   const updatedEvent = {
@@ -43,6 +48,10 @@ export default function EventPage() {
     updateEvent(id, updatedEvent)
       .then((event) => event.json())
       .then((data => console.log(data)))
+  }
+
+  function commentsToShow(allTheComments) {
+    setCommentArray([...allTheComments])
   }
 
   return (
@@ -66,9 +75,12 @@ export default function EventPage() {
       <button onClick={updateOneEvent}>Update Event</button>
       
       {/* If the createACommentForm is true to Comment form will appear and pass down the id of the event. */}
-      {createACommentForm && <CreateCommentForm id={id}/>}
+      {createACommentForm && <CreateCommentForm 
+      commentsToShow={commentsToShow}
+      id={id}/>}
       {/* This will be where the comments will be generated. The whole event information is passed down */}
-      <Comments commentsArray={singleEvent.comments}
+      <Comments
+        commentArray={commentArray}
         eventId = {id}
       />
     </div>
