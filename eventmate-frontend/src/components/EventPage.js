@@ -55,16 +55,16 @@ export default function EventPage() {
         <p>Date: {singleEvent? singleEvent.date: null}</p>
         <p>Tags:</p>
         <button>Like/Fav</button>
-        <button>Comment</button>
+        {/* Button that toggles the createACommentForm boolean state */}
+      <button
+      onClick={() => SetCreateACommentForm(!createACommentForm)}
+      >Comment</button>
         <button>I Want to Attend</button>
         <hr />
       </div>
       <button onClick={deleteOneEvent}>Delete Event</button>
       <button onClick={updateOneEvent}>Update Event</button>
-      {/* Button that toggles the createACommentForm boolean state */}
-      <button
-      onClick={() => SetCreateACommentForm(!createACommentForm)}
-      >Add Comment</button>
+      
       {/* If the createACommentForm is true to Comment form will appear and pass down the id of the event. */}
       {createACommentForm && <CreateCommentForm id={id}/>}
       {/* This will be where the comments will be generated. The whole event information is passed down */}

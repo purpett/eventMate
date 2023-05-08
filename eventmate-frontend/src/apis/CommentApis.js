@@ -8,11 +8,11 @@ export const createComment = (eventId, newComment) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(newComment
-      // text: `${newComment.text}`,
-      // hideAuthor: `${newComment.hideAuthor}`,
-      // author: `${newComment.author}`
-    )
+    body: JSON.stringify({
+      text: `${newComment.text}`,
+      hideAuthor: `${newComment.hideAuthor}`,
+      author: `${newComment.author}`
+  })
   })
 }
 
