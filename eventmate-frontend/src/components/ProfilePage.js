@@ -10,6 +10,7 @@ const [currentUser, setCurrentUser] = useState("")
 
 // Load the getUser api specific to the user id on page load
     useEffect(() => {
+        // temp hard coding the user id
         getUser('6454c384f5c2e5818741f897')
         .then(user => user.json())
         .then((data) => {
@@ -21,13 +22,15 @@ const [currentUser, setCurrentUser] = useState("")
 
 // Function to call the deleteUser api
     function deleteUserProfile(){
-        deleteUser('64566df14521ec5fa483a68e')
+        // temp hard coding the user id
+        deleteUser('64566df14521ec5fa483a68e') 
         .then(deletedUser => deletedUser.json())
         .then(data => console.log(data))
     }
 
     return(
         <>
+        <h2>My Profile</h2>
         <div>
             {currentUser}
             <button>Edit profile</button>
