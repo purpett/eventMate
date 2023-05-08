@@ -23,8 +23,6 @@ export default function CreateEventPage() {
       .then((event) => event.json())
       .then((data => navigate(`../${data.event._id}`)))
       .catch((error) => console.log(error))
-      setCreatedEvent({});
-
       // console.log(createdEvent)
   }
 
@@ -34,6 +32,7 @@ export default function CreateEventPage() {
   //   console.log(createdEvent);
   }
 
+  
   return (
     <div>
       <h1>Create A New Event</h1>
@@ -45,6 +44,7 @@ export default function CreateEventPage() {
         <button onClick={(e) => {
           e.preventDefault();
           createOneEvent()
+          
           }}>Create event</button>
       </form>
     </div>
