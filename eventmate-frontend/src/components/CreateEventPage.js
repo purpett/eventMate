@@ -1,6 +1,7 @@
 import React from "react";
 import { createEvent } from "../apis/EventApis";
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function CreateEventPage() {
 
@@ -14,15 +15,14 @@ export default function CreateEventPage() {
   attendees: []
 
   })
+  const navigate = useNavigate()
   
   // function to call the post create event api with the new state which has just been set 
   function createOneEvent() {
     createEvent(createdEvent)
       .then((event) => event.json())
-      // .then((data => console.log(data)))
+      .then((data => navigate(`../${data.event._id}`)))
       .catch((error) => console.log(error))
-      setCreatedEvent({});
-
       // console.log(createdEvent)
   }
 
@@ -32,6 +32,7 @@ export default function CreateEventPage() {
   //   console.log(createdEvent);
   }
 
+  
   return (
     <div>
       <h1>Create A New Event</h1>
@@ -43,6 +44,7 @@ export default function CreateEventPage() {
         <button onClick={(e) => {
           e.preventDefault();
           createOneEvent()
+          
           }}>Create event</button>
       </form>
     </div>
