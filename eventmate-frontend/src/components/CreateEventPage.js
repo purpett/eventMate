@@ -24,17 +24,6 @@ export default function CreateEventPage() {
       .then((event) => event.json())
       .then((data => setCreatedEventId( {...createdEventId, id: data.event._id } )))
       .catch((error) => console.log(error))
-      
-      setCreatedEvent({
-        title: " ",
-        description: " ",
-        location: " ",
-        date: " ",
-        comments: [],
-        attendees: []
-      })
-   
-      
       // console.log(createdEvent)
   }
 
@@ -45,13 +34,12 @@ export default function CreateEventPage() {
   }
   const navigate = useNavigate();
 
- 
-  
   function navigateToSingleEventPage(){
     console.log("state ID",createdEventId)
     navigate(`/${createdEventId.id}`);
   }
-    
+
+  
   return (
     <div>
       <h1>Create A New Event</h1>
