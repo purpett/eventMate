@@ -1,7 +1,7 @@
 import { updateComment, deleteComment } from "../apis/CommentApis";
 
 
-export default function Comment( {singleCommentInfo, eventId} ) {
+export default function Comment( {singleCommentInfo, eventId, updateCommentList} ) {
   const updatedComment = {
     text: "new text on this comment"
   }
@@ -14,7 +14,7 @@ export default function Comment( {singleCommentInfo, eventId} ) {
   const deleteOneComment = () => {
     deleteComment(eventId, singleCommentInfo._id)
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => updateCommentList(result.comments))
       .catch((error) => console.log(error.message))
     }
   return(

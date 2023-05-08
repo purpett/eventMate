@@ -81,6 +81,7 @@ export default function EventPage() {
       {/* This will be where the comments will be generated. The whole event information is passed down */}
       <Comments
         commentArray={commentArray}
+        commentsToShow={commentsToShow}
         eventId = {id}
       />
     </div>
