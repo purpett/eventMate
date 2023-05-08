@@ -3,7 +3,7 @@ import { getOneEvent } from "../apis/EventApis"
 import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState, useCallback } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -36,11 +36,14 @@ export default function EventPage() {
     title: 'Another event'
   }
 
+  const navigate = useNavigate()
+
   // Function to delete an event by its Id. It calls the destroy backend for that event.
   function deleteOneEvent() {
     deleteEvent(id)
       .then((deletedEvent) => deletedEvent.json())
-      .then((data => console.log(data)))
+      .then((data => navigate('/')))
+      .catch((error) => console.log(error))
   }
 
   // Function to update one event. its fed the Id and the updated event information
