@@ -1,27 +1,29 @@
 import { updateComment, deleteComment } from "../apis/CommentApis";
 
 
-export default function Comment( {singleEventInfo, theEventIdForComments} ) {
+export default function Comment( {singleCommentInfo, eventId} ) {
   const updatedComment = {
     text: "new text on this comment"
   }
   const updateOneComment = () => {
-    updateComment(theEventIdForComments, singleEventInfo._id, updatedComment )
+    updateComment(eventId, singleCommentInfo._id, updatedComment )
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log(error.message))
   }
   const deleteOneComment = () => {
-    deleteComment(theEventIdForComments, singleEventInfo._id)
+    deleteComment(eventId, singleCommentInfo._id)
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log(error.message))
     }
   return(
     <>
-      <p>Author: {singleEventInfo.hideAuthor?"Anonymous": "K-B" }</p>
-      <p>Comment: {singleEventInfo.text}</p>
-      {singleEventInfo.author === "64577ed65683384e242cb229" ?
+      {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
+      <p>Author: {singleCommentInfo.hideAuthor?"Anonymous": "K-B" }</p>
+      <p>Comment: {singleCommentInfo.text}</p>
+      {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
+      {singleCommentInfo.author === "64577ed65683384e242cb229" ?
       <div>
       <button
       onClick={updateOneComment}

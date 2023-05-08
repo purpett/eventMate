@@ -1,14 +1,14 @@
 import Comment from "./Comment";
 
-export default function Comments({ singleEventForComments }) {
+export default function Comments({ commentsArray, eventId }) {
   return(
     <div>
-      {console.log(singleEventForComments.comments)}
-      {singleEventForComments.comments ? 
-      singleEventForComments.comments.map((singleCommentInfo) => {
+      {/* Checks if the there is information being passed down and if there is it maps through it creating a Comment component for each item in array. Each Comment component is passed the individual comment info and the eventId  */}
+      {commentsArray ? 
+      commentsArray.map((singleCommentInfo) => {
         return <Comment 
-        singleEventInfo = {singleCommentInfo}
-        theEventIdForComments = {singleEventForComments._id}
+        singleCommentInfo = {singleCommentInfo}
+        eventId = {eventId}
         key={singleCommentInfo._id}
         />
       })
