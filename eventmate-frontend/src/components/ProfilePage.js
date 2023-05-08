@@ -10,12 +10,12 @@ const [currentUser, setCurrentUser] = useState("")
 
 // Load the getUser api specific to the user id on page load
     useEffect(() => {
-        getUser('6454d6ac11419d1077ddf1a6')
+        getUser('64577ed65683384e242cb228')
         .then(user => user.json())
         .then((data) => {
             setUserEvents(data.user.attending); 
             setCurrentUser(data.user.username)})
-         
+        
     }, [])
 
 
