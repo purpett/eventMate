@@ -67,20 +67,6 @@ export default function EventPage() {
 
   }
 
-  function addEventIdToUser() {
-    const token = loadToken();
-    const payloadFromToken = getPayloadFromToken(token)
-    const changes = {
-      attending: singleEvent._id
-    }
-    console.log(changes)
-
-    updateUser(payloadFromToken.userId, changes)
-      .then((results) => results.json())
-    // .then((data) => console.log(data))
-
-  }
-
   return (
     <div>
       <div>
