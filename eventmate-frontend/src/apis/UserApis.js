@@ -1,6 +1,16 @@
+// Get token from localStorage
+function loadToken() {
+  return localStorage.getItem('tokenContent')
+}
+
 // Get a single User
 export const getUser = (id) => {
-  return fetch(`http://localhost:5002/api/users/${id}`)
+  const token = JSON.parse(loadToken())
+  return fetch(`http://localhost:5002/api/users/${id}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
 }
 
 // Create single User
@@ -9,7 +19,7 @@ export const createUser = (userInfo) => {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json", 
+      "Accept": "application/json",
     },
     body: JSON.stringify({
       username: `${userInfo.username}`,
@@ -38,8 +48,8 @@ export const updateUser = (id, userChanges, userInfo) => {
       "Accept": "application/json"
     },
     body: JSON.stringify({
-      username: `${userChanges.username? userChanges.username: userInfo.username}`,
-      password: `${userChanges.password? userChanges.password: userInfo.password}`,
+      username: `${userChanges.username ? userChanges.username : userInfo.username}`,
+      password: `${userChanges.password ? userChanges.password : userInfo.password}`,
       attending: [...userInfo.attending, userChanges.attending]
     })
   }

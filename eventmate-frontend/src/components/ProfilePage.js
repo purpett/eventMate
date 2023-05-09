@@ -20,7 +20,6 @@ export default function ProfilePage() {
         if (!loadedToken) {
             return false
         }
-        console.log(loadedToken)
         const encryptedPayload = loadedToken.split('.')
         return JSON.parse(window.atob(encryptedPayload[1]))
     }
