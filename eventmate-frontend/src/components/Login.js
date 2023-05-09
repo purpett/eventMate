@@ -1,7 +1,10 @@
 import { useState } from "react"
 import { createToken } from "../tokenLogic/tokenLogic";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+
+    const navigate = useNavigate()
 
     const [userCredentials, setUserCredentials] = useState({
         username: "",
@@ -19,6 +22,7 @@ export default function Login() {
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     createToken(userCredentials);
+                    navigate("/")
                 }}>
                     <h3>Username</h3>
                     <input
