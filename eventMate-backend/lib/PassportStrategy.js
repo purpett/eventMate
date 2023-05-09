@@ -12,12 +12,12 @@ const JwtStrategy = passportJWT.Strategy
 // This function is where we are going to see if the requesting user has a valid jWT or not. And, to see if the token is expired.
 const strategy = new JwtStrategy(jwtOptions, (jwtPayload, next) => {
   console.log('Payload Received!')
-  console.log('User ID:', jwtPayload.id)
+  console.log('User ID:', jwtPayload.userId)
   console.log('Token Expires On:', jwtPayload.exp)
-  
-  User.findById(jwtPayload.id)
-  .then(user => next(null, user))
-  .catch(() => next(null, false))
+
+  User.findById(jwtPayload.userId)
+    .then(user => next(null, user))
+    .catch(() => next(null, false))
 })
 
 module.exports = strategy

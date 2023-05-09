@@ -1,7 +1,6 @@
 const express = require('express')
-
 const router = express.Router()
-
+const passport = require('passport')
 const User = require('../models/user')
 
 /* 
@@ -11,7 +10,7 @@ URI: /api/users/
 Description: Get a User by User ID
 */
 
-router.get('/api/users/:id', (req, res) => {
+router.get('/api/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findById(req.params.id)
         .populate("attending")
         .then(user => {
@@ -33,11 +32,11 @@ Description: Create a new User
 */
 
 router.post('/api/users', (req, res) => {
-  console.log(req.body)
+    console.log(req.body)
     User.create(req.body)
-        .then(newUser => res.status(201).json({user: newUser}))
+        .then(newUser => res.status(201).json({ user: newUser }))
         .catch(error => res.status(500).json(error.message))
-        })
+})
 
 /*
 Action: DESTROY
