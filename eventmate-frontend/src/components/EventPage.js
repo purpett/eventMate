@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic"
 import { updateUser } from "../apis/UserApis"
+// import { get } from "mongoose"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -52,17 +53,28 @@ export default function EventPage() {
       .catch((error) => console.log(error.message))
   }
 
-  function addEventIdToUser() {
-    const token = loadToken();
-    const payloadFromToken = getPayloadFromToken(token)
-    const changes = {
-      attending: singleEvent._id
-    }
-    console.log(changes)
+  // function addEventIdToUser() {
+  //   const payloadFromToken = getPayloadFromToken()
+  //   const changes = {
+  //     attending: singleEvent._id
+  //   }
+  //   console.log(changes)
 
-    updateUser(payloadFromToken.userId, changes)
-      .then((results) => results.json())
-    // .then((data) => console.log(data))
+  //   updateUser(payloadFromToken.userId, changes)
+  //     .then((results) => results.json())
+  // }
+
+  function addUserIdToAttendees() {
+    const payloadFromToken = getPayloadFromToken()
+    const userId = payloadFromToken.userId
+    if (singleEvent.attendees.includes(userId)) {
+      return
+    } else {
+      singleEvent.attendees.push(userId)
+    }
+    // TODO: prevent user from clicking attend multiple times
+
+    console.log(singleEvent.attendees)
   }
 
   function handleInputOnChange(e) {
@@ -86,7 +98,7 @@ export default function EventPage() {
         {/* <button>Like/Fav</button> */}
         {/* Button that toggles the showCommentForm boolean state */}
         <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>
-        <button onClick={addEventIdToUser}>Attend</button>
+        <button onClick={addUserIdToAttendees}>Attend</button>
         <button onClick={toggleForm}>Edit Event</button>
         <button onClick={deleteOneEvent}>Delete Event</button>
         <hr />
