@@ -35,7 +35,7 @@ export default function ProfilePage() {
         <>
             <h1>Profile</h1>
             <div>
-                {currentUser}
+                {currentUser? currentUser: "Please Sign in"}
                 <button>Edit profile</button>
             </div>
 
