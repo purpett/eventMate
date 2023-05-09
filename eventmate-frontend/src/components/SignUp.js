@@ -24,15 +24,12 @@ export default function SignUp(){
     // .then((data => console.log(data)))
     .catch((error) => console.log(error))
     setNewUser({})
-    
-
   }
 
    return (
 <>
     <h2>Sign Up</h2>
-        <div className="sign-up-div">
-            
+        <div className="sign-up-div"> 
             <form>
                 <h3>Username</h3>
                 <input name='username' onChange={handleSignUpTextInput} placeholder="Enter Your Username"></input>
