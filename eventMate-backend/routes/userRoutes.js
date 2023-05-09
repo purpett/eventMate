@@ -23,6 +23,19 @@ router.get('/api/users/:id', passport.authenticate('jwt', { session: false }), (
         .catch(error => res.status(500).json(error.message))
 })
 
+/**
+ * Action: SHOW
+ * Method: Get
+ * URI: /api/users/:username
+ * Description: Find User by username.
+ */
+
+router.get('/api/users/test/:username', (req, res) => {
+    User.findOne({ username: req.params.username })
+    .then((user) => res.json(user))
+    .catch((error) => res.status(500).json(error.message))
+})
+
 
 /*
 Action: CREATE

@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { createUser } from "../apis/UserApis";
+import { createUser, getUserByUsername } from "../apis/UserApis";
 import { useNavigate } from "react-router-dom";
 
 
 export default function SignUp() {
+    
+    const navigate = useNavigate()
 
     // create a state to hold the new user
     const [newUser, setNewUser] = useState({
@@ -18,8 +20,10 @@ export default function SignUp() {
         setNewUser({ ...newUser, [e.target.name]: e.target.value });
     }
 
+
+
   // call the createUset api with the newUser as an argument
-  function createOneUser () {
+  function createOneUser() {
     createUser(newUser)
     .then((user) => user.json())
     .then((data => navigate(`/Login`)))
@@ -31,9 +35,23 @@ export default function SignUp() {
 
 
 
+function isUsernameUnique() {
+    getUserByUsername(newUser.username)
+    .then((response) => response.json())
+    .then((data) => {
+        if (data) {
+            console.log("username already exists")
+        }  else {
+            console.log("free to use")
+        }})
+  }
+
    return (
 <>
     <h2>Sign Up</h2>
+
+    <button onClick={isUsernameUnique}> BUTTON TEST </button>
+
         <div className="sign-up-div">
             
             <form>
@@ -55,7 +73,7 @@ export default function SignUp() {
                 ></input>
                 <button className="sign-up-button" onClick={(e) => {
                     e.preventDefault();
-                    createOneUser()
+                    isUsernameUnique()
                     }}>Sign Up</button>
             </form>
         </div>
