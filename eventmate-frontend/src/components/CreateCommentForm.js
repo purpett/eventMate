@@ -1,6 +1,6 @@
 import { createComment } from "../apis/CommentApis";
 import { useState } from "react"
-export default function CreateCommentForm({ id, commentsToShow }) {
+export default function CreateCommentForm({ id, setSingleEvent }) {
   const [newCommentInput, setNewCommentInput] = useState({
     author: "64577ed65683384e242cb229",
     text: "",
@@ -10,7 +10,8 @@ export default function CreateCommentForm({ id, commentsToShow }) {
     createComment(id, newCommentInput)
       .then((response) => response.json())
       .then((result) => {
-        commentsToShow(result.comments)
+        // this is a whole event, so we can access all of its fields
+        setSingleEvent(result)
         setNewCommentInput({ ...newCommentInput, text: "", hideAuthor: false })
       })
       .catch((error) => console.log(error.message))
@@ -30,13 +31,13 @@ export default function CreateCommentForm({ id, commentsToShow }) {
         name="text"
         value={newCommentInput.text}
         onChange={handleTextInput}
-      ></input>
+      />
       <p>Stay Annonymous</p>
       <input type="checkbox"
         name="hideAuthor"
         value={newCommentInput.hideAuthor}
         onChange={handleHiddenNameInput}
-      ></input>
+      />
       <button
         onClick={(e) => {
           createOneComment()
