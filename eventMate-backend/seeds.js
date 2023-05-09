@@ -55,25 +55,17 @@ firstUser.attending.push(firstEvent)
 firstUser.attending.push(secondEvent)
 
 firstUser.save()
-  .then(() => console.log('event saved'))
-  .catch(() => console.log('event not saved'))
+// .then(() => console.log('event saved'))
+// .catch(() => console.log('event not saved'))
 
 secondUser.save()
-  .then(() => console.log('event saved'))
-  .catch(() => console.log('event not saved'))
+// .then(() => console.log('event saved'))
+// .catch(() => console.log('event not saved'))
 
 firstEvent.save()
-  .then(() => console.log('event saved'))
-  .catch(() => console.log('event not saved'))
+// .then(() => console.log('event saved'))
+// .catch(() => console.log('event not saved'))
 
 secondEvent.save()
-  .then(() => console.log('event saved'))
-  .catch(() => console.log('event not saved'))
-
-// firstComment.save()
-//   .then(() => console.log('event saved'))
-//   .catch(() => console.log('event not saved'))
-
-// secondComment.save()
-//   .then(() => console.log('event saved'))
-//   .catch(() => console.log('event not saved'))
+  // .then(() => console.log('event saved'))
+  // .catch(() => console.log('event not saved'))

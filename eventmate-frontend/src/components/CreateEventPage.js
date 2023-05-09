@@ -22,13 +22,11 @@ export default function CreateEventPage() {
       .then((event) => event.json())
       .then((data => navigate(`../${data.event._id}`)))
       .catch((error) => console.log(error))
-    // console.log(createdEvent)
   }
 
   // function to get the values from the input fields and map those into the relevant state object fields
   function handleTextInput(e) {
     setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
-    //   console.log(createdEvent);
   }
 
 

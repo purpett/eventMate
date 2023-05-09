@@ -36,8 +36,6 @@ export const deleteUser = (id) => {
 
 // Update single User
 export const updateUser = (id, userChanges, userInfo) => {
-  console.log(userInfo.attending)
-  console.log(userChanges.attending)
   return fetch(`http://localhost:5002/api/users/${id}`, {
     method: `PUT`,
     headers: {
