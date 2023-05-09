@@ -10,10 +10,6 @@ import Login from './components/Login';
 import ProfilePage from './components/ProfilePage';
 
 
-import ProfilePage from './components/ProfilePage';
-
-
-
 function App() {
 
   const [everyEvent, setEveryEvent] = useState([])
