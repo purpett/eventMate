@@ -10,7 +10,7 @@ import { updateUser } from "../apis/UserApis"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
-  const [singleEvent, setSingleEvent] = useState({})
+  const [singleEvent, setSingleEvent] = useState({ attendees: [] })
   const [editedEvent, setEditedEvent] = useState(singleEvent)
 
   // This state is used as a switch for the create comment form
@@ -74,7 +74,9 @@ export default function EventPage() {
       const eventData = { ...singleEvent, attendees: attendees }
       updateEvent(singleEvent._id, eventData)
         .then((response) => response.json())
+        // .then((data) => console.log(data))
         .then((data) => setSingleEvent(data))
+      // setSingleEvent({ ...singleEvent, attendees: attendees })
     }
 
   }
@@ -96,7 +98,7 @@ export default function EventPage() {
         <p>Location: {singleEvent.location}</p>
         <p>Date: {singleEvent.date}</p>
         <p>Organiser: {singleEvent.organiser}</p>
-        <p>People attending: {singleEvent.attendees} </p>
+        <p>People attending: {singleEvent.attendees.length} </p>
         <p>Tags:</p>
         {/* <button>Like/Fav</button> */}
         {/* Button that toggles the showCommentForm boolean state */}
