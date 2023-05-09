@@ -67,14 +67,29 @@ export default function EventPage() {
 
   }
 
+  function addEventIdToUser() {
+    const token = loadToken();
+    const payloadFromToken = getPayloadFromToken(token)
+    const changes = {
+      attending: singleEvent._id
+    }
+    console.log(changes)
+
+    updateUser(payloadFromToken.userId, changes)
+      .then((results) => results.json())
+    // .then((data) => console.log(data))
+
+  }
+
   return (
     <div>
       <div>
         {/* Checks to see if the fetch request is complete before showing the event information */}
-        <p>Title: {singleEvent.title}</p>
-        <p>Description: {singleEvent.description}</p>
-        <p>Location: {singleEvent.location}</p>
-        <p>Date: {singleEvent.date}</p>
+        <p>Title: {singleEvent ? singleEvent.title : null}</p>
+        <p>Description: {singleEvent ? singleEvent.description : null}</p>
+        <p>Location: {singleEvent ? singleEvent.location : null}</p>
+        <p>Date: {singleEvent ? singleEvent.date : null}</p>
+        <p>Organiser: {singleEvent ? singleEvent.organiser : null}</p>
         <p>Tags:</p>
         <button>Like/Fav</button>
         {/* Button that toggles the showForm boolean state */}

@@ -23,7 +23,8 @@ export default function ProfilePage() {
 
     // Function to call the deleteUser api
     function deleteUserProfile() {
-        deleteUser('6454d6ac11419d1077ddf1a6')
+        const payload = getPayloadFromToken()
+        deleteUser(payload.userId)
             .then(deletedUser => deletedUser.json())
             .then(data => console.log(data))
     }

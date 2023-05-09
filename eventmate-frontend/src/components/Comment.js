@@ -43,40 +43,44 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
 
   return (
     <>
-      {!showForm && <div>
-        {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
+      {
+        !showForm && <div>
+          {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
 
-        <p>Author: {singleComment.author === `${payload.username}` ?
-          (singleComment.hideAuthor ?
-            `Anonymous (You)` : `${singleComment.author} (You)`
-          ) : (singleComment.hideAuthor ?
-            `Anonymous` : singleComment.author
-          )
-        }</p>
+          <p>Author: {singleComment.author === `${payload.username}` ?
+            (singleComment.hideAuthor ?
+              `Anonymous (You)` : `${singleComment.author} (You)`
+            ) : (singleComment.hideAuthor ?
+              `Anonymous` : singleComment.author
+            )
+          }</p>
 
-        <p>Comment: {singleComment.text}</p>
-        {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
-        {singleComment.author === `${payload.username}` ?
-          <div>
-            <button onClick={toggleForm}>Edit Comment</button>
-            <button onClick={deleteOneComment}>Delete Comment</button>
-          </div> : null}
+          <p>Comment: {singleComment.text}</p>
+          {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
+          {singleComment.author === `${payload.username}` ?
+            <div>
+              <button onClick={toggleForm}>Edit Comment</button>
+              <button onClick={deleteOneComment}>Delete Comment</button>
+            </div> : null}
 
-      </div>}
-      {showForm && <form onSubmit={updateOneComment}>
-        <input
-          name="text"
-          type="text"
-          placeholder={singleComment.text}
-          autoFocus="true"
-          autoComplete="off"
-          required
-          value={editedComment.text}
-          onChange={handleInputOnChange}
-          onKeyDown={handleEscForm}
-          onBlur={handleBlur}
-        />
-      </form>}
+        </div>
+      }
+      {
+        showForm && <form onSubmit={updateOneComment}>
+          <input
+            name="text"
+            type="text"
+            placeholder={singleComment.text}
+            autoFocus="true"
+            autoComplete="off"
+            required
+            value={editedComment.text}
+            onChange={handleInputOnChange}
+            onKeyDown={handleEscForm}
+            onBlur={handleBlur}
+          />
+        </form>
+      }
     </>
   )
 }
