@@ -1,28 +1,13 @@
 
 import { useState, useEffect } from 'react'
-import { getUser, createUser, deleteUser } from '../apis/UserApis'
+import { getUser, deleteUser } from '../apis/UserApis'
+import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 import UserEvent from './UserEvent'
 
 export default function ProfilePage() {
 
     const [userEvents, setUserEvents] = useState([])
     const [currentUser, setCurrentUser] = useState("")
-
-    // Get token from localStorage
-    function loadToken() {
-        return localStorage.getItem('tokenContent')
-    }
-
-    // Get the payload by decoding token and decrypting
-
-    function getPayloadFromToken() {
-        const loadedToken = loadToken()
-        if (!loadedToken) {
-            return false
-        }
-        const encryptedPayload = loadedToken.split('.')
-        return JSON.parse(window.atob(encryptedPayload[1]))
-    }
 
     // Load the getUser api specific to the user id on page load
     useEffect(() => {
@@ -35,7 +20,6 @@ export default function ProfilePage() {
             })
 
     }, [])
-
 
     // Function to call the deleteUser api
     function deleteUserProfile() {

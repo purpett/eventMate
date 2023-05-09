@@ -1,7 +1,4 @@
-// Get token from localStorage
-function loadToken() {
-  return localStorage.getItem('tokenContent')
-}
+import { loadToken } from "../tokenLogic/tokenLogic"
 
 // Get a single User
 export const getUser = (id) => {

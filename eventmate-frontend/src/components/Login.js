@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { createToken } from "../tokenLogic/tokenLogic";
 
 export default function Login() {
 
@@ -6,28 +7,6 @@ export default function Login() {
         username: "",
         password: ""
     })
-
-    function storeToken(token) {
-        localStorage.setItem('tokenContent', JSON.stringify(token))
-    }
-
-    function createToken() {
-        return fetch('http://localhost:5002/api/login', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: `${userCredentials.username}`,
-                password: `${userCredentials.password}`,
-            })
-        })
-            .then((response) => response.json())
-            .then((token) => {
-                console.log(token.token)
-                storeToken(token.token)
-            })
-    }
 
     function handleTextInput(e) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
@@ -39,7 +18,7 @@ export default function Login() {
             <div className="sign-up-div">
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    createToken();
+                    createToken(userCredentials);
                 }}>
                     <h3>Username</h3>
                     <input
