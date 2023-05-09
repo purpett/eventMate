@@ -39,7 +39,7 @@ export default function SignUp(){
                 <h3>Username</h3>
                 <input name='username' onChange={handleSignUpTextInput} placeholder="Enter Your Username"></input>
                 <h3>Password</h3>
-                <input name='password' onChange={handleSignUpTextInput} placeholder="Enter Your Password"></input>
+                <input type='password' onChange={handleSignUpTextInput} placeholder="Enter Your Password"></input>
                 <button className="sign-up-button" onClick={(e) => {
                     e.preventDefault();
                     createOneUser()
