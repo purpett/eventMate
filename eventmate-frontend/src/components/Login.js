@@ -24,7 +24,8 @@ export default function Login() {
         })
             .then((response) => response.json())
             .then((token) => {
-                storeToken(token)
+                console.log(token.token)
+                storeToken(token.token)
             })
     }
 
