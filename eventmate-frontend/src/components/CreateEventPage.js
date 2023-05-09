@@ -2,17 +2,26 @@ import React from "react";
 import { createEvent } from "../apis/EventApis";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function CreateEventPage() {
 
-  //create a state to hold the values from the input fields
+const tokenFromLocalStorage = loadToken();
+
+
+const payloadFromToken = getPayloadFromToken(tokenFromLocalStorage)
+console.log("payload", payloadFromToken.username)
+const username = payloadFromToken.username
+
+ //create a state to hold the values from the input fields
   const [createdEvent, setCreatedEvent] = useState({
     title: "",
     description: "",
     location: "",
     date: "",
     comments: [],
-    attendees: []
+    attendees: [], 
+    organiser: username
   })
   const navigate = useNavigate()
 
@@ -28,7 +37,7 @@ export default function CreateEventPage() {
   // function to get the values from the input fields and map those into the relevant state object fields
   function handleTextInput(e) {
     setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
-    //   console.log(createdEvent);
+   console.log("state", createdEvent);
   }
 
 
