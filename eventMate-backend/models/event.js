@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const commentSchema = new Schema({
-  author: { type: Schema.Types.ObjectId, ref: 'User' },
+  author: { type: String },
   text: { type: String, required: true },
   hideAuthor: {type: Boolean, default: false}
 })
@@ -15,7 +15,7 @@ const eventSchema = new Schema({
   date: { type: Date, required: true },
   attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   comments: [commentSchema],
-  organiser: { type: Schema.Types.ObjectId, ref: 'User' }
+  organiser: String
 })
 
 const Event = mongoose.model('Event', eventSchema)
