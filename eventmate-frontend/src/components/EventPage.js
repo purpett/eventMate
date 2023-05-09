@@ -118,6 +118,7 @@ export default function EventPage() {
       {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
       {showCommentForm && <CreateCommentForm
         setSingleEvent={setSingleEvent}
+        setShowCommentForm={setShowCommentForm}
         id={id} />}
       {/* This will be where the comments will be generated. The whole event information is passed down */}
       <Comments
