@@ -26,13 +26,13 @@ router.get('/api/users/:id', passport.authenticate('jwt', { session: false }), (
 /**
  * Action: SHOW
  * Method: Get
- * URI: /api/users/:username
+ * URI: /api/users/checkuser/:username
  * Description: Find User by username.
  */
 
-router.get('/api/users/test/:username', (req, res) => {
+router.get('/api/users/checkuser/:username', (req, res) => {
     User.findOne({ username: req.params.username })
-    .then((user) => res.json(user))
+    .then((user) => res.status(406).json(`${req.params.username} already exists`))
     .catch((error) => res.status(500).json(error.message))
 })
 

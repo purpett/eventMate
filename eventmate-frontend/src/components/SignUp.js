@@ -29,12 +29,10 @@ export default function SignUp() {
     .then((data => navigate(`/Login`)))
     .catch((error) => console.log(error))
     setNewUser({})
-    
-
   }
 
 
-
+// Check if the new username already exists in the database
 function isUsernameUnique() {
     getUserByUsername(newUser.username)
     .then((response) => response.json())
@@ -42,15 +40,13 @@ function isUsernameUnique() {
         if (data) {
             console.log("username already exists")
         }  else {
-            console.log("free to use")
+            createOneUser()
         }})
   }
 
    return (
 <>
     <h2>Sign Up</h2>
-
-    <button onClick={isUsernameUnique}> BUTTON TEST </button>
 
         <div className="sign-up-div">
             
