@@ -22,7 +22,7 @@ export default function SignUp() {
   function createOneUser () {
     createUser(newUser)
     .then((user) => user.json())
-    // .then((data => console.log(data)))
+    .then((data => navigate(`/Login`)))
     .catch((error) => console.log(error))
     setNewUser({})
     
