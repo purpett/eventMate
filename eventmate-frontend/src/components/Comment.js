@@ -1,4 +1,5 @@
 import { updateComment, deleteComment } from "../apis/CommentApis";
+import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 import { useState } from "react";
 
 
@@ -6,6 +7,8 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
 
   const [showForm, setShowForm] = useState(false)
   const [editedComment, setEditedComment] = useState(false)
+
+  const payload = getPayloadFromToken();
 
   const updateOneComment = () => {
     updateComment(eventId, singleComment._id, editedComment)
@@ -16,7 +19,6 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
 
   const deleteOneComment = () => {
     deleteComment(eventId, singleComment._id)
-      .then((response) => response.json())
       .then((result) => setSingleEvent(result))
       .catch((error) => console.log(error.message))
   }
@@ -43,13 +45,23 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
     <>
       {!showForm && <div>
         {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
-        <p>Author: {singleComment.hideAuthor ? "Anonymous" : "K-B"}</p>
+
+        <p>Author: {singleComment.author === `${payload.username}` ?
+          (singleComment.hideAuthor ?
+            `Anonymous (You)` : `${singleComment.author} (You)`
+          ) : (singleComment.hideAuthor ?
+            `Anonymous` : singleComment.author
+          )
+        }</p>
+
         <p>Comment: {singleComment.text}</p>
         {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
-        <div>
-          <button onClick={toggleForm}>Edit Comment</button>
-          <button onClick={deleteOneComment}>Delete Comment</button>
-        </div>
+        {singleComment.author === `${payload.username}` ?
+          <div>
+            <button onClick={toggleForm}>Edit Comment</button>
+            <button onClick={deleteOneComment}>Delete Comment</button>
+          </div> : null}
+
       </div>}
       {showForm && <form onSubmit={updateOneComment}>
         <input
