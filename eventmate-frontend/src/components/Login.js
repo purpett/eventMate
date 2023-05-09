@@ -1,24 +1,47 @@
 import { useState } from "react"
+import { createToken } from "../tokenLogic/tokenLogic";
 
+export default function Login() {
 
-export default function Login(){
-   
-   return (
-<>
-    <h2>Login</h2>
-        <div className="sign-up-div">
-            <form>
-                <h3>Username</h3>
-                <input name='username'  placeholder="Enter Your Username"></input>
-                <h3>Password</h3>
-                <input name='password' placeholder="Enter Your Password"></input>
-                <button className="sign-up-button" onClick={(e) => {
+    const [userCredentials, setUserCredentials] = useState({
+        username: "",
+        password: ""
+    })
+
+    function handleTextInput(e) {
+        setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
+    }
+
+    return (
+        <>
+            <h2>Login</h2>
+            <div className="sign-up-div">
+                <form onSubmit={(e) => {
                     e.preventDefault();
-                    
-                    }}>Login</button>
-            </form>
-        </div>
-</>
+                    createToken(userCredentials);
+                }}>
+                    <h3>Username</h3>
+                    <input
+                        name='username'
+                        placeholder="Enter Your Username"
+                        required
+                        autoComplete="off"
+                        value={userCredentials.username}
+                        onChange={handleTextInput}
+                    />
+                    <h3>Password</h3>
+                    <input
+                        name='password'
+                        placeholder="Enter Your Password"
+                        required
+                        autoComplete="off"
+                        value={userCredentials.password}
+                        onChange={handleTextInput}
+                    />
+                    <button className="sign-up-button" type="submit">Login</button>
+                </form>
+            </div>
+        </>
 
     )
 }
