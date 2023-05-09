@@ -19,6 +19,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
 
   const deleteOneComment = () => {
     deleteComment(eventId, singleComment._id)
+      .then((response) => response.json())
       .then((result) => setSingleEvent(result))
       .catch((error) => console.log(error.message))
   }
