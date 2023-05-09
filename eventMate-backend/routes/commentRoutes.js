@@ -14,10 +14,10 @@ Description: Create a new Comment
 
 
 router.post('/api/events/:id/comments', (req, res) => {
-    if (req.body.hideAuthor === "false"){
-      req.body.hideAuthor = false
+    if (req.body.hideAuthor === "false") {
+        req.body.hideAuthor = false
     } else {
-      req.body.hideAuthor = true
+        req.body.hideAuthor = true
     }
     Event.findById(req.params.id)
         .then((event) => {
@@ -63,7 +63,6 @@ router.put('/api/events/:id/comments/:commentId', (req, res) => {
 
             // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
             const comment = event.comments.id(req.params.commentId)
-            console.log(comment);
             comment.text = req.body.text;
             event.save()
                 .then((event) => {

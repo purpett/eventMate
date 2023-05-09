@@ -6,21 +6,21 @@ import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function CreateEventPage() {
 
-const tokenFromLocalStorage = loadToken();
+  const tokenFromLocalStorage = loadToken();
 
 
-const payloadFromToken = getPayloadFromToken(tokenFromLocalStorage)
-console.log("payload", payloadFromToken.username)
-const username = payloadFromToken.username
+  const payloadFromToken = getPayloadFromToken(tokenFromLocalStorage)
+  console.log("payload", payloadFromToken.username)
+  const username = payloadFromToken.username
 
- //create a state to hold the values from the input fields
+  //create a state to hold the values from the input fields
   const [createdEvent, setCreatedEvent] = useState({
     title: "",
     description: "",
     location: "",
     date: "",
     comments: [],
-    attendees: [], 
+    attendees: [],
     organiser: username
   })
   const navigate = useNavigate()
@@ -31,13 +31,12 @@ const username = payloadFromToken.username
       .then((event) => event.json())
       .then((data => navigate(`../${data.event._id}`)))
       .catch((error) => console.log(error))
-    // console.log(createdEvent)
   }
 
   // function to get the values from the input fields and map those into the relevant state object fields
   function handleTextInput(e) {
     setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
-   console.log("state", createdEvent);
+    console.log("state", createdEvent);
   }
 
 

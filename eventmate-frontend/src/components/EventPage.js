@@ -9,7 +9,7 @@ import { updateUser } from "../apis/UserApis"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
-  const [singleEvent, setSingleEvent] = useState([])
+  const [singleEvent, setSingleEvent] = useState({})
   const [commentArray, setCommentArray] = useState([])
   // This state is used as a switch for the create comment form
   const [createACommentForm, SetCreateACommentForm] = useState(false)
@@ -59,18 +59,18 @@ export default function EventPage() {
     setCommentArray([...allTheComments])
   }
 
-  function addEventIdToUser () {
+  function addEventIdToUser() {
     const token = loadToken();
     const payloadFromToken = getPayloadFromToken(token)
     const changes = {
       attending: singleEvent._id
     }
     console.log(changes)
-    
-    updateUser(payloadFromToken.userId,changes)
+
+    updateUser(payloadFromToken.userId, changes)
       .then((results) => results.json())
-      // .then((data) => console.log(data))
-    
+    // .then((data) => console.log(data))
+
   }
 
   return (
