@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const commentSchema = new Schema({
-  author: { type: Schema.Types.ObjectId, ref: 'User' },
+  author: { type: String },
   text: { type: String, required: true },
   hideAuthor: {type: Boolean, default: false}
 })

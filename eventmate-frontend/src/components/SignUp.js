@@ -14,7 +14,6 @@ export default function SignUp(){
    //and the same for the password
    function handleSignUpTextInput (e) {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
-    console.log(newUser);
   }
 
   // call the createUset api with the newUser as an argument
