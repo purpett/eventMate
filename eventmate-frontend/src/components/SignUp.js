@@ -35,9 +35,21 @@ export default function SignUp(){
             
             <form>
                 <h3>Username</h3>
-                <input name='username' onChange={handleSignUpTextInput} placeholder="Enter Your Username"></input>
+                <input 
+                    name='username' 
+                    onChange={handleSignUpTextInput} 
+                    placeholder="Enter Your Username"
+                    required
+                    autoComplete="off"
+                ></input>
                 <h3>Password</h3>
-                <input name='password' onChange={handleSignUpTextInput} placeholder="Enter Your Password"></input>
+                <input 
+                    name='password' 
+                    onChange={handleSignUpTextInput} 
+                    placeholder="Enter Your Password"
+                    required
+                    autoComplete="off"
+                ></input>
                 <button className="sign-up-button" onClick={(e) => {
                     e.preventDefault();
                     createOneUser()
