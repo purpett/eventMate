@@ -70,11 +70,13 @@ export default function EventPage() {
     if (singleEvent.attendees.includes(userId)) {
       return
     } else {
-      singleEvent.attendees.push(userId)
+      const attendees = [...singleEvent.attendees, userId]
+      const eventData = { ...singleEvent, attendees: attendees }
+      updateEvent(singleEvent._id, eventData)
+        .then((response) => response.json())
+        .then((data) => setSingleEvent(data))
     }
-    // TODO: prevent user from clicking attend multiple times
 
-    console.log(singleEvent.attendees)
   }
 
   function handleInputOnChange(e) {
@@ -94,6 +96,7 @@ export default function EventPage() {
         <p>Location: {singleEvent.location}</p>
         <p>Date: {singleEvent.date}</p>
         <p>Organiser: {singleEvent.organiser}</p>
+        <p>People attending: {singleEvent.attendees} </p>
         <p>Tags:</p>
         {/* <button>Like/Fav</button> */}
         {/* Button that toggles the showCommentForm boolean state */}
