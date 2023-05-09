@@ -27,7 +27,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
 
   function handleEscForm(e) {
     if (e.keyCode == 27) {
-      setShowForm()
+      setShowForm(false)
     }
   }
 
@@ -35,20 +35,23 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
     setShowForm(false)
   }
 
+  function toggleForm() {
+    setShowForm(!showForm)
+  }
+
   return (
     <>
-      <div>
+      {!showForm && <div>
         {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
         <p>Author: {singleComment.hideAuthor ? "Anonymous" : "K-B"}</p>
         <p>Comment: {singleComment.text}</p>
         {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
-        {singleComment.author === "64577ed65683384e242cb229" ?
-          <div>
-            <button onClick={updateOneComment}>Update Comment</button>
-            <button onClick={deleteOneComment}>Delete Comment</button>
-          </div> : null}
-      </div>
-      <form onSubmit={updateOneComment}>
+        <div>
+          <button onClick={toggleForm}>Edit Comment</button>
+          <button onClick={deleteOneComment}>Delete Comment</button>
+        </div>
+      </div>}
+      {showForm && <form onSubmit={updateOneComment}>
         <input
           name="text"
           type="text"
@@ -61,7 +64,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
           onKeyDown={handleEscForm}
           onBlur={handleBlur}
         />
-      </form>
+      </form>}
     </>
   )
 }

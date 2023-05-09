@@ -37,6 +37,8 @@ router.post('/api/users', (req, res) => {
         .catch(error => res.status(500).json(error.message))
 })
 
+
+
 /*
 Action: DESTROY
 Method: Delete
