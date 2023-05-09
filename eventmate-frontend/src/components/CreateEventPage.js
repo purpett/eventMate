@@ -2,37 +2,45 @@ import React from "react";
 import { createEvent } from "../apis/EventApis";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function CreateEventPage() {
 
-  //create a state to hold the values from the input fields
-  const [createdEvent, setCreatedEvent] = useState({
-  title: "",
-  description: "",
-  location: "",
-  date: "",
-  comments: [],
-  attendees: []
+const tokenFromLocalStorage = loadToken();
 
+
+const payloadFromToken = getPayloadFromToken(tokenFromLocalStorage)
+console.log("payload", payloadFromToken.username)
+const username = payloadFromToken.username
+
+ //create a state to hold the values from the input fields
+  const [createdEvent, setCreatedEvent] = useState({
+    title: "",
+    description: "",
+    location: "",
+    date: "",
+    comments: [],
+    attendees: [], 
+    organiser: username
   })
   const navigate = useNavigate()
-  
+
   // function to call the post create event api with the new state which has just been set 
   function createOneEvent() {
     createEvent(createdEvent)
       .then((event) => event.json())
       .then((data => navigate(`../${data.event._id}`)))
       .catch((error) => console.log(error))
-      // console.log(createdEvent)
+    // console.log(createdEvent)
   }
 
   // function to get the values from the input fields and map those into the relevant state object fields
-  function handleTextInput (e) {
+  function handleTextInput(e) {
     setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
-  //   console.log(createdEvent);
+   console.log("state", createdEvent);
   }
 
-  
+
   return (
     <div>
       <h1>Create A New Event</h1>
@@ -44,8 +52,8 @@ export default function CreateEventPage() {
         <button onClick={(e) => {
           e.preventDefault();
           createOneEvent()
-          
-          }}>Create event</button>
+
+        }}>Create event</button>
       </form>
     </div>
   )

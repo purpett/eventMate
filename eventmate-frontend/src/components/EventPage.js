@@ -22,7 +22,7 @@ export default function EventPage() {
       .catch((error) => console.log(error.message))
   }, [])
 
-    // On page load the function that grabs the event information is called and fed the id of the event.
+  // On page load the function that grabs the event information is called and fed the id of the event.
   useEffect(() => {
     giveOneEvent(id)
   }, [])
@@ -61,31 +61,32 @@ export default function EventPage() {
     <div>
       <div>
         {/* Checks to see if the fetch request is complete before showing the event information */}
-        <p>Title: {singleEvent? singleEvent.title: null}</p>
-        <p>Description: {singleEvent? singleEvent.description: null}</p>
-        <p>Location: {singleEvent? singleEvent.location: null}</p>
-        <p>Date: {singleEvent? singleEvent.date: null}</p>
+        <p>Title: {singleEvent ? singleEvent.title : null}</p>
+        <p>Description: {singleEvent ? singleEvent.description : null}</p>
+        <p>Location: {singleEvent ? singleEvent.location : null}</p>
+        <p>Date: {singleEvent ? singleEvent.date : null}</p>
+        <p>Organiser: {singleEvent ? singleEvent.organiser : null}</p>
         <p>Tags:</p>
         <button>Like/Fav</button>
         {/* Button that toggles the createACommentForm boolean state */}
-      <button
-      onClick={() => SetCreateACommentForm(!createACommentForm)}
-      >Comment</button>
+        <button
+          onClick={() => SetCreateACommentForm(!createACommentForm)}
+        >Comment</button>
         <button>I Want to Attend</button>
         <hr />
       </div>
       <button onClick={deleteOneEvent}>Delete Event</button>
       <button onClick={updateOneEvent}>Update Event</button>
-      
+
       {/* If the createACommentForm is true to Comment form will appear and pass down the id of the event. */}
-      {createACommentForm && <CreateCommentForm 
-      commentsToShow={commentsToShow}
-      id={id}/>}
+      {createACommentForm && <CreateCommentForm
+        commentsToShow={commentsToShow}
+        id={id} />}
       {/* This will be where the comments will be generated. The whole event information is passed down */}
       <Comments
         commentArray={commentArray}
         commentsToShow={commentsToShow}
-        eventId = {id}
+        eventId={id}
       />
     </div>
   )

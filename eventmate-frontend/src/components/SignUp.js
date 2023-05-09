@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { createUser } from "../apis/UserApis";
+import { useNavigate } from "react-router-dom";
+
 
 export default function SignUp(){
    
@@ -17,11 +19,14 @@ export default function SignUp(){
     console.log(newUser);
   }
 
+  // create a new navigate constant to redirec the user from the sign up
+  //page to the login page
+  const navigate = useNavigate()
   // call the createUset api with the newUser as an argument
   function createOneUser () {
     createUser(newUser)
     .then((user) => user.json())
-    // .then((data => console.log(data)))
+    .then((data => navigate(`/Login`)))
     .catch((error) => console.log(error))
     setNewUser({})
   }
