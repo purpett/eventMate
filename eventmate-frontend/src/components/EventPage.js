@@ -7,7 +7,7 @@ import { useParams, useNavigate } from "react-router-dom"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
-  const [singleEvent, setSingleEvent] = useState([])
+  const [singleEvent, setSingleEvent] = useState({})
   const [commentArray, setCommentArray] = useState([])
   // This state is used as a switch for the create comment form
   const [createACommentForm, SetCreateACommentForm] = useState(false)
@@ -61,10 +61,10 @@ export default function EventPage() {
     <div>
       <div>
         {/* Checks to see if the fetch request is complete before showing the event information */}
-        <p>Title: {singleEvent ? singleEvent.title : null}</p>
-        <p>Description: {singleEvent ? singleEvent.description : null}</p>
-        <p>Location: {singleEvent ? singleEvent.location : null}</p>
-        <p>Date: {singleEvent ? singleEvent.date : null}</p>
+        <p>Title: {singleEvent.title}</p>
+        <p>Description: {singleEvent.description}</p>
+        <p>Location: {singleEvent.location}</p>
+        <p>Date: {singleEvent.date}</p>
         <p>Tags:</p>
         <button>Like/Fav</button>
         {/* Button that toggles the createACommentForm boolean state */}
