@@ -2,8 +2,10 @@ import { deleteEvent, updateEvent } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
 import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic"
+import { updateUser } from "../apis/UserApis"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -51,6 +53,19 @@ export default function EventPage() {
       .then((data => setSingleEvent(data)))
   }
 
+  function addEventIdToUser() {
+    const token = loadToken();
+    const payloadFromToken = getPayloadFromToken(token)
+    const changes = {
+      attending: singleEvent._id
+    }
+    console.log(changes)
+
+    updateUser(payloadFromToken.userId, changes)
+      .then((results) => results.json())
+    // .then((data) => console.log(data))
+
+  }
 
   return (
     <div>
@@ -66,7 +81,7 @@ export default function EventPage() {
         <button
           onClick={() => setShowForm(!showForm)}
         >Comment</button>
-        <button>I Want to Attend</button>
+        <button onClick={addEventIdToUser}>I Want to Attend</button>
         <hr />
       </div>
       <button onClick={deleteOneEvent}>Delete Event</button>
