@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { removeToken } from '../tokenLogic/tokenLogic'
 
 export default function NavBar(){
-
+    const navigate = useNavigate()
+    
+    function logOut(){
+        removeToken()
+        navigate('/')
+    }
 
     return(
         <nav>
@@ -15,7 +21,7 @@ export default function NavBar(){
             &nbsp; | &nbsp;
             <Link to='/CreateEventPage'>Create Event</Link>
             &nbsp; | &nbsp;
-            <button> LOG OUT </button>
+            <button onClick={logOut}> LOG OUT </button>
         </nav>
     )
 }
