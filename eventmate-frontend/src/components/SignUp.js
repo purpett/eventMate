@@ -16,7 +16,6 @@ export default function SignUp(){
    //and the same for the password
    function handleSignUpTextInput (e) {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
-    console.log(newUser);
   }
 
   // create a new navigate constant to redirec the user from the sign up
