@@ -1,8 +1,11 @@
 import { createComment } from "../apis/CommentApis";
 import { useState } from "react"
+import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
+
 export default function CreateCommentForm({ id, commentsToShow }) {
+  const payload = getPayloadFromToken()
   const [newCommentInput, setNewCommentInput] = useState({
-    author: "64577ed65683384e242cb229",
+    author: `${payload.username}`,
     text: "",
     hideAuthor: false
   })
@@ -20,7 +23,7 @@ export default function CreateCommentForm({ id, commentsToShow }) {
     setNewCommentInput({ ...newCommentInput, [e.target.name]: e.target.value });
   }
   function handleHiddenNameInput(e) {
-    setNewCommentInput({ ...newCommentInput, [e.target.name]: `${e.target.checked}` })
+    setNewCommentInput({ ...newCommentInput, [e.target.name]: e.target.checked })
   }
 
   return (
@@ -34,7 +37,8 @@ export default function CreateCommentForm({ id, commentsToShow }) {
       <p>Stay Annonymous</p>
       <input type="checkbox"
         name="hideAuthor"
-        value={newCommentInput.hideAuthor}
+        // value={newCommentInput.hideAuthor}
+        checked={newCommentInput.hideAuthor}
         onChange={handleHiddenNameInput}
       ></input>
       <button

@@ -4,6 +4,8 @@ import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState, useCallback } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic"
+import { updateUser } from "../apis/UserApis"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -57,21 +59,36 @@ export default function EventPage() {
     setCommentArray([...allTheComments])
   }
 
+  function addEventIdToUser() {
+    const token = loadToken();
+    const payloadFromToken = getPayloadFromToken(token)
+    const changes = {
+      attending: singleEvent._id
+    }
+    console.log(changes)
+
+    updateUser(payloadFromToken.userId, changes)
+      .then((results) => results.json())
+    // .then((data) => console.log(data))
+
+  }
+
   return (
     <div>
       <div>
         {/* Checks to see if the fetch request is complete before showing the event information */}
-        <p>Title: {singleEvent.title}</p>
-        <p>Description: {singleEvent.description}</p>
-        <p>Location: {singleEvent.location}</p>
-        <p>Date: {singleEvent.date}</p>
+        <p>Title: {singleEvent ? singleEvent.title : null}</p>
+        <p>Description: {singleEvent ? singleEvent.description : null}</p>
+        <p>Location: {singleEvent ? singleEvent.location : null}</p>
+        <p>Date: {singleEvent ? singleEvent.date : null}</p>
+        <p>Organiser: {singleEvent ? singleEvent.organiser : null}</p>
         <p>Tags:</p>
         <button>Like/Fav</button>
         {/* Button that toggles the createACommentForm boolean state */}
         <button
           onClick={() => SetCreateACommentForm(!createACommentForm)}
         >Comment</button>
-        <button>I Want to Attend</button>
+        <button onClick={addEventIdToUser}>I Want to Attend</button>
         <hr />
       </div>
       <button onClick={deleteOneEvent}>Delete Event</button>

@@ -1,14 +1,12 @@
 import { updateComment, deleteComment } from "../apis/CommentApis";
-import { useState } from "react";
+import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 
 
 export default function Comment({ singleCommentInfo, eventId, updateCommentList }) {
+  const payload = getPayloadFromToken();
   const updatedComment = {
     text: "new text on this comment"
   }
-
-  const [showForm, setShowForm] = useState(false)
-  const [editedComment, setEditedComment] = useState(false)
 
   const updateOneComment = () => {
     updateComment(eventId, singleCommentInfo._id, updatedComment)
@@ -25,11 +23,16 @@ export default function Comment({ singleCommentInfo, eventId, updateCommentList 
   }
   return (
     <>
-      {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
-      <p>Author: {singleCommentInfo.hideAuthor ? "Anonymous" : "K-B"}</p>
+      <p>Author: {singleCommentInfo.author === `${payload.username}` ?
+        (singleCommentInfo.hideAuthor ?
+          `Anonymous (You)` : `${singleCommentInfo.author} (You)`
+        ) :
+        (singleCommentInfo.hideAuthor ?
+          `Anonymous` : singleCommentInfo.author
+        )
+      }</p>
       <p>Comment: {singleCommentInfo.text}</p>
-      {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
-      {singleCommentInfo.author === "64577ed65683384e242cb229" ?
+      {singleCommentInfo.author === `${payload.username}` ?
         <div>
           <button
             onClick={updateOneComment}
