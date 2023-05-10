@@ -12,6 +12,8 @@ export default function Login() {
         password: ""
     })
 
+    const[isError, setIsError] = useState(false);
+
     function handleTextInput(e) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
@@ -23,13 +25,21 @@ export default function Login() {
 
        if (userCredentials.username === username){
         navigate('/')
+        
+       } else {
+        setIsError(true);
        }
+
     }
 
     return (
         <>
             <h2>Login</h2>
+            <div className={isError ? "error-message" : "error-message-false"}>
+                <h3>Please Enter Valid Credentials</h3>
+            </div>
             <div className="sign-up-div">
+
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     createToken(userCredentials);

@@ -24,7 +24,6 @@ function createToken(userCredentials) {
   })
     .then((response) => response.json())
     .then((token) => {
-      console.log(token.token)
       storeToken(token.token)
     })
 }
@@ -40,4 +39,10 @@ function getPayloadFromToken() {
   return JSON.parse(window.atob(encryptedPayload[1]))
 }
 
-module.exports = { loadToken, createToken, getPayloadFromToken, removeToken }
+function isLoggedIn() {
+  const tokenPresent = loadToken()
+  if (tokenPresent) return true
+  else return false
+}
+
+module.exports = { loadToken, createToken, getPayloadFromToken, removeToken, isLoggedIn }
