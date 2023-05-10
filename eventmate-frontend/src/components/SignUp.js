@@ -13,7 +13,7 @@ export default function SignUp() {
         password: "",
         attending: []
     })
-
+ 
     const [isError, setIsError] = useState(false)
 
     // function to set the username field in the state equal to the username input field
@@ -32,10 +32,12 @@ export default function SignUp() {
             navigate(`/Login`)
         } else if (data.errors.username) {
             setIsError(true)
+            setNewUser({username: "", password: ""})
         }
     })
     .catch((error) => console.log(error))
     setNewUser({})
+
   }
 
 
@@ -51,7 +53,8 @@ export default function SignUp() {
             <form>
                 <h3>Username</h3>
                 <input 
-                    name='username' 
+                    name='username'
+                    value={newUser.username}
                     onChange={handleSignUpTextInput} 
                     placeholder="Enter Your Username"
                     required
@@ -60,6 +63,7 @@ export default function SignUp() {
                 <h3>Password</h3>
                 <input 
                     name='password' 
+                    value={newUser.password}
                     type='password'
                     onChange={handleSignUpTextInput} 
                     placeholder="Enter Your Password"
