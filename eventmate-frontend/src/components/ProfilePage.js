@@ -24,6 +24,7 @@ export default function ProfilePage() {
   }, [])
 
   // Function to call the deleteUser api
+    // Log out and navigate to homepage. 
   function deleteUserProfile() {
     const payload = getPayloadFromToken()
     deleteUser(payload.userId)
