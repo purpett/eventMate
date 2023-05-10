@@ -5,7 +5,7 @@ import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
-import { getPayloadFromToken, isLoggedIn, isOrganiser } from "../tokenLogic/tokenLogic"
+import { getPayloadFromToken, isOrganiser, tokenExp } from "../tokenLogic/tokenLogic"
 
 
 
@@ -87,10 +87,10 @@ export default function EventPage() {
         <p>Tags:</p>
         {/* <button>Like/Fav</button> */}
         {/* Button that toggles the showCommentForm boolean state */}
-        {isLoggedIn() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
-        {isLoggedIn() && <button onClick={addUserIdToAttendees}>Attend</button>}
-        {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
-        {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
+        {tokenExp() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
+        {tokenExp() && <button onClick={addUserIdToAttendees}>Attend</button>}
+        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
+        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
         <hr />
       </div>}
       {showEventForm && <form onSubmit={() => updateOneEvent(id, editedEvent)}>

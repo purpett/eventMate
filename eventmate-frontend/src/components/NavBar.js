@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { isLoggedIn, removeToken } from '../tokenLogic/tokenLogic'
+import { removeToken, tokenExp } from '../tokenLogic/tokenLogic'
 
 export default function NavBar(){
     const navigate = useNavigate()
@@ -13,15 +13,15 @@ export default function NavBar(){
         <nav>
             <Link to='/'>Home page</Link>
             &nbsp; | &nbsp;
-            {isLoggedIn() && <Link to='/ProfilePage'>My Profile</Link>}
+            {tokenExp() && <Link to='/ProfilePage'>My Profile</Link>}
             &nbsp; | &nbsp;
-            {!isLoggedIn() && <Link to='/Login'>Sign In</Link>}
+            {!tokenExp() && <Link to='/Login'>Sign In</Link>}
             &nbsp; | &nbsp;
-            {!isLoggedIn() && <Link to='/SignUp'>Sign Up</Link>}
+            {!tokenExp() && <Link to='/SignUp'>Sign Up</Link>}
             &nbsp; | &nbsp;
-            {isLoggedIn() && <Link to='/CreateEventPage'>Create Event</Link>}
+            {tokenExp() && <Link to='/CreateEventPage'>Create Event</Link>}
             &nbsp; | &nbsp;
-            {isLoggedIn() && <button onClick={logOut}> LOG OUT </button>}
+            {tokenExp() && <button onClick={logOut}> LOG OUT </button>}
         </nav>
     )
 }
