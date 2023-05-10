@@ -35,10 +35,17 @@ function getPayloadFromToken() {
   return JSON.parse(window.atob(encryptedPayload[1]))
 }
 
-function isLoggedIn() {
-  const tokenPresent = loadToken()
-  if (tokenPresent) return true
-  else return false
+// function isLoggedIn() {
+//   const tokenPresent = loadToken()
+//   if (tokenPresent) return true
+//   else return false
+// }
+
+function tokenExp() {
+  const payload = getPayloadFromToken()
+  if(!payload) return false
+  const now = Math.round(Date.now() / 1000)
+  return now < payload.exp
 }
 
 function isOrganiser(organiser) {
@@ -47,4 +54,4 @@ function isOrganiser(organiser) {
   else return false
 }
 
-module.exports = { loadToken, createToken, getPayloadFromToken, removeToken, isLoggedIn, isOrganiser, storeToken }
+module.exports = { loadToken, createToken, getPayloadFromToken, removeToken, isOrganiser, storeToken, tokenExp }

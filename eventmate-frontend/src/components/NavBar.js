@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { isLoggedIn, removeToken } from '../tokenLogic/tokenLogic'
+import { removeToken, tokenExp } from '../tokenLogic/tokenLogic'
 
 export default function NavBar() {
   const navigate = useNavigate()
+
 
   function logOut() {
     removeToken()
@@ -13,14 +14,14 @@ export default function NavBar() {
     <nav className='navbar'>
       <Link to='/' id="logo">eventMate</Link>
       <div className='nav-links-container'>
-        {isLoggedIn() &&
+        {tokenExp() &&
           <div className=''>
             <Link to='/CreateEventPage' className='nav-link'>Create Event</Link>
             <Link to='/ProfilePage' className='nav-link'>My Profile</Link>
             <button onClick={logOut} id='log-out-btn'> LOG OUT </button>
           </div>
         }
-        {!isLoggedIn() &&
+        {!tokenExp() &&
           <div>
             <Link to='/Login' className='nav-link'>Sign In</Link>
             <Link to='/SignUp' className='nav-link'>Sign Up</Link>
@@ -30,5 +31,5 @@ export default function NavBar() {
     </nav>
   )
 }
+ 
 
-// maybe group stuff together? 

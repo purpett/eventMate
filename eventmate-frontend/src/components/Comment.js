@@ -1,5 +1,5 @@
 import { updateComment, deleteComment } from "../apis/CommentApis";
-import { getPayloadFromToken, isLoggedIn } from '../tokenLogic/tokenLogic'
+import { getPayloadFromToken, tokenExp } from '../tokenLogic/tokenLogic'
 import { useState } from "react";
 
 
@@ -45,7 +45,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
 
   return (
     <div className="comment">
-      {isLoggedIn() && <p id="author"> {singleComment.author === `${payload.username}` ?
+      {tokenExp() && <p id="author"> {singleComment.author === `${payload.username}` ?
         (singleComment.hideAuthor ?
           `Anonymous (You)` : `${singleComment.author} (You)`
         ) : (singleComment.hideAuthor ?
@@ -55,7 +55,9 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
       {
         !showForm && <div className="comment-content">
           {/* Checks if hideAuthor is set to true if it is then it displays anonymous else it shows use - currently hard coded*/}
+
           <span id="comment-text"> {singleComment.text}</span>
+
           {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
           {singleComment.author === `${payload.username}` ?
             <div>
