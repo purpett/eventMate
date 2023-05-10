@@ -7,6 +7,10 @@ function loadToken() {
   return localStorage.getItem('tokenContent')
 }
 
+function removeToken() {
+  return localStorage.removeItem('tokenContent')
+}
+
 function createToken(userCredentials) {
   return fetch('http://localhost:5002/api/login', {
     method: 'POST',
@@ -36,4 +40,4 @@ function getPayloadFromToken() {
   return JSON.parse(window.atob(encryptedPayload[1]))
 }
 
-module.exports = { loadToken, createToken, getPayloadFromToken }
+module.exports = { loadToken, createToken, getPayloadFromToken, removeToken }

@@ -10,6 +10,12 @@ export const getUser = (id) => {
   })
 }
 
+// Check if a user exists
+export const getUserByUsername = (username) => {
+  return fetch(`http://localhost:5002/api/users/test/${username}`)
+
+}
+
 // Create single User
 export const createUser = (userInfo) => {
   return fetch(`http://localhost:5002/api/users`, {
@@ -53,14 +59,7 @@ export const updateUser = (id, userChanges, userInfo) => {
   )
 }
 
-export const updateAttending = (id, changes) => {
-  return fetch(`http://localhost:5002/api/users/attending/${id}`, {
-    method: `PUT`,
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(changes)
-  })
-
+// Find all events that include a given user id
+export const getAllEventsWithUserId = (id) => {
+  return fetch(`http://localhost:5002/api/users/${id}/events`)
 }

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const User = require('../models/user')
+const Event = require('../models/event')
 
 /* 
 Action: SHOW
@@ -11,16 +12,29 @@ Description: Get a User by User ID
 */
 
 router.get('/api/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    User.findById(req.params.id)
-        .populate("attending")
-        .then(user => {
-            if (user) {
-                res.json({ user: user })
-            } else {
-                res.status(404).json('Provided id does not match any documents')
-            }
-        })
-        .catch(error => res.status(500).json(error.message))
+  User.findById(req.params.id)
+    .populate("attending")
+    .then(user => {
+      if (user) {
+        res.json({ user: user })
+      } else {
+        res.status(404).json('Provided id does not match any documents')
+      }
+    })
+    .catch(error => res.status(500).json(error.message))
+})
+
+/**
+ * Action: SHOW
+ * Method: Get
+ * URI: /api/users/checkuser/:username
+ * Description: Find User by username.
+ */
+
+router.get('/api/users/checkuser/:username', (req, res) => {
+    User.findOne({ username: req.params.username })
+    .then((user) => res.status(406).json(`${user.username} is unavailable`))
+    .catch((error) => res.status(500).json(error.message))
 })
 
 
@@ -32,10 +46,9 @@ Description: Create a new User
 */
 
 router.post('/api/users', (req, res) => {
-    console.log(req.body)
-    User.create(req.body)
-        .then(newUser => res.status(201).json({ user: newUser }))
-        .catch(error => res.status(500).json(error.message))
+  User.create(req.body)
+    .then(newUser => res.status(201).json({ user: newUser }))
+    .catch(error => res.status(500).json(error.message))
 })
 
 /*
@@ -46,15 +59,15 @@ Description: Delete an Users by its User ID
  */
 
 router.delete('/api/users/:id', (req, res) => {
-    User.findByIdAndRemove(req.params.id)
-        .then(user => {
-            if (user) {
-                res.json({ user: user })
-            } else {
-                res.status(404).json('Provided id does not match any documents')
-            }
-        })
-        .catch(error => res.status(500).json(error.message))
+  User.findByIdAndRemove(req.params.id)
+    .then(user => {
+      if (user) {
+        res.json({ user: user })
+      } else {
+        res.status(404).json('Provided id does not match any documents')
+      }
+    })
+    .catch(error => res.status(500).json(error.message))
 })
 
 /*
@@ -65,33 +78,32 @@ Description: Update an Users by its User ID
 */
 
 router.put('/api/users/:id', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        .then(user => {
-            if (user) {
-                res.json({ user: user })
-            } else {
-                res.status(404).json('Provided id does not match any documents')
-            }
-        })
-        .catch(error => res.status(500).json(error.message))
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(user => {
+      if (user) {
+        res.json({ user: user })
+      } else {
+        res.status(404).json('Provided id does not match any documents')
+      }
+    })
+    .catch(error => res.status(500).json(error.message))
 })
 
 
-// method to update just the attending array of a user object
+/* 
+Action: INDEX
+Method: Get
+URI: /api/users/anoifIHE2n12/events
+Description: Get all Events that contain a given User ID
+*/
 
-router.put('/api/users/attending/:id', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        .then(user => {
-           const eventId = req.body
-           user.attending.push(eventId)
-           user.save()
-           .then((user) => {
-            res.status(201).json(user)
-        })
-        })
-        .catch(error => res.status(500).json(error.message))
+router.get('/api/users/:id/events', (req, res) => {
+  Event.find({ attendees: req.params.id })
+    .then((userEvents) => {
+      res.json({ events: userEvents })
+    })
+    .catch(error => res.status(500).json(error.message))
 })
-
-
 
 module.exports = router
+

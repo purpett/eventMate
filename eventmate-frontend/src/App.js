@@ -10,9 +10,6 @@ import Login from './components/Login';
 import ProfilePage from './components/ProfilePage';
 
 
-
-
-
 function App() {
 
   const [everyEvent, setEveryEvent] = useState([])
@@ -25,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/> } />
         <Route path='/CreateEventPage' element={ <CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/>} />
+        <Route path='/ProfilePage' element= { <ProfilePage /> } />
         <Route path='/SignUp' element= {  <SignUp />} />
         <Route path='/Login' element= {  <Login />} />
         <Route path='/ProfilePage' element= {  <ProfilePage />} />
