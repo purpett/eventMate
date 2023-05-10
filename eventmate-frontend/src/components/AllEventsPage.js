@@ -1,6 +1,5 @@
 import { getAllEvents } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
-
 import { useEffect } from "react"
 import SingleEventCard from "./SingleEventCard"
 

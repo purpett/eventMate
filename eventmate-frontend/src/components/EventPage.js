@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
 import { getPayloadFromToken, isLoggedIn, isOrganiser } from "../tokenLogic/tokenLogic"
+import transformDate from '../transformDate'
 
 
 
@@ -37,7 +38,7 @@ export default function EventPage() {
   useEffect(() => {
     setEditedEvent({
       ...singleEvent,
-      date: singleEvent.date.split("T")[0]
+      date: transformDate(singleEvent.date)
     })
   }, [singleEvent])
 
@@ -86,7 +87,7 @@ export default function EventPage() {
         <p>Title: {singleEvent.title}</p>
         <p>Description: {singleEvent.description}</p>
         <p>Location: {singleEvent.location}</p>
-        <p>Date: {singleEvent.date}</p>
+        <p>Date: {transformDate(singleEvent.date)}</p>
         <p>Organiser: {singleEvent.organiser}</p>
         <p>People attending: {singleEvent.attendees.length} </p>
         <p>Tags:</p>

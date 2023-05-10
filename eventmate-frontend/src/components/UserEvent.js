@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react'
-import { getOneEvent } from '../apis/EventApis';
+import transformDate from '../transformDate'
 
 export default function UserEvent(props) {
-
-  const { event, index } = props;
-
+  const { event } = props;
 
   return (
     <>
       <hr />
       <p>Event title: {event.title}</p>
-      <p>Date: {event.date}</p>
+      <p>Date: {transformDate(event.date)}</p>
       <p>Event location: {event.location}</p>
     </>
   )
