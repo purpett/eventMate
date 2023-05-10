@@ -33,16 +33,16 @@ export default function SignUp() {
 
 
 // Check if the new username already exists in the database
-function isUsernameUnique() {
-    getUserByUsername(newUser.username)
-    .then((response) => response.json())
-    .then((data) => {
-        if (data) {
-            console.log("username already exists")
-        }  else {
-            createOneUser()
-        }})
-  }
+// function isUsernameUnique() {
+//     getUserByUsername(newUser.username)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         if (data) {
+//             console.log("username already exists")
+//         }  else {
+//             createOneUser()
+//         }})
+//   }
 
    return (
 <>
@@ -62,6 +62,7 @@ function isUsernameUnique() {
                 <h3>Password</h3>
                 <input 
                     name='password' 
+                    type='password'
                     onChange={handleSignUpTextInput} 
                     placeholder="Enter Your Password"
                     required
@@ -69,7 +70,7 @@ function isUsernameUnique() {
                 ></input>
                 <button className="sign-up-button" onClick={(e) => {
                     e.preventDefault();
-                    isUsernameUnique()
+                    createOneUser()
 
                     }}>Sign Up</button>
             </form>

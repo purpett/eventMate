@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const mongooseHidden = require('mongoose-hidden')
 
 const userSchema = new Schema({
-  username: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   attending: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
   // add created events?
