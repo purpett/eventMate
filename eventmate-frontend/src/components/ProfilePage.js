@@ -55,20 +55,19 @@ export default function ProfilePage() {
   const { upcoming, past } = upcomingOrPastEvents(userEvents)
 
   return (
-    <>
-      <h1>Profile</h1>
-      <div>
-        {currentUser.username}
+    <div className='profile-page'>
+      <div className='user-area'>
+        <div id="profile-username">
+          {currentUser.username}
+        </div>
+        <button onClick={deleteUserProfile}>Delete account</button>
       </div>
-
-      <button onClick={deleteUserProfile}>Delete account</button>
-
       <h2>Upcoming events</h2>
       {upcoming.map((event) => <UserEvent event={event} key={event._id} />)}
 
       <hr />
       <h2>Past events</h2>
       {past.map((event) => <UserEvent event={event} key={event._id} />)}
-    </>
+    </div>
   )
 }
