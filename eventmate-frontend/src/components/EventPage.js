@@ -38,7 +38,7 @@ export default function EventPage() {
   useEffect(() => {
     setEditedEvent({
       ...singleEvent,
-      date: transformDate(singleEvent.date)
+      date: singleEvent.date.split("T")[0]
     })
   }, [singleEvent])
 
