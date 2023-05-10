@@ -11,9 +11,10 @@ export const getUser = (id) => {
 }
 
 // Check if a user exists
-export const getUserByUsername = (username) => {
-  return fetch(`http://localhost:5002/api/users/checkuser/${username}`)
-}
+// export const getUserByUsername = (username) => {
+//   return fetch(`http://localhost:5002/api/users/test/${username}`)
+
+// }
 
 // Create single User
 export const createUser = (userInfo) => {
