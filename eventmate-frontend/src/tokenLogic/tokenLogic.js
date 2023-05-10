@@ -24,7 +24,6 @@ function createToken(userCredentials) {
   })
     .then((response) => response.json())
     .then((token) => {
-      console.log(token.token)
       storeToken(token.token)
     })
 }

@@ -7,10 +7,8 @@ import { useNavigate } from 'react-router-dom'
 
 export default function ProfilePage() {
 
-
-
   const [userEvents, setUserEvents] = useState([])
-  const [currentUser, setCurrentUser] = useState({ attending: [] })
+  const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
 
   // Load the getUser api specific to the user id on page load
   useEffect(() => {
@@ -39,12 +37,14 @@ export default function ProfilePage() {
       .then((data) => console.log(data))
   }
 
-  // //add functionality to show upcoming and past events
-  // function upcomingOrPastEvents(array) {
-  //   const upcoming = array.filter((event) => event.date >= Date.now)
-  //   const past = array.filter((event) => event.date < Date.now)
-  //   return upcoming, past
-  // }
+  //add functionality to show upcoming and past events
+  function upcomingOrPastEvents(array) {
+    const upcoming = array.filter((event) => event.date >= Date.now)
+    const past = array.filter((event) => event.date < Date.now)
+    return { upcoming, past }
+  }
+
+  // const { upcoming, past } = upcomingOrPastEvents()
 
   return (
     <>

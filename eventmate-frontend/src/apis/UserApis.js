@@ -12,8 +12,7 @@ export const getUser = (id) => {
 
 // Check if a user exists
 export const getUserByUsername = (username) => {
-  return fetch(`http://localhost:5002/api/users/test/${username}`)
-
+  return fetch(`http://localhost:5002/api/users/checkuser/${username}`)
 }
 
 // Create single User
@@ -42,8 +41,6 @@ export const deleteUser = (id) => {
 
 // Update single User
 export const updateUser = (id, userChanges, userInfo) => {
-  // console.log(userInfo.attending)
-  console.log(userChanges.attending)
   return fetch(`http://localhost:5002/api/users/${id}`, {
     method: `PUT`,
     headers: {
