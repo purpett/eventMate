@@ -16,7 +16,7 @@ export default function ProfilePage() {
     getUser(payload.userId)
       .then(user => user.json())
       .then((data) => {
-        setCurrentUser(data.user.username)
+        setCurrentUser({ username: data.user.username })
       })
 
     findEventsByUserId()
@@ -27,7 +27,6 @@ export default function ProfilePage() {
     const payload = getPayloadFromToken()
     deleteUser(payload.userId)
       .then(deletedUser => deletedUser.json())
-    // .then(data => console.log(data))
   }
 
   // Finding all events by user id 
@@ -53,10 +52,6 @@ export default function ProfilePage() {
       <h1>Profile</h1>
       <div>
         {currentUser.username}
-      </div>
-
-      <div>
-        <button onClick={findEventsByUserId}>Give me event</button>
       </div>
 
       <button onClick={deleteUserProfile}>Delete account</button>
