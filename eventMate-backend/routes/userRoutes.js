@@ -32,7 +32,7 @@ router.get('/api/users/:id', passport.authenticate('jwt', { session: false }), (
 
 router.get('/api/users/checkuser/:username', (req, res) => {
     User.findOne({ username: req.params.username })
-    .then((user) => res.status(406).json(`${req.params.username} already exists`))
+    .then((user) => res.status(406).json(`${user.username} is unavailable`))
     .catch((error) => res.status(500).json(error.message))
 })
 
