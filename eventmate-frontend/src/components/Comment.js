@@ -39,6 +39,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
   }
 
   function toggleForm() {
+    setEditedComment({ text: singleComment.text })
     setShowForm(!showForm)
   }
 
