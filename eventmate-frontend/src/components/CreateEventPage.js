@@ -17,7 +17,7 @@ export default function CreateEventPage() {
     title: "",
     description: "",
     location: "",
-    date: "",
+    date: new Date().toISOString().split("T")[0],
     comments: [],
     attendees: [],
     organiser: username
@@ -42,10 +42,17 @@ export default function CreateEventPage() {
     <div>
       <h1>Create A New Event</h1>
       <form>
-        <input name='title' onChange={handleTextInput} placeholder="Enter your Events Title"></input>
-        <input name='location' onChange={handleTextInput} placeholder="Location"></input>
-        <input name='date' onChange={handleTextInput} placeholder="Date"></input>
-        <input name='description' onChange={handleTextInput} placeholder="Description"></input>
+        <input name='title' onChange={handleTextInput} placeholder="Enter your Events Title" />
+        <input name='location' onChange={handleTextInput} placeholder="Location" />
+        <input
+          name='date'
+          type="date"
+          min={new Date().toISOString().split("T")[0]}
+          onChange={handleTextInput}
+          placeholder="Date"
+          value={createdEvent.date}
+        />
+        <textarea name='description' onChange={handleTextInput} placeholder="Description" />
         <button onClick={(e) => {
           e.preventDefault();
           createOneEvent()

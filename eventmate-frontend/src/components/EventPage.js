@@ -11,7 +11,7 @@ import { getPayloadFromToken, isLoggedIn, isOrganiser } from "../tokenLogic/toke
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
-  const [singleEvent, setSingleEvent] = useState({ attendees: [] })
+  const [singleEvent, setSingleEvent] = useState({ attendees: [], date: "" })
   const [editedEvent, setEditedEvent] = useState(singleEvent)
 
   // This state is used as a switch for the create comment form
@@ -34,7 +34,12 @@ export default function EventPage() {
   // On page load the function that grabs the event information is called and fed the id of the event.
   useEffect(() => { getEvent(id) }, [])
 
-  useEffect(() => { setEditedEvent({ ...singleEvent }) }, [singleEvent])
+  useEffect(() => {
+    setEditedEvent({
+      ...singleEvent,
+      date: singleEvent.date.split("T")[0]
+    })
+  }, [singleEvent])
 
   const navigate = useNavigate()
 
@@ -106,10 +111,13 @@ export default function EventPage() {
         />
         <input
           name='date'
+          type="date"
           onChange={handleInputOnChange}
-          placeholder={singleEvent.date}
+          min={new Date().toISOString().split("T")[0]}
+          placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
+          value={editedEvent.date}
         />
-        <input
+        <textarea
           name='description'
           onChange={handleInputOnChange}
           placeholder={singleEvent.description}
