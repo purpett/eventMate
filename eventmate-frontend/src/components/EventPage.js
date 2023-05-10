@@ -5,13 +5,16 @@ import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
-import { getPayloadFromToken, isLoggedIn, isOrganiser } from "../tokenLogic/tokenLogic"
+
+import { getPayloadFromToken, tokenExp, isOrganiser } from "../tokenLogic/tokenLogic"
+import transformDate from '../transformDate'
+
 
 
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
-  const [singleEvent, setSingleEvent] = useState({ attendees: [] })
+  const [singleEvent, setSingleEvent] = useState({ attendees: [], date: "" })
   const [editedEvent, setEditedEvent] = useState(singleEvent)
 
   // This state is used as a switch for the create comment form
@@ -34,7 +37,12 @@ export default function EventPage() {
   // On page load the function that grabs the event information is called and fed the id of the event.
   useEffect(() => { getEvent(id) }, [])
 
-  useEffect(() => { setEditedEvent({ ...singleEvent }) }, [singleEvent])
+  useEffect(() => {
+    setEditedEvent({
+      ...singleEvent,
+      date: singleEvent.date.split("T")[0]
+    })
+  }, [singleEvent])
 
   const navigate = useNavigate()
 
@@ -75,25 +83,26 @@ export default function EventPage() {
   }
 
   return (
-    <div>
-      {!showEventForm && <div>
+    <div className="event-page">
+      {!showEventForm && <div className="event-content">
         {/* Checks to see if the fetch request is complete before showing the event information */}
         <p>Title: {singleEvent.title}</p>
         <p>Description: {singleEvent.description}</p>
         <p>Location: {singleEvent.location}</p>
-        <p>Date: {singleEvent.date}</p>
+        <p>Date: {transformDate(singleEvent.date)}</p>
         <p>Organiser: {singleEvent.organiser}</p>
         <p>People attending: {singleEvent.attendees.length} </p>
-        <p>Tags:</p>
+        {/* <p>Tags:</p> */}
         {/* <button>Like/Fav</button> */}
         {/* Button that toggles the showCommentForm boolean state */}
-        {isLoggedIn() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
-        {isLoggedIn() && <button onClick={addUserIdToAttendees}>Attend</button>}
-        {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
-        {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
+        {tokenExp() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
+        {tokenExp() && <button onClick={addUserIdToAttendees}>Attend</button>}
+        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
+        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
         <hr />
       </div>}
-      {showEventForm && <form onSubmit={() => updateOneEvent(id, editedEvent)}>
+      {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
+
         <input
           name='title'
           onChange={handleInputOnChange}
@@ -106,10 +115,13 @@ export default function EventPage() {
         />
         <input
           name='date'
+          type="date"
           onChange={handleInputOnChange}
-          placeholder={singleEvent.date}
+          min={new Date().toISOString().split("T")[0]}
+          placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
+          value={editedEvent.date}
         />
-        <input
+        <textarea
           name='description'
           onChange={handleInputOnChange}
           placeholder={singleEvent.description}
@@ -117,17 +129,21 @@ export default function EventPage() {
         <button type="submit">Save changes</button>
       </form>}
 
-      {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
-      {showCommentForm && <CreateCommentForm
-        setSingleEvent={setSingleEvent}
-        setShowCommentForm={setShowCommentForm}
-        id={id} />}
-      {/* This will be where the comments will be generated. The whole event information is passed down */}
-      <Comments
-        comments={singleEvent.comments}
-        setSingleEvent={setSingleEvent}
-        eventId={id}
-      />
+      <div className="comments-container">
+        {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
+        <div className="create-comment-form">
+          {showCommentForm && <CreateCommentForm
+            setSingleEvent={setSingleEvent}
+            setShowCommentForm={setShowCommentForm}
+            id={id} />}
+        </div>
+        {/* This will be where the comments will be generated. The whole event information is passed down */}
+        <Comments
+          comments={singleEvent.comments}
+          setSingleEvent={setSingleEvent}
+          eventId={id}
+        />
+      </div>
     </div>
   )
 }

@@ -11,6 +11,7 @@ export default function ProfilePage() {
   const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
   const navigate = useNavigate()
 
+  const navigate = useNavigate()
   // Load the getUser api specific to the user id on page load
   useEffect(() => {
     const payload = getPayloadFromToken()
@@ -18,10 +19,13 @@ export default function ProfilePage() {
       .then(user => user.json())
       .then((data) => {
         setCurrentUser({ username: data.user.username })
+      }).catch(() => {
+        removeToken()  
+        navigate('../login')
       })
 
     findEventsByUserId()
-  }, [])
+}, [])
 
   // Function to call the deleteUser api
     // Log out and navigate to homepage. 

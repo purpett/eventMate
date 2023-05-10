@@ -53,7 +53,7 @@ app.post('/api/login', (req, res) => {
           userId: user._id,
           username: user.username
         }
-        const token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn: 600 })
+        const token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn: 1200 })
 
         res.json({ success: true, token: token })
       } else {

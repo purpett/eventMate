@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createToken, storeToken } from "../tokenLogic/tokenLogic";
+import { createToken, storeToken, loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -18,17 +18,18 @@ export default function Login() {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
 
-
     function isUserAuthenticated (e) {
-      e.preventDefault()
-      createToken(userCredentials)
-        .then((response) => response.json())
-        .then((token) => {
-          storeToken(token.token)
-        })
-        .then(() => navigate('/'))
-
-    }
+        e.preventDefault()
+        createToken(userCredentials)
+          .then((response) => response.json())
+          .then((token) => {
+            storeToken(token.token)
+          })
+          .then(() => {
+          
+          navigate('/')
+          })
+      }
 
     return (
         <>

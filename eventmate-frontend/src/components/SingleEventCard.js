@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import transformDate from "../transformDate"
 
 export default function SingleEventCard({ eventInfo, index }) {
   return (
@@ -9,7 +10,7 @@ export default function SingleEventCard({ eventInfo, index }) {
         <div className="event-card">
           <p>Title: {eventInfo.title}</p>
           <p>Location: {eventInfo.location}</p>
-          <p>Date: {eventInfo.date}</p>
+          <p>Date: {transformDate(eventInfo.date)}</p>
         </div>
       </Link>
       {/* Purely for testing purposes */}
