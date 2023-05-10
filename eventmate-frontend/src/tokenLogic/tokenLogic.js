@@ -22,10 +22,6 @@ function createToken(userCredentials) {
       password: `${userCredentials.password}`,
     })
   })
-    .then((response) => response.json())
-    .then((token) => {
-      storeToken(token.token)
-    })
 }
 
 // Get the payload by decoding token and decrypting
@@ -45,4 +41,10 @@ function isLoggedIn() {
   else return false
 }
 
-module.exports = { loadToken, createToken, getPayloadFromToken, removeToken, isLoggedIn }
+function isOrganiser(organiser) {
+  const user = getPayloadFromToken().username
+  if(organiser === user) return true
+  else return false
+}
+
+module.exports = { loadToken, createToken, getPayloadFromToken, removeToken, isLoggedIn, isOrganiser, storeToken }

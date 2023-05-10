@@ -4,7 +4,10 @@ import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import { getPayloadFromToken, isLoggedIn } from "../tokenLogic/tokenLogic"
+
+import { getPayloadFromToken, isLoggedIn, isOrganiser } from "../tokenLogic/tokenLogic"
+
+
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -86,8 +89,8 @@ export default function EventPage() {
         {/* Button that toggles the showCommentForm boolean state */}
         {isLoggedIn() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
         {isLoggedIn() && <button onClick={addUserIdToAttendees}>Attend</button>}
-        <button onClick={toggleForm}>Edit Event</button>
-        <button onClick={deleteOneEvent}>Delete Event</button>
+        {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
+        {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
         <hr />
       </div>}
       {showEventForm && <form onSubmit={() => updateOneEvent(id, editedEvent)}>
