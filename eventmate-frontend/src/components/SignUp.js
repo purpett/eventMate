@@ -38,18 +38,6 @@ export default function SignUp() {
   }
 
 
-// Check if the new username already exists in the database
-// function isUsernameUnique() {
-//     getUserByUsername(newUser.username)
-//     .then((response) => response.json())
-//     .then((data) => {
-//         if (data) {
-//             console.log("username already exists")
-//         }  else {
-//             createOneUser()
-//         }})
-//   }
-
    return (
 <>
     <h2>Sign Up</h2>

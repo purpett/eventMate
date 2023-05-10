@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 const mongooseHidden = require('mongoose-hidden')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
@@ -21,6 +22,7 @@ userSchema.methods.validatePassword = function validatePassword(password){
 }
 
 userSchema.plugin(mongooseHidden({defaultHidden: {password: true}}))
+userSchema.plugin(uniqueValidator)
 
 const User = mongoose.model('User', userSchema)
 
