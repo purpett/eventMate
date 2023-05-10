@@ -5,8 +5,6 @@ import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { getPayloadFromToken, isLoggedIn } from "../tokenLogic/tokenLogic"
-import { updateUser } from "../apis/UserApis"
-// import { get } from "mongoose"
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -31,9 +29,9 @@ export default function EventPage() {
   }
 
   // On page load the function that grabs the event information is called and fed the id of the event.
-  useEffect(() => {
-    getEvent(id)
-  }, [])
+  useEffect(() => { getEvent(id) }, [])
+
+  useEffect(() => { setEditedEvent({ ...singleEvent }) }, [singleEvent])
 
   const navigate = useNavigate()
 
@@ -46,10 +44,10 @@ export default function EventPage() {
 
   // Function to update one event. its fed the Id and the updated event information
   // changed so that it updates with any new info (even multiple at once )
-  function updateOneEvent() {
+  function updateOneEvent(id, editedEvent) {
     updateEvent(id, editedEvent)
       .then((event) => event.json())
-      .then((data => setSingleEvent(data)))
+      .then((data => setSingleEvent(data.event)))
       .catch((error) => console.log(error.message))
   }
 
@@ -61,11 +59,7 @@ export default function EventPage() {
     } else {
       const attendees = [...singleEvent.attendees, userId]
       const eventData = { ...singleEvent, attendees: attendees }
-      updateEvent(singleEvent._id, eventData)
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .then((data) => setSingleEvent(data.event))
-      // setSingleEvent({ ...singleEvent, attendees: attendees })
+      updateOneEvent(eventData._id, eventData)
     }
   }
 
@@ -96,7 +90,7 @@ export default function EventPage() {
         <button onClick={deleteOneEvent}>Delete Event</button>
         <hr />
       </div>}
-      {showEventForm && <form onSubmit={updateOneEvent}>
+      {showEventForm && <form onSubmit={() => updateOneEvent(id, editedEvent)}>
         <input
           name='title'
           onChange={handleInputOnChange}

@@ -5,12 +5,13 @@ import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function Login() {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const [userCredentials, setUserCredentials] = useState({
-        username: "",
-        password: ""
-    })
+  const [userCredentials, setUserCredentials] = useState({
+    username: "",
+    password: ""
+  })
+
 
     const[isError, setIsError] = useState(false);
 
@@ -18,10 +19,12 @@ export default function Login() {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
 
-    function isUserAuthenticated () {
-       const token = loadToken();
-       const payloadFromToken = getPayloadFromToken(token)
-       const username = payloadFromToken.username
+
+  function isUserAuthenticated() {
+    const token = loadToken();
+    const payloadFromToken = getPayloadFromToken(token)
+    const username = payloadFromToken.username
+
 
        if (userCredentials.username === username){
         navigate('/')
@@ -70,4 +73,5 @@ export default function Login() {
         </>
 
     )
+
 }
