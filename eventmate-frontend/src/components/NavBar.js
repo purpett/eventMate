@@ -15,9 +15,9 @@ export default function NavBar(){
             &nbsp; | &nbsp;
             {isLoggedIn() && <Link to='/ProfilePage'>My Profile</Link>}
             &nbsp; | &nbsp;
-            <Link to='/Login'>Sign In</Link>
+            {!isLoggedIn() && <Link to='/Login'>Sign In</Link>}
             &nbsp; | &nbsp;
-            <Link to='/SignUp'>Sign Up</Link>
+            {!isLoggedIn() && <Link to='/SignUp'>Sign Up</Link>}
             &nbsp; | &nbsp;
             {isLoggedIn() && <Link to='/CreateEventPage'>Create Event</Link>}
             &nbsp; | &nbsp;
