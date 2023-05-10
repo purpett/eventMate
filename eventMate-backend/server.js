@@ -45,8 +45,10 @@ app.use(commentRouter)
 
 app.post('/api/login', (req, res) => {
   if (req.body.username && req.body.password) {
-    User.findOne({ username: req.body.username, password: req.body.password })
+    User.findOne({ username: req.body.username })
       .then((user) => {
+        if(user.validatePassword(req.body.password)){
+        
         const payload = {
           userId: user._id,
           username: user.username
@@ -54,6 +56,9 @@ app.post('/api/login', (req, res) => {
         const token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn: 600 })
 
         res.json({ success: true, token: token })
+      } else {
+        res.status(401).send("Invalid Username or Password")
+      }
       })
       .catch((error) => console.log(error, 'Invalid Username or Password'))
   }
