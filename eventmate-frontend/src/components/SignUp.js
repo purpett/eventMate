@@ -27,10 +27,11 @@ export default function SignUp() {
     createUser(newUser)
     .then((user) => user.json())
     .then(data => {
+        console.log(data)
         if (data.user) {
             navigate(`/Login`)
-        } else {setIsError(true)
-            
+        } else if (data.errors.username) {
+            setIsError(true)
         }
     })
     .catch((error) => console.log(error))
