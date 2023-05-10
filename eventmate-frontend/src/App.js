@@ -16,23 +16,17 @@ function App() {
 
   return (
     <div className="App">
-
       <NavBar />
-      <h1>EventMate by The Full Stack Squad</h1>
       <Routes>
-        <Route path='/' element={ <AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/> } />
-        <Route path='/CreateEventPage' element={ <CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent}/>} />
-        <Route path='/ProfilePage' element= { <ProfilePage /> } />
-        <Route path='/SignUp' element= {  <SignUp />} />
-        <Route path='/Login' element= {  <Login />} />
-        <Route path='/ProfilePage' element= {  <ProfilePage />} />
+        <Route path='/' element={<AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent} />} />
+        <Route path='/CreateEventPage' element={<CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent} />} />
+        <Route path='/ProfilePage' element={<ProfilePage />} />
+        <Route path='/SignUp' element={<SignUp />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/ProfilePage' element={<ProfilePage />} />
 
         <Route path='/:id' element={<EventPage />} />
       </Routes>
-      
-
-
-    
     </div>
   );
 }

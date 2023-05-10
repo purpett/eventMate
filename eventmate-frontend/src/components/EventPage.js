@@ -81,8 +81,8 @@ export default function EventPage() {
   }
 
   return (
-    <div>
-      {!showEventForm && <div>
+    <div className="event-page">
+      {!showEventForm && <div className="event-content">
         {/* Checks to see if the fetch request is complete before showing the event information */}
         <p>Title: {singleEvent.title}</p>
         <p>Description: {singleEvent.description}</p>
@@ -90,7 +90,7 @@ export default function EventPage() {
         <p>Date: {transformDate(singleEvent.date)}</p>
         <p>Organiser: {singleEvent.organiser}</p>
         <p>People attending: {singleEvent.attendees.length} </p>
-        <p>Tags:</p>
+        {/* <p>Tags:</p> */}
         {/* <button>Like/Fav</button> */}
         {/* Button that toggles the showCommentForm boolean state */}
         {isLoggedIn() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
@@ -126,17 +126,19 @@ export default function EventPage() {
         <button type="submit">Save changes</button>
       </form>}
 
-      {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
-      {showCommentForm && <CreateCommentForm
-        setSingleEvent={setSingleEvent}
-        setShowCommentForm={setShowCommentForm}
-        id={id} />}
-      {/* This will be where the comments will be generated. The whole event information is passed down */}
-      <Comments
-        comments={singleEvent.comments}
-        setSingleEvent={setSingleEvent}
-        eventId={id}
-      />
+      <div className="comments-container">
+        {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
+        {showCommentForm && <CreateCommentForm
+          setSingleEvent={setSingleEvent}
+          setShowCommentForm={setShowCommentForm}
+          id={id} />}
+        {/* This will be where the comments will be generated. The whole event information is passed down */}
+        <Comments
+          comments={singleEvent.comments}
+          setSingleEvent={setSingleEvent}
+          eventId={id}
+        />
+      </div>
     </div>
   )
 }

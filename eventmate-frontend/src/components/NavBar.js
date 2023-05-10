@@ -1,27 +1,34 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { isLoggedIn, removeToken } from '../tokenLogic/tokenLogic'
 
-export default function NavBar(){
-    const navigate = useNavigate()
-    
-    function logOut(){
-        removeToken()
-        navigate('/')
-    }
+export default function NavBar() {
+  const navigate = useNavigate()
 
-    return(
-        <nav>
-            <Link to='/'>Home page</Link>
-            &nbsp; | &nbsp;
-            {isLoggedIn() && <Link to='/ProfilePage'>My Profile</Link>}
-            &nbsp; | &nbsp;
-            {!isLoggedIn() && <Link to='/Login'>Sign In</Link>}
-            &nbsp; | &nbsp;
-            {!isLoggedIn() && <Link to='/SignUp'>Sign Up</Link>}
-            &nbsp; | &nbsp;
-            {isLoggedIn() && <Link to='/CreateEventPage'>Create Event</Link>}
-            &nbsp; | &nbsp;
-            {isLoggedIn() && <button onClick={logOut}> LOG OUT </button>}
-        </nav>
-    )
+  function logOut() {
+    removeToken()
+    navigate('/')
+  }
+
+  return (
+    <nav className='navbar'>
+      <Link to='/' id="logo">Home page</Link>
+      <div className='nav-links-container'>
+        {isLoggedIn() &&
+          <div className=''>
+            <Link to='/CreateEventPage' className='nav-link'>Create Event</Link>
+            <Link to='/ProfilePage' className='nav-link'>My Profile</Link>
+            <button onClick={logOut} id='log-out-btn'> LOG OUT </button>
+          </div>
+        }
+        {!isLoggedIn() &&
+          <div>
+            <Link to='/Login' className='nav-link'>Sign In</Link>
+            <Link to='/SignUp' className='nav-link'>Sign Up</Link>
+          </div>
+        }
+      </div>
+    </nav>
+  )
 }
+
+// maybe group stuff together? 
