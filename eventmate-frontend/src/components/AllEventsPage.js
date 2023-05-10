@@ -1,6 +1,5 @@
 import { getAllEvents } from "../apis/EventApis"
 import { getOneEvent } from "../apis/EventApis"
-
 import { useEffect } from "react"
 import SingleEventCard from "./SingleEventCard"
 
@@ -17,22 +16,20 @@ export default function AllEventsPage(props) {
   }, [])
 
   return (
-    <div className="home-page-container" >
-
-      {
-        // Checks to see if there is anything in everyEvent before it maps through it.
-        props.everyEvent.length ?
-          props.everyEvent.map((eventInfo, index) => {
-            return (
-              // Returns singleEventCard the same number of times as there is items in the array everyEvent and passes down the information for that individual event.
-              <SingleEventCard
-                index={index}
-                eventInfo={eventInfo}
-                key={eventInfo._id}
-              />)
-          }) : null
-      }
-
+    <div className="homepage-container">
+      <div className="homepage-card" >
+        {// Checks to see if there is anything in everyEvent before it maps through it.
+          props.everyEvent.length ?
+            props.everyEvent.map((eventInfo, index) => {
+              return (
+                // Returns singleEventCard the same number of times as there is items in the array everyEvent and passes down the information for that individual event.
+                <SingleEventCard
+                  index={index}
+                  eventInfo={eventInfo}
+                  key={eventInfo._id}
+                />)
+            }) : null}
+      </div>
     </div>
   )
 }

@@ -24,20 +24,6 @@ router.get('/api/users/:id', passport.authenticate('jwt', { session: false }), (
     .catch(error => res.status(500).json(error.message))
 })
 
-/**
- * Action: SHOW
- * Method: Get
- * URI: /api/users/checkuser/:username
- * Description: Find User by username.
- */
-
-router.get('/api/users/checkuser/:username', (req, res) => {
-    User.findOne({ username: req.params.username })
-    .then((user) => res.status(406).json(`${user.username} is unavailable`))
-    .catch((error) => res.status(500).json(error.message))
-})
-
-
 /*
 Action: CREATE
 Method: Post
@@ -48,7 +34,7 @@ Description: Create a new User
 router.post('/api/users', (req, res) => {
   User.create(req.body)
     .then(newUser => res.status(201).json({ user: newUser }))
-    .catch(error => res.status(500).json(error.message))
+    .catch(error => res.status(422).json(error))
 })
 
 /*

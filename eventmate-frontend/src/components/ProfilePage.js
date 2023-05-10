@@ -9,6 +9,7 @@ export default function ProfilePage() {
 
   const [userEvents, setUserEvents] = useState([])
   const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
+  const navigate = useNavigate()
 
   const navigate = useNavigate()
   // Load the getUser api specific to the user id on page load
@@ -27,10 +28,13 @@ export default function ProfilePage() {
 }, [])
 
   // Function to call the deleteUser api
+    // Log out and navigate to homepage. 
   function deleteUserProfile() {
     const payload = getPayloadFromToken()
     deleteUser(payload.userId)
       .then(deletedUser => deletedUser.json())
+    removeToken()
+    navigate('/')
   }
 
   // Finding all events by user id 

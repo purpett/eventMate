@@ -29,26 +29,34 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
   }
 
   return (
-    <form>
-      <h3>Comment Text</h3>
-      <input placeholder="Comment Text"
-        name="text"
-        value={newCommentInput.text}
-        onChange={handleTextInput}
-      />
-      <p>Stay Annonymous</p>
-      <input type="checkbox"
-        name="hideAuthor"
-        // value={newCommentInput.hideAuthor}
-        checked={newCommentInput.hideAuthor}
-        onChange={handleHiddenNameInput}
-      />
-      <button
-        onClick={(e) => {
-          createOneComment()
-          e.preventDefault()
-        }}
-      >Create Comment</button>
+    <form className="comment-form">
+      <div className="create-comment-container">
+        <div className="create-comment-input">
+          <label>Your comment</label>
+          <input placeholder="Comment Text"
+            name="text"
+            type="text"
+            autoFocus="on"
+            value={newCommentInput.text}
+            onChange={handleTextInput}
+          />
+        </div>
+        <div className="create-comment-anonymous">
+          <label>Stay Anonymous</label>
+          <input type="checkbox"
+            name="hideAuthor"
+            // value={newCommentInput.hideAuthor}
+            checked={newCommentInput.hideAuthor}
+            onChange={handleHiddenNameInput}
+          />
+        </div>
+        <button className="button"
+          onClick={(e) => {
+            createOneComment()
+            e.preventDefault()
+          }}
+        >Create Comment</button>
+      </div>
     </form>
   )
 }
