@@ -40,4 +40,10 @@ function getPayloadFromToken() {
   return JSON.parse(window.atob(encryptedPayload[1]))
 }
 
-module.exports = { loadToken, createToken, getPayloadFromToken, removeToken }
+function isLoggedIn() {
+  const tokenPresent = loadToken()
+  if (tokenPresent) return true
+  else return false
+}
+
+module.exports = { loadToken, createToken, getPayloadFromToken, removeToken, isLoggedIn }
