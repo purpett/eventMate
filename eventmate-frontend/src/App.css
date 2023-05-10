@@ -36,3 +36,22 @@
   
 }
 
+
+.sign-up-error-false{
+  display: none;
+}
+
+.sign-up-error{
+  background: green;
+}
+
+.error-message-false {
+  display: none;
+}
+
+.error-message {
+  background: hotpink;
+}
+
+
+

@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const [userCredentials, setUserCredentials] = useState({
-        username: "",
-        password: ""
-    })
+  const [userCredentials, setUserCredentials] = useState({
+    username: "",
+    password: ""
+  })
+
+
+    const[isError, setIsError] = useState(false);
 
     function handleTextInput(e) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
+
 
     function isUserAuthenticated (e) {
       e.preventDefault()
@@ -23,12 +27,17 @@ export default function Login() {
           storeToken(token.token)
         })
         .then(() => navigate('/'))
+
     }
 
     return (
         <>
             <h2>Login</h2>
+            <div className={isError ? "error-message" : "error-message-false"}>
+                <h3>Please Enter Valid Credentials</h3>
+            </div>
             <div className="sign-up-div">
+
                 <form onSubmit={(e) => {
                     isUserAuthenticated(e)
                 }}>
@@ -57,4 +66,5 @@ export default function Login() {
         </>
 
     )
+
 }
