@@ -36,7 +36,12 @@ export default function ProfilePage() {
       .then((data) => console.log(data))
   }
 
-  //add functionality to show upcoming and past events
+  // //add functionality to show upcoming and past events
+  // function upcomingOrPastEvents(array) {
+  //   const upcoming = array.filter((event) => event.date >= Date.now)
+  //   const past = array.filter((event) => event.date < Date.now)
+  //   return upcoming, past
+  // }
 
   return (
     <>

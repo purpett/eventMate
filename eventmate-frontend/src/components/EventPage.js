@@ -53,17 +53,6 @@ export default function EventPage() {
       .catch((error) => console.log(error.message))
   }
 
-  // function addEventIdToUser() {
-  //   const payloadFromToken = getPayloadFromToken()
-  //   const changes = {
-  //     attending: singleEvent._id
-  //   }
-  //   console.log(changes)
-
-  //   updateUser(payloadFromToken.userId, changes)
-  //     .then((results) => results.json())
-  // }
-
   function addUserIdToAttendees() {
     const payloadFromToken = getPayloadFromToken()
     const userId = payloadFromToken.userId
@@ -79,7 +68,6 @@ export default function EventPage() {
       // setSingleEvent({ ...singleEvent, attendees: attendees })
     }
   }
-
 
   function handleInputOnChange(e) {
     setEditedEvent({ ...editedEvent, [e.target.name]: e.target.value })
