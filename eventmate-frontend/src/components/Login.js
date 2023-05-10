@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { createToken } from "../tokenLogic/tokenLogic";
+import { createToken, storeToken } from "../tokenLogic/tokenLogic";
 import { useNavigate } from "react-router-dom";
-import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function Login() {
 
@@ -16,14 +15,14 @@ export default function Login() {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
 
-    function isUserAuthenticated () {
-       const token = loadToken();
-       const payloadFromToken = getPayloadFromToken(token)
-       const username = payloadFromToken.username
-
-       if (userCredentials.username === username){
-        navigate('/')
-       }
+    function isUserAuthenticated (e) {
+      e.preventDefault()
+      createToken(userCredentials)
+        .then((response) => response.json())
+        .then((token) => {
+          storeToken(token.token)
+        })
+        .then(() => navigate('/'))
     }
 
     return (
@@ -31,9 +30,7 @@ export default function Login() {
             <h2>Login</h2>
             <div className="sign-up-div">
                 <form onSubmit={(e) => {
-                    e.preventDefault();
-                    createToken(userCredentials);
-                    isUserAuthenticated()
+                    isUserAuthenticated(e)
                 }}>
                     <h3>Username</h3>
                     <input
