@@ -52,3 +52,15 @@ export const updateUser = (id, userChanges, userInfo) => {
   }
   )
 }
+
+export const updateAttending = (id, changes) => {
+  return fetch(`http://localhost:5002/api/users/attending/${id}`, {
+    method: `PUT`,
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(changes)
+  })
+
+}

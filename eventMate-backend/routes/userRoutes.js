@@ -76,4 +76,22 @@ router.put('/api/users/:id', (req, res) => {
         .catch(error => res.status(500).json(error.message))
 })
 
+
+// method to update just the attending array of a user object
+
+router.put('/api/users/attending/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then(user => {
+           const eventId = req.body
+           user.attending.push(eventId)
+           user.save()
+           .then((user) => {
+            res.status(201).json(user)
+        })
+        })
+        .catch(error => res.status(500).json(error.message))
+})
+
+
+
 module.exports = router

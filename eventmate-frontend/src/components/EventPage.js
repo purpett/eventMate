@@ -5,7 +5,8 @@ import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState, useCallback } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic"
-import { updateUser } from "../apis/UserApis"
+import { updateAttending } from "../apis/UserApis"
+
 
 export default function EventPage() {
   // State to store the information about the event. Will store an object after the page is loaded
@@ -60,16 +61,15 @@ export default function EventPage() {
   }
 
   function addEventIdToUser () {
-    const token = loadToken();
-    const payloadFromToken = getPayloadFromToken(token)
-    const changes = {
-      attending: singleEvent._id
-    }
+    
+    const payloadFromToken = getPayloadFromToken()
+    const changes = singleEvent._id
+    
     console.log(changes)
     
-    updateUser(payloadFromToken.userId,changes)
+    updateAttending(payloadFromToken.userId, changes)
       .then((results) => results.json())
-      // .then((data) => console.log(data))
+      .then((data) => console.log(data))
     
   }
 
