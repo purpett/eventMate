@@ -11,7 +11,7 @@ export default function NavBar() {
 
   return (
     <nav className='navbar'>
-      <Link to='/' id="logo">Home page</Link>
+      <Link to='/' id="logo">eventMate</Link>
       <div className='nav-links-container'>
         {isLoggedIn() &&
           <div className=''>

@@ -5,10 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function CreateEventPage() {
-
   const tokenFromLocalStorage = loadToken();
-
-
   const payloadFromToken = getPayloadFromToken(tokenFromLocalStorage)
   const username = payloadFromToken.username
 
@@ -37,22 +34,44 @@ export default function CreateEventPage() {
     setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
   }
 
-
   return (
-    <div>
-      <h1>Create A New Event</h1>
-      <form>
-        <input name='title' onChange={handleTextInput} placeholder="Enter your Events Title" />
-        <input name='location' onChange={handleTextInput} placeholder="Location" />
-        <input
-          name='date'
-          type="date"
-          min={new Date().toISOString().split("T")[0]}
-          onChange={handleTextInput}
-          placeholder="Date"
-          value={createdEvent.date}
-        />
-        <textarea name='description' onChange={handleTextInput} placeholder="Description" />
+    <div class="create-event-page">
+      <h1>CREATE A NEW EVENT</h1>
+      <form class="create-event-form">
+        <div className="create-event-form-input">
+          <label>Title</label>
+          <input
+            name='title'
+            onChange={handleTextInput}
+            placeholder="Enter your Events Title"
+          />
+        </div>
+
+        <div id="where-and-when">
+          <div className="create-event-form-input">
+            <label>Where</label>
+            <input
+              name='location'
+              onChange={handleTextInput}
+              placeholder="Location"
+            />
+          </div>
+          <div className="create-event-form-input">
+            <label>When</label>
+            <input
+              name='date'
+              type="date"
+              min={new Date().toISOString().split("T")[0]}
+              onChange={handleTextInput}
+              placeholder="Date"
+              value={createdEvent.date}
+            />
+          </div>
+        </div>
+        <div className="create-event-form-input">
+          <label>Description</label>
+          <textarea name='description' onChange={handleTextInput} placeholder="Description" />
+        </div>
         <button onClick={(e) => {
           e.preventDefault();
           createOneEvent()

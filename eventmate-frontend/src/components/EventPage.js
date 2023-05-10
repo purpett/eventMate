@@ -99,7 +99,8 @@ export default function EventPage() {
         {isLoggedIn() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
         <hr />
       </div>}
-      {showEventForm && <form onSubmit={() => updateOneEvent(id, editedEvent)}>
+      {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
+
         <input
           name='title'
           onChange={handleInputOnChange}
@@ -128,10 +129,12 @@ export default function EventPage() {
 
       <div className="comments-container">
         {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
-        {showCommentForm && <CreateCommentForm
-          setSingleEvent={setSingleEvent}
-          setShowCommentForm={setShowCommentForm}
-          id={id} />}
+        <div className="create-comment-form">
+          {showCommentForm && <CreateCommentForm
+            setSingleEvent={setSingleEvent}
+            setShowCommentForm={setShowCommentForm}
+            id={id} />}
+        </div>
         {/* This will be where the comments will be generated. The whole event information is passed down */}
         <Comments
           comments={singleEvent.comments}
