@@ -9,7 +9,7 @@ export default function ProfilePage() {
 
   const [userEvents, setUserEvents] = useState([])
   const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
-  const navigate = useNavigate()
+
 
   const navigate = useNavigate()
   // Load the getUser api specific to the user id on page load
