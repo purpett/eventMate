@@ -37,9 +37,7 @@ const port = process.env.PORT || 5002;
 app.use(express.json());
 
 // Set CORS headers on response from this API using 'cors' npm package
-app.use(cors({
-  origin: 'http://localhost:3000'
-}))
+app.use(cors())
 
 // Middleware for auth
 passport.use(strategy)
