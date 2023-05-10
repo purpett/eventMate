@@ -55,5 +55,5 @@ export const updateUser = (id, userChanges, userInfo) => {
 
 // Find all events that include a given user id
 export const getAllEventsWithUserId = (id) => {
-  return fetch('http://localhost:5002/api/users/:id/events')
+  return fetch(`http://localhost:5002/api/users/${id}/events`)
 }

@@ -74,12 +74,12 @@ export default function EventPage() {
       const eventData = { ...singleEvent, attendees: attendees }
       updateEvent(singleEvent._id, eventData)
         .then((response) => response.json())
-        // .then((data) => console.log(data))
-        .then((data) => setSingleEvent(data))
+        .then((data) => console.log(data))
+        .then((data) => setSingleEvent(data.event))
       // setSingleEvent({ ...singleEvent, attendees: attendees })
     }
-
   }
+
 
   function handleInputOnChange(e) {
     setEditedEvent({ ...editedEvent, [e.target.name]: e.target.value })

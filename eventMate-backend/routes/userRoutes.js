@@ -83,6 +83,7 @@ Method: Get
 URI: /api/users/anoifIHE2n12/events
 Description: Get all Events that contain a given User ID
 */
+
 router.get('/api/users/:id/events', (req, res) => {
   Event.find({ attendees: req.params.id })
     .then((userEvents) => {
@@ -90,8 +91,6 @@ router.get('/api/users/:id/events', (req, res) => {
     })
     .catch(error => res.status(500).json(error.message))
 })
-
-
 
 module.exports = router
 

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react'
-import { getUser, deleteUser } from '../apis/UserApis'
+import { getUser, deleteUser, getAllEventsWithUserId } from '../apis/UserApis'
 import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 import UserEvent from './UserEvent'
 
@@ -28,14 +28,26 @@ export default function ProfilePage() {
       .then(data => console.log(data))
   }
 
+  // Finding all events by user id 
+  function findEventsByUserId() {
+    const payload = getPayloadFromToken()
+    getAllEventsWithUserId(payload.userId)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+  }
+
   //add functionality to show upcoming and past events
 
   return (
     <>
       <h1>Profile</h1>
       <div>
-        {currentUser}
+        {currentUser.username}
         <button>Edit profile</button>
+      </div>
+
+      <div>
+        <button onClick={findEventsByUserId}>Give me event</button>
       </div>
 
       <button onClick={deleteUserProfile}>Delete account</button>
