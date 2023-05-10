@@ -8,6 +8,7 @@ import { useState, useEffect } from "react"
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ProfilePage from './components/ProfilePage';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -16,17 +17,20 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent} />} />
-        <Route path='/CreateEventPage' element={<CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent} />} />
-        <Route path='/ProfilePage' element={<ProfilePage />} />
-        <Route path='/SignUp' element={<SignUp />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/ProfilePage' element={<ProfilePage />} />
+      <div className="app-content">
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<AllEventsPage everyEvent={everyEvent} setEveryEvent={setEveryEvent} />} />
+          <Route path='/CreateEventPage' element={<CreateEventPage everyEvent={everyEvent} setEveryEvent={setEveryEvent} />} />
+          <Route path='/ProfilePage' element={<ProfilePage />} />
+          <Route path='/SignUp' element={<SignUp />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/ProfilePage' element={<ProfilePage />} />
 
-        <Route path='/:id' element={<EventPage />} />
-      </Routes>
+          <Route path='/:id' element={<EventPage />} />
+        </Routes>
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -2,8 +2,13 @@
 
 .App {
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
+.app-content {
+  flex: 1 0 auto;
+}
 
 /* PROFILE PAGE */
 
@@ -228,6 +233,31 @@
 
 .error-message {
   background: hotpink;
+}
+
+
+/* FOOTER */
+.footer {
+  flex-shrink: 0;
+  height: 4rem;
+  background-color: #00817e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  gap: 1rem;
+}
+
+.credits {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.credits a {
+  margin-right: 0.5rem;
 }
 
 
