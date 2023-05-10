@@ -7,7 +7,7 @@ import UserEvent from './UserEvent'
 export default function ProfilePage() {
 
   const [userEvents, setUserEvents] = useState([])
-  const [currentUser, setCurrentUser] = useState("")
+  const [currentUser, setCurrentUser] = useState({ attending: [] })
 
   // Load the getUser api specific to the user id on page load
   useEffect(() => {
