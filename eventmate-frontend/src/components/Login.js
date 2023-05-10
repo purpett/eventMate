@@ -5,31 +5,44 @@ import { loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 
 export default function Login() {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const [userCredentials, setUserCredentials] = useState({
-        username: "",
-        password: ""
-    })
+  const [userCredentials, setUserCredentials] = useState({
+    username: "",
+    password: ""
+  })
+
+
+    const[isError, setIsError] = useState(false);
 
     function handleTextInput(e) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
 
-    function isUserAuthenticated () {
-       const token = loadToken();
-       const payloadFromToken = getPayloadFromToken(token)
-       const username = payloadFromToken.username
+
+  function isUserAuthenticated() {
+    const token = loadToken();
+    const payloadFromToken = getPayloadFromToken(token)
+    const username = payloadFromToken.username
+
 
        if (userCredentials.username === username){
         navigate('/')
+        
+       } else {
+        setIsError(true);
        }
+
     }
 
     return (
         <>
             <h2>Login</h2>
+            <div className={isError ? "error-message" : "error-message-false"}>
+                <h3>Please Enter Valid Credentials</h3>
+            </div>
             <div className="sign-up-div">
+
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     createToken(userCredentials);
@@ -60,4 +73,5 @@ export default function Login() {
         </>
 
     )
+
 }
