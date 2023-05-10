@@ -32,8 +32,7 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
     <form className="comment-form">
       <div className="create-comment-container">
         <div className="create-comment-input">
-          <label>Your comment</label>
-          <input placeholder="Comment Text"
+          <input placeholder="Write a comment..."
             name="text"
             type="text"
             autoFocus="on"
@@ -45,7 +44,6 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
           <label>Stay Anonymous</label>
           <input type="checkbox"
             name="hideAuthor"
-            // value={newCommentInput.hideAuthor}
             checked={newCommentInput.hideAuthor}
             onChange={handleHiddenNameInput}
           />

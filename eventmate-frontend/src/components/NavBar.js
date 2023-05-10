@@ -16,7 +16,7 @@ export default function NavBar() {
         <div id="logo"><Link to='/'>eventMate</Link></div>
         <div className='nav-links-container'>
           {tokenExp() &&
-            <div className=''>
+            <div>
               <Link to='/CreateEventPage' className='nav-link'>Create Event</Link>
               <Link to='/ProfilePage' className='nav-link'>My Profile</Link>
               <button onClick={logOut} class='danger-btn'> LOG OUT </button>
