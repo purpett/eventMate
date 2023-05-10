@@ -70,6 +70,7 @@ function isUsernameUnique() {
                 <button className="sign-up-button" onClick={(e) => {
                     e.preventDefault();
                     isUsernameUnique()
+
                     }}>Sign Up</button>
             </form>
         </div>
