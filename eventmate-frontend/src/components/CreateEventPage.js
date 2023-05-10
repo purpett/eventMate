@@ -10,7 +10,6 @@ export default function CreateEventPage() {
 
 
   const payloadFromToken = getPayloadFromToken(tokenFromLocalStorage)
-  console.log("payload", payloadFromToken.username)
   const username = payloadFromToken.username
 
   //create a state to hold the values from the input fields
@@ -36,7 +35,6 @@ export default function CreateEventPage() {
   // function to get the values from the input fields and map those into the relevant state object fields
   function handleTextInput(e) {
     setCreatedEvent({ ...createdEvent, [e.target.name]: e.target.value });
-    console.log("state", createdEvent);
   }
 
 

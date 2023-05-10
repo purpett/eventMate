@@ -7,10 +7,8 @@ import { useNavigate } from 'react-router-dom'
 
 export default function ProfilePage() {
 
-
-
   const [userEvents, setUserEvents] = useState([])
-  const [currentUser, setCurrentUser] = useState({ attending: [] })
+  const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
 
   // Load the getUser api specific to the user id on page load
   useEffect(() => {
@@ -18,9 +16,10 @@ export default function ProfilePage() {
     getUser(payload.userId)
       .then(user => user.json())
       .then((data) => {
-        setUserEvents(data.user.attending);
         setCurrentUser(data.user.username)
       })
+
+    findEventsByUserId()
   }, [])
 
   // Function to call the deleteUser api
@@ -28,7 +27,7 @@ export default function ProfilePage() {
     const payload = getPayloadFromToken()
     deleteUser(payload.userId)
       .then(deletedUser => deletedUser.json())
-      .then(data => console.log(data))
+    // .then(data => console.log(data))
   }
 
   // Finding all events by user id 
@@ -36,22 +35,24 @@ export default function ProfilePage() {
     const payload = getPayloadFromToken()
     getAllEventsWithUserId(payload.userId)
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => setUserEvents(data.events))
   }
 
-  // //add functionality to show upcoming and past events
-  // function upcomingOrPastEvents(array) {
-  //   const upcoming = array.filter((event) => event.date >= Date.now)
-  //   const past = array.filter((event) => event.date < Date.now)
-  //   return upcoming, past
-  // }
+  //add functionality to show upcoming and past events
+  function upcomingOrPastEvents(array) {
+    const now = new Date();
+    const upcoming = array.filter((event) => new Date(event.date) >= now);
+    const past = array.filter((event) => new Date(event.date) < now);
+    return { upcoming, past };
+  }
+
+  const { upcoming, past } = upcomingOrPastEvents(userEvents)
 
   return (
     <>
       <h1>Profile</h1>
       <div>
         {currentUser.username}
-        <button>Edit profile</button>
       </div>
 
       <div>
@@ -60,13 +61,12 @@ export default function ProfilePage() {
 
       <button onClick={deleteUserProfile}>Delete account</button>
 
-      {userEvents.length ? userEvents.map((event) => {
-        return <UserEvent event={event} key={event._id} />
-      }
-      ) : null}
+      <h2>Upcoming events</h2>
+      {upcoming.map((event) => <UserEvent event={event} key={event._id} />)}
 
+      <hr />
+      <h2>Past events</h2>
+      {past.map((event) => <UserEvent event={event} key={event._id} />)}
     </>
-
   )
-
 }

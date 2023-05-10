@@ -14,19 +14,25 @@ export default function SignUp() {
         attending: []
     })
 
+    const [isError, setIsError] = useState(false)
+
     // function to set the username field in the state equal to the username input field
     //and the same for the password
     function handleSignUpTextInput(e) {
         setNewUser({ ...newUser, [e.target.name]: e.target.value });
     }
 
-
-
-  // call the createUset api with the newUser as an argument
+  // call the createUser api with the newUser as an argument
   function createOneUser() {
     createUser(newUser)
     .then((user) => user.json())
-    .then((data => navigate(`/Login`)))
+    .then(data => {
+        if (data.user) {
+            navigate(`/Login`)
+        } else {setIsError(true)
+            
+        }
+    })
     .catch((error) => console.log(error))
     setNewUser({})
   }
@@ -48,6 +54,9 @@ export default function SignUp() {
 <>
     <h2>Sign Up</h2>
 
+    <div className={ isError ? 'sign-up-error' : 'sign-up-error-false' }> 
+        USername already exists
+    </div>
         <div className="sign-up-div">
             
             <form>

@@ -36,3 +36,10 @@
   
 }
 
+.sign-up-error-false{
+  display: none;
+}
+
+.sign-up-error{
+  background: green;
+}
