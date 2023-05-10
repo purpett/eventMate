@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react'
 import { getUser, deleteUser, getAllEventsWithUserId } from '../apis/UserApis'
-import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
+import { getPayloadFromToken, removeToken } from '../tokenLogic/tokenLogic'
 import UserEvent from './UserEvent'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ export default function ProfilePage() {
 
   const [userEvents, setUserEvents] = useState([])
   const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
+  const navigate = useNavigate()
 
   // Load the getUser api specific to the user id on page load
   useEffect(() => {
@@ -27,6 +28,8 @@ export default function ProfilePage() {
     const payload = getPayloadFromToken()
     deleteUser(payload.userId)
       .then(deletedUser => deletedUser.json())
+    removeToken()
+    navigate('/')
   }
 
   // Finding all events by user id 
