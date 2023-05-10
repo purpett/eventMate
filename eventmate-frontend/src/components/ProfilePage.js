@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react'
 import { getUser, deleteUser, getAllEventsWithUserId } from '../apis/UserApis'
 import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 import UserEvent from './UserEvent'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProfilePage() {
+
+
 
   const [userEvents, setUserEvents] = useState([])
   const [currentUser, setCurrentUser] = useState({ attending: [] })
@@ -65,4 +68,5 @@ export default function ProfilePage() {
     </>
 
   )
+
 }
