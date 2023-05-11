@@ -60,6 +60,16 @@ body {
   font-weight: 600;
 }
 
+#user-event a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1)
+}
+
+#user-event a:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* ALL EVENTS PAGE */
 
 .homepage-container {
