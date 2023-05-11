@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dbConfig = require('./config/db');
+// const dbConfig = require('./config/db');
 const eventRouter = require('./routes/eventRoutes')
 const userRouter = require('./routes/userRoutes')
 const commentRouter = require('./routes/commentRoutes')
@@ -24,7 +24,7 @@ const app = express();
 // const db = mongoose.connection;
 
 mongoose.connect(db, { useNewUrlParser: true });
-mongoose.connection.once('open', () => console.log('Connected to MongoDB'));
+mongoose.connection.once('open', () => console.log('Connected to MongoDB', db));
 
 
 
