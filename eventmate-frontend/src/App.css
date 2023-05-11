@@ -246,7 +246,7 @@ body {
 }
 
 .attending-area {
-  margin: 4rem 0 0 4rem;
+  margin: 4rem 4rem 0 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -632,3 +632,4 @@ input:checked + .slider:before {
   background-color: #e6e6e6;
 }
 
+/* MEDIA QUERIES */

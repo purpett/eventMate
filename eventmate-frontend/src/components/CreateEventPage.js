@@ -72,10 +72,10 @@ export default function CreateEventPage() {
         </div>
         <div className="create-event-form-input">
           <label>Description</label>
-          <textarea name='description' 
-          value={createdEvent.description}
-          onChange={handleTextInput} 
-          placeholder="Description" />
+          <textarea name='description'
+            value={createdEvent.description}
+            onChange={handleTextInput}
+            placeholder="Description" />
         </div>
         <button className="normal-btn" onClick={(e) => {
           e.preventDefault();
