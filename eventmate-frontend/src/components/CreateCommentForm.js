@@ -3,12 +3,15 @@ import { useState } from "react"
 import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 
 export default function CreateCommentForm({ id, setSingleEvent }) {
+  // Grab the payload and store it in a variable
   const payload = getPayloadFromToken()
+  // Handle the comment input form information
   const [newCommentInput, setNewCommentInput] = useState({
     author: `${payload.username}`,
     text: "",
     hideAuthor: false
   })
+
   const createOneComment = () => {
     createComment(id, newCommentInput)
       .then((response) => response.json())
@@ -20,9 +23,11 @@ export default function CreateCommentForm({ id, setSingleEvent }) {
       .catch((error) => console.log(error.message))
   }
 
+  // Handles the changes in the text input. It is dynamic but does not have to be.
   function handleTextInput(e) {
     setNewCommentInput({ ...newCommentInput, [e.target.name]: e.target.value });
   }
+  // Handles the changes in the checkbox. It is dynamic but does not have to be.
   function handleHiddenNameInput(e) {
     setNewCommentInput({ ...newCommentInput, [e.target.name]: e.target.checked })
   }

@@ -29,7 +29,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
   }
 
   function handleEscForm(e) {
-    if (e.keyCode == 27) {
+    if (e.keyCode === 27) {
       setShowForm(false)
     }
   }
@@ -56,7 +56,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
             {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
             {tokenExp() && <p id="author"> {singleComment.author === `${payload.username}` ?
               (singleComment.hideAuthor ?
-                `Anonymous (You)` : `${singleComment.author} (you)`
+                `Anonymous (You)` : `${singleComment.author} (You)`
               ) : (singleComment.hideAuthor ?
                 `Anonymous` : singleComment.author
               )

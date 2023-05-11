@@ -16,6 +16,8 @@ export default function SignUp() {
 
   const [isError, setIsError] = useState(false)
 
+  const [showPassword, setShowPassword] = useState(false)
+
   // function to set the username field in the state equal to the username input field
   //and the same for the password
   function handleSignUpTextInput(e) {
@@ -27,7 +29,6 @@ export default function SignUp() {
     createUser(newUser)
     .then((user) => user.json())
     .then(data => {
-        console.log(data)
         if (data.user) {
             navigate(`/Login`)
         } else if (data.errors.username) {
@@ -61,17 +62,24 @@ export default function SignUp() {
             />
           </div>
           <div className="auth-form-password-container">
-            <label className="auth-password">Password</label>
+            <div className="auth-password">Password</div>
             <input
               name='password'
               value={newUser.password}
-              type='password'
+              type= {showPassword? 'text': 'password'}
               onChange={handleSignUpTextInput}
               placeholder="Enter Your Password"
               required
               autoComplete="off"
             />
           </div>
+          <button
+            className="normal-btn"
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword? '😱' : '😎'}
+          </button>
           <button className="normal-btn auth-btn" onClick={(e) => {
             e.preventDefault();
             createOneUser()

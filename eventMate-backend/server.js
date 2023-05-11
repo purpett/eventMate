@@ -61,10 +61,10 @@ app.post('/api/login', (req, res) => {
 
         res.json({ success: true, token: token })
       } else {
-        res.status(401).json({success: false})
+        res.status(401).json({ success: false })
       }
       })
-      .catch((error) => console.log(error, 'Invalid Username or Password'))
+      .catch(() => res.status(401).json({ success: false }))
   }
 })
 

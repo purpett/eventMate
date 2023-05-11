@@ -14,7 +14,7 @@ export default function CreateEventPage() {
     title: "",
     description: "",
     location: "",
-    date: new Date().toISOString().split("T")[0],
+    date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0],
     comments: [],
     attendees: [],
     organiser: username
@@ -63,7 +63,7 @@ export default function CreateEventPage() {
             <input
               name='date'
               type="date"
-              min={new Date().toISOString().split("T")[0]}
+              min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
               onChange={handleTextInput}
               placeholder="Date"
               value={createdEvent.date}

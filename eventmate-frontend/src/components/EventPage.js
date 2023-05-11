@@ -162,7 +162,7 @@ export default function EventPage() {
       <hr />
       <div className="comments-container">
         COMMENTS
-        {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
+        {/* If the there is a valid token in local storage and it has not expired show the create comment form */}
         {tokenExp() && <div className="create-comment-form">
           <CreateCommentForm
             setSingleEvent={setSingleEvent}
