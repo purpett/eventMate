@@ -69,7 +69,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
               name="text"
               type="text"
               placeholder={singleComment.text}
-              autoFocus="true"
+              autoFocus={true}
               autoComplete="off"
               required
               value={editedComment.text}
