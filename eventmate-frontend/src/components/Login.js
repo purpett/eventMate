@@ -22,7 +22,7 @@ export default function Login() {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
 
- 
+
   function isUserAuthenticated (e) {
     //Stops page refreshing
       e.preventDefault()
@@ -30,13 +30,16 @@ export default function Login() {
       createToken(userCredentials)
       // Converts to Json
         .then((response) => response.json())
-        .then((token) => {
-          // Stores just the token in local storage
-          storeToken(token.token)
+        .then((token) => { 
           // If the token is created successfully navigate the user to the homepage else change the state isError which will bring up a message on the screen
-          if(token.success) navigate('/')
+          if(token.success) {
+            // Stores just the token in local storage
+            storeToken(token.token)
+            return navigate('/')
+          }
           else setIsError(true)
         })
+        .then(() => setIsError(true))
     }
 
   return (
@@ -62,7 +65,7 @@ export default function Login() {
             <label className="auth-password">Password</label>
             <input
               name='password'
-              type='password'
+              type={showPassword?'text': 'password'}
               placeholder="Enter Your Password"
               required
               autoComplete="off"
@@ -70,12 +73,13 @@ export default function Login() {
               onChange={handleTextInput}
             />
           </div>
-          {/* <button
+          <button
+            className="normal-btn"
             type="button"
             onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword? '😱' : '😎'}
-          </button> */}
+          </button>
           <button className="normal-btn auth-btn" type="submit">Login</button>
         </form>
       </div>
