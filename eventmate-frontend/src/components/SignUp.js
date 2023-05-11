@@ -68,7 +68,7 @@ export default function SignUp() {
               autoComplete="off"
             />
           </div>
-          <button className="sign-up-button" onClick={(e) => {
+          <button className="normal-btn auth-btn" onClick={(e) => {
             e.preventDefault();
             createOneUser()
           }}>Sign Up</button>

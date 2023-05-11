@@ -62,7 +62,7 @@ export default function Login() {
               onChange={handleTextInput}
             />
           </div>
-          <button className="sign-up-button" type="submit">Login</button>
+          <button className="normal-btn auth-btn" type="submit">Login</button>
         </form>
       </div>
     </div>

@@ -272,24 +272,6 @@ body {
   transform: scale(1.05);
 }
 
-.danger-btn {
-  background-color: white;
-  color: #130a40;
-  padding: 0.5rem;
-  border-radius: 0.65rem;
-  border: 1px solid black;
-}
-
-.danger-btn:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-}
-
-.danger-btn:active {
-  transform: scale(1);
-  background-color: rgb(221, 221, 221);
-}
-
 /* SIGN UP/LOGIN PAGES */
 
 .auth-page {
@@ -343,7 +325,7 @@ body {
  }
  
 
- .sign-up-button{
+ .auth-button{
    display: block;
  }
 
@@ -416,3 +398,50 @@ body {
 } */
 
 /* 1150px create event form where-and-when escapes */
+
+
+.normal-btn {
+  background-color: white;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  /* font-weight: 600; */
+  /* border: 1.5px solid rgba(0, 0, 0, 0.1); */
+  border: 1px solid black;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  transition: all 250ms;
+  /* margin: 0.5rem auto; */
+  padding: 0.5rem 1rem;
+}
+
+.normal-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.433) 3px 4px 12px;
+  transform: scale(1.02);
+}
+
+.normal-btn:active {
+  background-color: #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 6px 8px;
+  color: #292d2e;
+  transform: translateY(0);
+  transition: 250ms;
+  border: 1px solid #292d2e;
+}
+
+.danger-btn {
+  background-color: white;
+  color: #130a40;
+  padding: 0.5rem 1rem; 
+  border-radius: 0.65rem;
+  border: 1px solid black;
+}
+
+.danger-btn:hover {
+  transform: scale(1.05);
+}
+
+.danger-btn:active {
+  transform: scale(1);
+  background-color: #e6e6e6;
+}

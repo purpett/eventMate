@@ -72,7 +72,7 @@ export default function CreateEventPage() {
           <label>Description</label>
           <textarea name='description' onChange={handleTextInput} placeholder="Description" />
         </div>
-        <button onClick={(e) => {
+        <button className="normal-btn" onClick={(e) => {
           e.preventDefault();
           createOneEvent()
 

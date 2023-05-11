@@ -56,8 +56,8 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
             {/* If the author Id equals the id of the user then update and delete buttons will be visable */}
             {singleComment.author === `${payload.username}` ?
               <div>
-                <button onClick={toggleForm}>Edit Comment</button>
-                <button onClick={deleteOneComment}>Delete Comment</button>
+                <button className="normal-btn" onClick={toggleForm}>Edit Comment</button>
+                <button className="danger-btn" onClick={deleteOneComment}>Delete Comment</button>
               </div> : null}
           </div>
         }

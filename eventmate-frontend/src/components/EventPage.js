@@ -92,10 +92,9 @@ export default function EventPage() {
         <p>Date: {transformDate(singleEvent.date)}</p>
         <p>Organiser: {singleEvent.organiser}</p>
         <p>People attending: {singleEvent.attendees.length} </p>
-        {/* {tokenExp() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>} */}
-        {tokenExp() && <button onClick={addUserIdToAttendees}>Attend</button>}
-        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
-        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
+        {tokenExp() && <button id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+        {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="normal-btn" onClick={toggleForm}>Edit Event</button>}
+        {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="danger-btn" onClick={deleteOneEvent}>Delete Event</button>}
         <hr />
       </div>}
       {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
@@ -123,7 +122,7 @@ export default function EventPage() {
           onChange={handleInputOnChange}
           placeholder={singleEvent.description}
         />
-        <button type="submit">Save changes</button>
+        <button className="normal-btn" type="submit">Save changes</button>
       </form>}
 
       <div className="comments-container">

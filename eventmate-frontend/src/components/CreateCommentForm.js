@@ -48,7 +48,7 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
             onChange={handleHiddenNameInput}
           />
         </div>
-        <button className="button"
+        <button className="normal-btn"
           onClick={(e) => {
             createOneComment()
             e.preventDefault()

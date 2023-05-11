@@ -60,7 +60,7 @@ export default function ProfilePage() {
         <div id="profile-username">
           {currentUser.username}
         </div>
-        <button onClick={deleteUserProfile}>Delete account</button>
+        <button className="danger-btn" onClick={deleteUserProfile}>Delete account</button>
       </div>
       <h2>Upcoming events</h2>
       {upcoming.map((event) => <UserEvent event={event} key={event._id} />)}
