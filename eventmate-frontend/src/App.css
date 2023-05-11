@@ -87,6 +87,7 @@ body {
 .event-card p {
   line-height: 1.3rem;
   font-size: 1.2rem;
+  color: black
 }
 
 .most-attended {
@@ -94,6 +95,7 @@ body {
   font-size: 1.55rem;
   max-width: 30%;
   text-align: center;
+  color: black;
 }
 
 .all-other-cards a, 
@@ -123,14 +125,15 @@ body {
   max-width: 70%;
 }
 
-.create-event-form-input, 
-.edit-event-form-input {
+.create-event-form-input {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
+
 }
 
-.create-event-form-input label {
+.create-event-form-input label,
+.edit-event-form-input label {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
@@ -168,10 +171,12 @@ body {
 .event-container {
   display: flex;
   align-items: start;
+  gap: 3rem;
 }
 
 .event-content {
   margin-top: 0;
+  margin: 0 1rem;
   font-size: 1.3rem;
   flex: 1;
 }
@@ -183,11 +188,53 @@ body {
 }
 
 .event-content .title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: 0.7rem;
+  margin-bottom: 0;
+  margin: 0
+}
 
+.organiser {
+  font-size: 1.1rem;
+  margin: 0.2rem 0 3rem 0;
+}
+
+.where,
+.when {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.3rem;
+}
+
+.attending-area {
+  margin: 4rem 0 0 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-actions-area {
+  margin-left: auto;
+}
+
+.description {
+  margin: 3rem 0;
+  min-height: 4rem;
 }
 
 .edit-event-form {
-  flex: 1;
+  width: 55%;
+  margin: 0 0 1rem 1rem;
+}
+
+
+.edit-event-form-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 
 .edit-event-form input,
@@ -202,7 +249,11 @@ body {
 }
 
 .edit-event-form input[name="title"] {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.edit-event-form textarea {
+  margin-bottom: 1rem;
 }
 
 /* COMMENT */
@@ -415,7 +466,6 @@ body {
 /* 1150px create event form where-and-when escapes */
 
 .event-btns {
-  flex-basis: 1;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -431,6 +481,7 @@ body {
   cursor: pointer;
   transition: all 250ms;
   padding: 0.5rem 1rem;
+  margin-right: 1rem;
 }
 
 .normal-btn:hover {
@@ -445,6 +496,13 @@ body {
   transform: translateY(0);
   transition: 250ms;
   border: 1px solid #292d2e;
+}
+
+#attend-btn {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  margin-right: 0;
 }
 
 .danger-btn {

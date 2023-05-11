@@ -88,12 +88,16 @@ export default function EventPage() {
         {!showEventForm && <div className="event-content">
           {/* Checks to see if the fetch request is complete before showing the event information */}
           <p className="title">{singleEvent.title}</p>
-          <p>Description: {singleEvent.description}</p>
-          <p>Location: {singleEvent.location}</p>
-          <p>Date: {transformDate(singleEvent.date)}</p>
-          <p>Organiser: {singleEvent.organiser}</p>
-          <p>People attending: {singleEvent.attendees.length} </p>
-          {tokenExp() && <button id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+          <p className="organiser">Planner: {singleEvent.organiser}</p>
+          <div className="where">
+            <img src="/media/map-marker-radius.svg" alt="map marker icon" />
+            {singleEvent.location}
+          </div>
+          <div className="when">
+            <img src="/media/calendar-month-outline.svg" alt="calendar icon" />
+            {transformDate(singleEvent.date)}
+          </div>
+          <div className="description">{singleEvent.description}</div>
         </div>}
         {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
           <div className="edit-event-form-input">
@@ -135,9 +139,15 @@ export default function EventPage() {
           </div>
           <button className="normal-btn" type="submit">Save changes</button>
         </form>}
-        <div className="event-btns">
-          {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="normal-btn" onClick={toggleForm}>Edit Event</button>}
-          {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="danger-btn" onClick={deleteOneEvent}>Delete Event</button>}
+        <div className="event-actions-area">
+          <div className="event-btns">
+            {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="normal-btn" onClick={toggleForm}>Edit Event</button>}
+            {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="danger-btn" onClick={deleteOneEvent}>Delete Event</button>}
+          </div>
+          <div className="attending-area">
+            <p>People attending: {singleEvent.attendees.length} </p>
+            {tokenExp() && <button className="normal-btn" id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+          </div>
         </div>
       </div>
 
