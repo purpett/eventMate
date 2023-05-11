@@ -35,9 +35,9 @@ export default function CreateEventPage() {
   }
 
   return (
-    <div class="create-event-page">
+    <div className="create-event-page">
       <h1>CREATE A NEW EVENT</h1>
-      <form class="create-event-form">
+      <form className="create-event-form">
         <div className="create-event-form-input">
           <label>Title</label>
           <input
