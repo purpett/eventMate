@@ -240,7 +240,6 @@ body {
   margin: 0 0 1rem 1rem;
 }
 
-
 .edit-event-form-input {
   display: flex;
   flex-direction: column;
@@ -255,11 +254,21 @@ body {
   border-radius: 0.5rem;
   border: 1px solid black; 
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .edit-event-form input[name="title"] {
   font-size: 1.3rem;
+}
+
+.description-submit {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.description-submit div {
+  flex: 1;
 }
 
 .edit-event-form textarea {
@@ -271,7 +280,6 @@ body {
 .comment-container hr{
   margin: 1.5rem 0;
 }
-
 
 .one-comment {
   display: flex;
@@ -317,11 +325,11 @@ body {
   font-size: 1.2rem;
 }
 
-
 .create-comment-anonymous {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
 
 .switch {
   position: relative;
@@ -346,6 +354,7 @@ body {
   -webkit-transition: .4s;
   transition: .4s;
 }
+
 .slider:before {
   position: absolute;
   content: "";
@@ -357,6 +366,7 @@ body {
   -webkit-transition: .4s;
   transition: .4s;
 }
+
 input:checked + .slider {
   background-color: #2196F3;
 }
@@ -377,7 +387,6 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 2rem;
-
 }
 
 .create-comment-input {
@@ -387,6 +396,11 @@ input:checked + .slider:before {
 
 .create-comment-form {
   height: 2.5rem;
+}
+
+.comment-btns {
+  display: flex;
+  gap: 1rem;
 }
 
 /* NAVBAR */
@@ -548,7 +562,6 @@ input:checked + .slider:before {
   cursor: pointer;
   transition: all 250ms;
   padding: 0.5rem 1rem;
-  margin-right: 1rem;
 }
 
 .normal-btn:hover {
@@ -591,6 +604,4 @@ input:checked + .slider:before {
   transform: scale(1);
   background-color: #e6e6e6;
 }
-
-/* CHECKBOX */
 

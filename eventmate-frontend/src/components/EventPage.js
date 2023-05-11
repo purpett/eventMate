@@ -134,15 +134,17 @@ export default function EventPage() {
               />
             </div>
           </div>
-          <div className="edit-event-form-input">
-            <label>Description</label>
-            <textarea
-              name='description'
-              onChange={handleInputOnChange}
-              placeholder={singleEvent.description}
-            />
+          <div className="description-submit">
+            <div className="edit-event-form-input">
+              <label>Description</label>
+              <textarea
+                name='description'
+                onChange={handleInputOnChange}
+                placeholder={singleEvent.description}
+              />
+            </div>
+            <button className="normal-btn" type="submit">Save changes</button>
           </div>
-          <button className="normal-btn" type="submit">Save changes</button>
         </form>}
         <div className="event-actions-area">
           <div className="event-btns">
@@ -156,7 +158,7 @@ export default function EventPage() {
         </div>
       </div>
 
-    
+
 
 
       <hr />
