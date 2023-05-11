@@ -145,8 +145,8 @@ export default function EventPage() {
                 placeholder={singleEvent.description}
               />
             </div>
-            <button className="normal-btn" type="submit">Save changes</button>
           </div>
+          <button className="normal-btn" type="submit">Save changes</button>
         </form>}
         <div className="event-actions-area">
           <div className="event-btns">
@@ -165,7 +165,7 @@ export default function EventPage() {
 
       <hr />
       <div className="comments-container">
-        COMMENTS
+        <h3 className="comments-title">Comments</h3>
         {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
         {tokenExp() && <div className="create-comment-form">
           <CreateCommentForm

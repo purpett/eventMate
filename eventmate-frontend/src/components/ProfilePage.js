@@ -28,7 +28,7 @@ export default function ProfilePage() {
         navigate('../login')
       })
 
-      // Function to get all of a users events
+    // Function to get all of a users events
     findEventsByUserId()
   }, [])
 

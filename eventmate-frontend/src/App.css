@@ -222,9 +222,12 @@ body {
 }
 
 .comments-container {
-  margin: 1.5rem 4rem 0 2.5rem;
+  margin: 2.5rem 3rem;
   font-size: 1.2rem;
-  padding-left: 2rem;
+}
+
+.comments-title {
+  margin: 0;
 }
 
 .event-content .title {
@@ -316,6 +319,7 @@ body {
   display: flex;
   margin-bottom: 1rem;
   align-items: center;
+  gap: 1rem;
 }
 
 #author {
@@ -347,7 +351,6 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding-top: 1rem;
 }
 
 .create-comment-input label,
@@ -426,7 +429,7 @@ input:checked + .slider:before {
 }
 
 .create-comment-form {
-  height: 2.5rem;
+  padding: 1.5rem 0;
 }
 
 .comment-btns {
@@ -559,7 +562,7 @@ input:checked + .slider:before {
   align-items: center;
   font-weight: 600;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .credits {
@@ -640,11 +643,54 @@ input:checked + .slider:before {
   display: none;
 }
 
+.sidebar {
+  display: none;
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 900px) {
   .where-and-when {
     display: block;
+  }
+
+  .create-comment-container {
+    flex-direction: column;
+    align-items: initial;
+  }
+
+  .event-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .edit-event-form {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .event-actions-area {
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    margin-bottom: 1rem;
+  }
+
+  .attending-area {
+    margin-top: 0rem;
+  }
+
+  .event-btns {
+    margin-left: 0;
+    display: flex;
+    width: 100%;
+  }
+
+  .event-btns button {
+    width: 100%;
   }
 }
 
@@ -678,14 +724,28 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
   }
+
+  .one-comment {
+    flex-direction: column;
+    align-items: initial;
+  }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+
+  .App {
+    border: 0;
+  }
+
   .homepage-card {
     display: block;
   }
 
   .sidebar {
+    display: block;
     height: 100%;
     position: fixed;
     z-index: 1;
@@ -694,7 +754,7 @@ input:checked + .slider:before {
     transition: 0.5s;
     transform: translateX(-100%);
     background-color: black;
-    min-width: 16rem;
+    min-width: max(16rem, 60%);
     color: white;
     padding: 1rem;
   }
@@ -705,6 +765,10 @@ input:checked + .slider:before {
 
   .nav-links-container {
     display: none;
+  }
+
+  .comments-container {
+    margin: 2rem 0;
   }
 
   .hamburger {
@@ -723,5 +787,10 @@ input:checked + .slider:before {
     display: block;
     margin-bottom: 1rem;
     font-size: 1.5rem;
+  }
+
+  .user-area {
+    flex-direction: column;
+    gap: 2rem;
   }
 }
