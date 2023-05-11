@@ -2,7 +2,7 @@ import { createComment } from "../apis/CommentApis";
 import { useState } from "react"
 import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 
-export default function CreateCommentForm({ id, setSingleEvent, setShowCommentForm }) {
+export default function CreateCommentForm({ id, setSingleEvent }) {
   const payload = getPayloadFromToken()
   const [newCommentInput, setNewCommentInput] = useState({
     author: `${payload.username}`,
@@ -15,7 +15,6 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
       .then((result) => {
         // this is a whole event, so we can access all of its fields
         setSingleEvent(result)
-        setShowCommentForm(false)
         setNewCommentInput({ ...newCommentInput, text: "", hideAuthor: false })
       })
       .catch((error) => console.log(error.message))

@@ -42,6 +42,7 @@ export default function CreateEventPage() {
           <label>Title</label>
           <input
             name='title'
+            value={createdEvent.title}
             onChange={handleTextInput}
             placeholder="Enter your Events Title"
           />
@@ -52,6 +53,7 @@ export default function CreateEventPage() {
             <label>Where</label>
             <input
               name='location'
+              value={createdEvent.location}
               onChange={handleTextInput}
               placeholder="Location"
             />
@@ -70,7 +72,10 @@ export default function CreateEventPage() {
         </div>
         <div className="create-event-form-input">
           <label>Description</label>
-          <textarea name='description' onChange={handleTextInput} placeholder="Description" />
+          <textarea name='description' 
+          value={createdEvent.description}
+          onChange={handleTextInput} 
+          placeholder="Description" />
         </div>
         <button onClick={(e) => {
           e.preventDefault();

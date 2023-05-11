@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createUser, getUserByUsername } from "../apis/UserApis";
+import { createUser } from "../apis/UserApis";
 import { useNavigate } from "react-router-dom";
 
 
