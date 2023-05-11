@@ -41,8 +41,12 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
           />
         </div>
         <div className="create-comment-anonymous">
-          <label>Stay Anonymous</label>
-          <input type="checkbox"
+          <label>
+            Stay anonymous
+          </label>
+          <input
+            type="checkbox"
+            id="_checkbox"
             name="hideAuthor"
             checked={newCommentInput.hideAuthor}
             onChange={handleHiddenNameInput}

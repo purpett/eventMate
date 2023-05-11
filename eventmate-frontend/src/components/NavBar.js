@@ -19,7 +19,7 @@ export default function NavBar() {
             <div>
               <Link to='/CreateEventPage' className='nav-link'>Create Event</Link>
               <Link to='/ProfilePage' className='nav-link'>My Profile</Link>
-              <button onClick={logOut} class='danger-btn'> LOG OUT </button>
+              <button onClick={logOut} className='danger-btn'> LOG OUT </button>
             </div>
           }
           {!tokenExp() &&

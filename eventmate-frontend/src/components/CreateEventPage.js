@@ -47,7 +47,7 @@ export default function CreateEventPage() {
           />
         </div>
 
-        <div id="where-and-when">
+        <div className="where-and-when">
           <div className="create-event-form-input">
             <label>Where</label>
             <input
