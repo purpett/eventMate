@@ -22,22 +22,22 @@ export default function Login() {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
 
- 
-  function isUserAuthenticated (e) {
+
+  function isUserAuthenticated(e) {
     //Stops page refreshing
-      e.preventDefault()
-      // Creates a token takes the userCredentials as a parameter so it can be used in the backend to confirm the user has an account
-      createToken(userCredentials)
+    e.preventDefault()
+    // Creates a token takes the userCredentials as a parameter so it can be used in the backend to confirm the user has an account
+    createToken(userCredentials)
       // Converts to Json
-        .then((response) => response.json())
-        .then((token) => {
-          // Stores just the token in local storage
-          storeToken(token.token)
-          // If the token is created successfully navigate the user to the homepage else change the state isError which will bring up a message on the screen
-          if(token.success) navigate('/')
-          else setIsError(true)
-        })
-    }
+      .then((response) => response.json())
+      .then((token) => {
+        // Stores just the token in local storage
+        storeToken(token.token)
+        // If the token is created successfully navigate the user to the homepage else change the state isError which will bring up a message on the screen
+        if (token.success) navigate('/')
+        else setIsError(true)
+      })
+  }
 
   return (
     <div className="auth-page">
@@ -70,11 +70,8 @@ export default function Login() {
               onChange={handleTextInput}
             />
           </div>
-          {/* <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword? '😱' : '😎'}
+          {/* <button type="button" onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? '👀' : '🙈'}
           </button> */}
           <button className="normal-btn auth-btn" type="submit">Login</button>
         </form>

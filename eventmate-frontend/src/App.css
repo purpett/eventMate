@@ -629,6 +629,7 @@ input:checked + .slider:before {
   padding: 1rem 3rem;
   border-radius: 1rem;
   margin-right: 0;
+  border: 1px solid green;
 }
 
 .danger-btn {
