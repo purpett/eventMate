@@ -4,11 +4,10 @@ export default function UserEvent(props) {
   const { event } = props;
 
   return (
-    <>
-      <hr />
-      <p>Event title: {event.title}</p>
-      <p>Date: {transformDate(event.date)}</p>
-      <p>Event location: {event.location}</p>
-    </>
+    <div className='event-card' id="user-event">
+      <span className='event-title'>{event.title}</span>
+      |
+      <span>{transformDate(event.date)}</span>
+    </div>
   )
 }

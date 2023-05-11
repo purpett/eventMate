@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
 const Event = require('./models/event')
 const User = require('./models/user')
-const dbConfig = require('./config/db');
+// const dbConfig = require('./config/db');
+
+const db = require('./config/db');
+
+// Establish Database Connection
+mongoose.connect(db, { useNewUrlParser: true });
+mongoose.connection.once('open', () => console.log('Connected to MongoDB'));
 
 const firstEvent = new Event({
   title: 'Beatles in Concert',
@@ -186,7 +192,7 @@ fifthUser.attending.push(fifthEvent)
 
 const seedDatabase = async () => {
   try {
-  mongoose.connect(dbConfig)
+  mongoose.connect(db)
   await firstUser.save()
   await secondUser.save()
   await thirdUser.save()

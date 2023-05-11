@@ -10,6 +10,7 @@ export default function ProfilePage() {
   const [userEvents, setUserEvents] = useState([])
   const [currentUser, setCurrentUser] = useState({ username: '', attending: [] })
   const navigate = useNavigate()
+
   // Load the getUser api specific to the user id on page load
   useEffect(() => {
     const payload = getPayloadFromToken()
@@ -18,15 +19,15 @@ export default function ProfilePage() {
       .then((data) => {
         setCurrentUser({ username: data.user.username })
       }).catch(() => {
-        removeToken()  
+        removeToken()
         navigate('../login')
       })
 
     findEventsByUserId()
-}, [])
+  }, [])
 
   // Function to call the deleteUser api
-    // Log out and navigate to homepage. 
+  // Log out and navigate to homepage. 
   function deleteUserProfile() {
     const payload = getPayloadFromToken()
     deleteUser(payload.userId)
@@ -54,20 +55,19 @@ export default function ProfilePage() {
   const { upcoming, past } = upcomingOrPastEvents(userEvents)
 
   return (
-    <>
-      <h1>Profile</h1>
-      <div>
-        {currentUser.username}
+    <div className='profile-page'>
+      <div className='user-area'>
+        <div id="profile-username">
+          {currentUser.username}
+        </div>
+        <button onClick={deleteUserProfile}>Delete account</button>
       </div>
-
-      <button onClick={deleteUserProfile}>Delete account</button>
-
       <h2>Upcoming events</h2>
       {upcoming.map((event) => <UserEvent event={event} key={event._id} />)}
 
       <hr />
       <h2>Past events</h2>
       {past.map((event) => <UserEvent event={event} key={event._id} />)}
-    </>
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { createToken, storeToken, loadToken, getPayloadFromToken } from "../tokenLogic/tokenLogic";
 import { useNavigate } from "react-router-dom";
+import '../App.css'
 
 export default function Login() {
 
@@ -12,7 +13,7 @@ export default function Login() {
   })
 
 
-    const[isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
     const[showPassword, setShowPassword] = useState(false)
 
@@ -74,5 +75,3 @@ export default function Login() {
         </>
 
     )
-
-}

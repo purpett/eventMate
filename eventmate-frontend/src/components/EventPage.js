@@ -18,7 +18,7 @@ export default function EventPage() {
   const [editedEvent, setEditedEvent] = useState(singleEvent)
 
   // This state is used as a switch for the create comment form
-  const [showCommentForm, setShowCommentForm] = useState(false)
+  const [showCommentForm, setShowCommentForm] = useState(true)
 
   // This state is used as a switch for the edit event form
   const [showEventForm, setShowEventForm] = useState(false)
@@ -86,16 +86,13 @@ export default function EventPage() {
     <div className="event-page">
       {!showEventForm && <div className="event-content">
         {/* Checks to see if the fetch request is complete before showing the event information */}
-        <p>Title: {singleEvent.title}</p>
+        <p className="title">{singleEvent.title}</p>
         <p>Description: {singleEvent.description}</p>
         <p>Location: {singleEvent.location}</p>
         <p>Date: {transformDate(singleEvent.date)}</p>
         <p>Organiser: {singleEvent.organiser}</p>
         <p>People attending: {singleEvent.attendees.length} </p>
-        {/* <p>Tags:</p> */}
-        {/* <button>Like/Fav</button> */}
-        {/* Button that toggles the showCommentForm boolean state */}
-        {tokenExp() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>}
+        {/* {tokenExp() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>} */}
         {tokenExp() && <button onClick={addUserIdToAttendees}>Attend</button>}
         {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
         {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
@@ -130,13 +127,14 @@ export default function EventPage() {
       </form>}
 
       <div className="comments-container">
+        COMMENTS
         {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
-        <div className="create-comment-form">
-          {showCommentForm && <CreateCommentForm
+        {tokenExp() && <div className="create-comment-form">
+          <CreateCommentForm
             setSingleEvent={setSingleEvent}
             setShowCommentForm={setShowCommentForm}
-            id={id} />}
-        </div>
+            id={id} />
+        </div>}
         {/* This will be where the comments will be generated. The whole event information is passed down */}
         <Comments
           comments={singleEvent.comments}
