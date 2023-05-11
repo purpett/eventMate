@@ -84,8 +84,6 @@ body {
 }
 
 .event-card{
-  display: flex;
-  align-items: center;
   background-color: white;
   border-radius: 1rem;
   border: 1px solid black;
@@ -94,10 +92,30 @@ body {
   box-shadow: rgba(0, 0, 0, 0.433) 3px 4px 12px;
 }
 
+.event-card:hover {
+  transform: scale(1.03);
+  transition: all 250ms;
+}
+
 .event-card p {
   line-height: 1.3rem;
   font-size: 1.2rem;
   color: black
+}
+
+.event-card .title{
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
+.event-card .card-details {
+  display: flex;
+  align-items: center;
+}
+
+.card-details {
+  color: black;
 }
 
 .most-attended {
@@ -115,6 +133,14 @@ body {
 
 .first-card{
   grid-column: 1 / 3;
+}
+
+.popular-event-banner {
+  color: rgb(47, 92, 7);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: underline;
 }
 
 /* CREATE EVENT */
@@ -216,6 +242,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1.3rem;
+  color: black;
 }
 
 .attending-area {
