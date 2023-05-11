@@ -2,7 +2,7 @@ import { createComment } from "../apis/CommentApis";
 import { useState } from "react"
 import { getPayloadFromToken } from '../tokenLogic/tokenLogic'
 
-export default function CreateCommentForm({ id, setSingleEvent, setShowCommentForm }) {
+export default function CreateCommentForm({ id, setSingleEvent }) {
   const payload = getPayloadFromToken()
   const [newCommentInput, setNewCommentInput] = useState({
     author: `${payload.username}`,
@@ -15,7 +15,6 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
       .then((result) => {
         // this is a whole event, so we can access all of its fields
         setSingleEvent(result)
-        setShowCommentForm(false)
         setNewCommentInput({ ...newCommentInput, text: "", hideAuthor: false })
       })
       .catch((error) => console.log(error.message))
@@ -41,16 +40,20 @@ export default function CreateCommentForm({ id, setSingleEvent, setShowCommentFo
           />
         </div>
         <div className="create-comment-anonymous">
+
           <label>
             Stay anonymous
           </label>
-          <input
+          <label className="switch">
+            <input
             type="checkbox"
             id="_checkbox"
             name="hideAuthor"
             checked={newCommentInput.hideAuthor}
             onChange={handleHiddenNameInput}
           />
+          <span className="slider round"></span>
+          </label>
         </div>
         <button className="normal-btn"
           onClick={(e) => {
