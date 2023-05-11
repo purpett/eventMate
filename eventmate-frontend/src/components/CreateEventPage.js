@@ -48,7 +48,7 @@ export default function CreateEventPage() {
           />
         </div>
 
-        <div id="where-and-when">
+        <div className="where-and-when">
           <div className="create-event-form-input">
             <label>Where</label>
             <input
@@ -77,7 +77,7 @@ export default function CreateEventPage() {
           onChange={handleTextInput} 
           placeholder="Description" />
         </div>
-        <button onClick={(e) => {
+        <button className="normal-btn" onClick={(e) => {
           e.preventDefault();
           createOneEvent()
 

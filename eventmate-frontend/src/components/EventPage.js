@@ -88,50 +88,78 @@ export default function EventPage() {
 
   return (
     <div className="event-page">
-      {/* Checks if event form is false before it renders the information */}
-      {!showEventForm && <div className="event-content">
-        <p className="title">{singleEvent.title}</p>
-        <p>Description: {singleEvent.description}</p>
-        <p>Location: {singleEvent.location}</p>
-        <p>Date: {transformDate(singleEvent.date)}</p>
-        <p>Organiser: {singleEvent.organiser}</p>
-        <p>People attending: {singleEvent.attendees.length} </p>
-        {/* If there is a token in local storage and it is not expired the button to attend will appear */}
-        {tokenExp() && <button onClick={addUserIdToAttendees}>Attend</button>}
-        {/* If there is a token in local storage and it is not expired and the current user is the organiser then the edit event button and the delete event button will appear */}
-        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
-        {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
-        <hr />
-      </div>}
-      {/* If edit event form is true then the below form will appear */}
-      {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
 
-        <input
-          name='title'
-          value={editedEvent.title}
-          onChange={handleInputOnChange}
-        />
-        <input
-          name='location'
-          value={editedEvent.location}
-          onChange={handleInputOnChange}
-        />
-        <input
-          name='date'
-          type="date"
-          onChange={handleInputOnChange}
-          min={new Date().toISOString().split("T")[0]}
-          value={editedEvent.date}
-        />
-        <textarea
-          name='description'
-          value={editedEvent.description}
-          onChange={handleInputOnChange}
-          placeholder={singleEvent.description}
-        />
-        <button type="submit">Save changes</button>
-      </form>}
+      <div className="event-container">
+        {!showEventForm && <div className="event-content">
+          {/* Checks to see if the fetch request is complete before showing the event information */}
+          <p className="title">{singleEvent.title}</p>
+          <p className="organiser">Planner: {singleEvent.organiser}</p>
+          <div className="where">
+            <img src="/media/map-marker-radius.svg" alt="map marker icon" />
+            {singleEvent.location}
+          </div>
+          <div className="when">
+            <img src="/media/calendar-month-outline.svg" alt="calendar icon" />
+            {transformDate(singleEvent.date)}
+          </div>
+          <div className="description">{singleEvent.description}</div>
+        </div>}
+        {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
+          <div className="edit-event-form-input">
+            <label>Title</label>
+            <input
+              name='title'
+              onChange={handleInputOnChange}
+              placeholder={singleEvent.title}
+            />
+          </div>
+          <div className="where-and-when">
+            <div className="edit-event-form-input">
+              <label>Where</label>
+              <input
+                name='location'
+                onChange={handleInputOnChange}
+                placeholder={singleEvent.location}
+              />
+            </div>
+            <div className="edit-event-form-input">
+              <label>When</label>
+              <input
+                name='date'
+                type="date"
+                onChange={handleInputOnChange}
+                min={new Date().toISOString().split("T")[0]}
+                placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
+                value={editedEvent.date}
+              />
+            </div>
+          </div>
+          <div className="edit-event-form-input">
+            <label>Description</label>
+            <textarea
+              name='description'
+              onChange={handleInputOnChange}
+              placeholder={singleEvent.description}
+            />
+          </div>
+          <button className="normal-btn" type="submit">Save changes</button>
+        </form>}
+        <div className="event-actions-area">
+          <div className="event-btns">
+            {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="normal-btn" onClick={toggleForm}>Edit Event</button>}
+            {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="danger-btn" onClick={deleteOneEvent}>Delete Event</button>}
+          </div>
+          <div className="attending-area">
+            <p>People attending: {singleEvent.attendees.length} </p>
+            {tokenExp() && <button className="normal-btn" id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+          </div>
+        </div>
+      </div>
 
+    
+
+
+      <hr />
       <div className="comments-container">
         COMMENTS
         {/* If the there is a valid token in local storage and it has not expired show the create comment form */}
