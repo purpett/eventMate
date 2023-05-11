@@ -25,17 +25,19 @@ export default function SignUp() {
   // call the createUser api with the newUser as an argument
   function createOneUser() {
     createUser(newUser)
-      .then((user) => user.json())
-      .then(data => {
+    .then((user) => user.json())
+    .then(data => {
+        console.log(data)
         if (data.user) {
-          navigate(`/Login`)
-        } else {
-          setIsError(true)
-
+            navigate(`/Login`)
+        } else if (data.errors.username) {
+            setIsError(true)
+            setNewUser({username: "", password: ""})
         }
       })
       .catch((error) => console.log(error))
     setNewUser({})
+
   }
 
 
@@ -51,6 +53,7 @@ export default function SignUp() {
             <label className="auth-username">Username</label>
             <input
               name='username'
+              value={newUser.username}
               onChange={handleSignUpTextInput}
               placeholder="Enter Your Username"
               required
@@ -61,6 +64,7 @@ export default function SignUp() {
             <label className="auth-password">Password</label>
             <input
               name='password'
+              value={newUser.password}
               type='password'
               onChange={handleSignUpTextInput}
               placeholder="Enter Your Password"
