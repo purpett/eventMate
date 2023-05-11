@@ -317,11 +317,11 @@ body {
   font-size: 1.2rem;
 }
 
-
 .create-comment-anonymous {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
 
 .switch {
   position: relative;
