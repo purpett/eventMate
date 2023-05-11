@@ -5,6 +5,7 @@ const User = require('./models/user')
 
 const db = require('./config/db');
 
+
 // Establish Database Connection
 mongoose.connect(db, { useNewUrlParser: true });
 mongoose.connection.once('open', () => console.log('Connected to MongoDB'));
@@ -192,7 +193,10 @@ fifthUser.attending.push(fifthEvent)
 
 const seedDatabase = async () => {
   try {
-  mongoose.connect(db)
+    console.log("DB", db)
+  await mongoose.connect(db)
+  console.log("db connected")
+  // await mongoose.connection.db.dropDatabase()
   await firstUser.save()
   await secondUser.save()
   await thirdUser.save()
