@@ -1,5 +1,4 @@
 import { getAllEvents } from "../apis/EventApis"
-import { getOneEvent } from "../apis/EventApis"
 import { useEffect } from "react"
 import SingleEventCard from "./SingleEventCard"
 
@@ -10,7 +9,9 @@ export default function AllEventsPage(props) {
     getAllEvents()
       .then(events => events.json())
       .then((data => {
-        props.setEveryEvent([...data.events])
+        const now = new Date();
+        const onlyUpcomingEvents = data.events.filter((event) => new Date(event.date) >= now)
+        props.setEveryEvent([...onlyUpcomingEvents])
       }))
       .catch((error) => error.message)
   }, [])
