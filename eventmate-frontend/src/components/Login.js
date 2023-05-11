@@ -14,6 +14,8 @@ export default function Login() {
 
     const[isError, setIsError] = useState(false);
 
+    const[showPassword, setShowPassword] = useState(false)
+
     function handleTextInput(e) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
@@ -26,7 +28,6 @@ export default function Login() {
             storeToken(token.token)
           })
           .then(() => {
-          
           navigate('/')
           })
       }
@@ -54,13 +55,19 @@ export default function Login() {
                     <h3>Password</h3>
                     <input
                         name='password'
-                        type='password'
+                        type={showPassword? 'text': 'password'}
                         placeholder="Enter Your Password"
                         required
                         autoComplete="off"
                         value={userCredentials.password}
                         onChange={handleTextInput}
                     />
+                    <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword? '😱' : '😎'}
+                    </button>
                     <button className="sign-up-button" type="submit">Login</button>
                 </form>
             </div>
