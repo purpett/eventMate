@@ -15,6 +15,8 @@ export default function Login() {
 
   const [isError, setIsError] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false)
+
   function handleTextInput(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
@@ -62,6 +64,12 @@ export default function Login() {
               onChange={handleTextInput}
             />
           </div>
+          {/* <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword? '😱' : '😎'}
+          </button> */}
           <button className="normal-btn auth-btn" type="submit">Login</button>
         </form>
       </div>
