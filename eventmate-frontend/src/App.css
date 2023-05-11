@@ -5,6 +5,7 @@
 body {
   padding: 2rem;
   padding-bottom: 0;
+  background-color: rgb(78, 17, 79);
 }
 
 .App {
@@ -51,14 +52,13 @@ body {
   text-decoration: underline;
 }
 
-#user-event {
+#user-event a {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  cursor: not-allowed
 }
 
-#user-event .event-title{
+#user-event .event-title {
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -441,12 +441,12 @@ input:checked + .slider:before {
 
 .navbar hr,
 .footer hr {
-  margin: 0 2rem;
+  margin: 0 3rem;
 }
 
 .navbar-content {
   display: flex;
-  padding: 1rem;
+  padding: 1.5rem 3rem;
   align-items: center;
   background-color: white;
 }
@@ -637,7 +637,7 @@ input:checked + .slider:before {
   color: black;
   padding: 0.5rem 1rem; 
   border-radius: 0.65rem;
-  border: 1px solid black;
+  border: 1.5px solid red;
   transition: all 250ms;
 }
 
@@ -649,6 +649,10 @@ input:checked + .slider:before {
 .danger-btn:active {
   transform: scale(1);
   background-color: #e6e6e6;
+}
+
+.create-btn {
+  border: 1.5px solid #2196F3;
 }
 
 .hamburger {

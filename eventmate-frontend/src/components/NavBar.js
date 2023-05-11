@@ -43,7 +43,7 @@ export default function NavBar() {
       </nav>
       <div className='navbar'>
         <nav className='navbar-content'>
-          <div class="hamburger" onClick={() => setSidebarOpen(true)}><img src="/media/menu.svg" /></div>
+          <img class="hamburger" onClick={() => setSidebarOpen(true)} src="/media/menu.svg" />
           <div id="logo"><Link to='/'>eventMate</Link></div>
           <div className='nav-links-container'>
             {/* Checks if the token is in local storage and is not expired. If it is then shows this part of the nav bar if it is not it shows the other section of the nav bar. */}
