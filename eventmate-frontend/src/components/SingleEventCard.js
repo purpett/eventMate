@@ -23,7 +23,13 @@ export default function SingleEventCard({ eventInfo, index }) {
               </div>
             </div>
             {/* First event card will have additional info displayed on it */}
-            {index === 0 && <div className='most-attended'>{eventInfo.attendees.length} people are going to this event!</div>}
+            {index === 0 && (
+              <div className='most-attended'>
+                {eventInfo.attendees.length === 0 ? "No one is going to this event" : (
+                  `${eventInfo.attendees.length} ${eventInfo.attendees.length === 1 ? 'person is' : 'people are'} going to this event!`
+                )}
+              </div>
+            )}
           </div>
         </div>
       </Link>

@@ -63,10 +63,12 @@ export default function EventPage() {
     const payloadFromToken = getPayloadFromToken()
     // Stores userid key value from the variable above in another variable
     const userId = payloadFromToken.userId
-    // Checks to see if the userid is already in the attendees list and if it is then nothing happens
+    // Checks to see if the userid is already in the attendees list
+    // if it is then nothing happens
     if (singleEvent.attendees.includes(userId)) {
       return
-      // Else all the current attendees are spread into an array with the userid added in and this is stored in a variable called attendees.
+      // Current attendees are spread into an array with the userid added in
+      // which is then stored in a variable called attendees.
     } else {
       const attendees = [...singleEvent.attendees, userId]
       // singleEvent state is spread into an object and the attendees key is updated with the new attendees array.
