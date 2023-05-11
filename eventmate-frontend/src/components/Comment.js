@@ -29,7 +29,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
   }
 
   function handleEscForm(e) {
-    if (e.keyCode == 27) {
+    if (e.keyCode === 27) {
       setShowForm(false)
     }
   }
@@ -79,7 +79,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
         }
         {tokenExp() && <p id="author"> {singleComment.author === `${payload.username}` ?
           (singleComment.hideAuthor ?
-            `Anonymous (You)` : `${singleComment.author} (you)`
+            `Anonymous (You)` : `${singleComment.author} (You)`
           ) : (singleComment.hideAuthor ?
             `Anonymous` : singleComment.author
           )

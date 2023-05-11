@@ -88,20 +88,22 @@ export default function EventPage() {
 
   return (
     <div className="event-page">
+      {/* Checks if event form is false before it renders the information */}
       {!showEventForm && <div className="event-content">
-        {/* Checks to see if the fetch request is complete before showing the event information */}
         <p className="title">{singleEvent.title}</p>
         <p>Description: {singleEvent.description}</p>
         <p>Location: {singleEvent.location}</p>
         <p>Date: {transformDate(singleEvent.date)}</p>
         <p>Organiser: {singleEvent.organiser}</p>
         <p>People attending: {singleEvent.attendees.length} </p>
-        {/* {tokenExp() && <button onClick={() => setShowCommentForm(!showCommentForm)}>Comment</button>} */}
+        {/* If there is a token in local storage and it is not expired the button to attend will appear */}
         {tokenExp() && <button onClick={addUserIdToAttendees}>Attend</button>}
+        {/* If there is a token in local storage and it is not expired and the current user is the organiser then the edit event button and the delete event button will appear */}
         {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={toggleForm}>Edit Event</button>}
         {tokenExp() && isOrganiser(singleEvent.organiser) && <button onClick={deleteOneEvent}>Delete Event</button>}
         <hr />
       </div>}
+      {/* If edit event form is true then the below form will appear */}
       {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
 
         <input
@@ -119,7 +121,6 @@ export default function EventPage() {
           type="date"
           onChange={handleInputOnChange}
           min={new Date().toISOString().split("T")[0]}
-          // placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
           value={editedEvent.date}
         />
         <textarea
@@ -133,7 +134,7 @@ export default function EventPage() {
 
       <div className="comments-container">
         COMMENTS
-        {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
+        {/* If the there is a valid token in local storage and it has not expired show the create comment form */}
         {tokenExp() && <div className="create-comment-form">
           <CreateCommentForm
             setSingleEvent={setSingleEvent}
