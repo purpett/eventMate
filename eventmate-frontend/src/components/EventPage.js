@@ -4,6 +4,10 @@ import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+
+import "animate.css"
+
+
 import { getPayloadFromToken, tokenExp, isOrganiser } from "../tokenLogic/tokenLogic"
 import transformDate from '../transformDate'
 
@@ -15,6 +19,7 @@ export default function EventPage() {
   // This state is used as a switch for the edit event form
   const [showEventForm, setShowEventForm] = useState(false)
 
+  const [isAttending, setIsAttending] = useState(false)
   // Grab the event Id from the url and store it in the variable called id.
   const { id } = useParams()
 
@@ -26,7 +31,11 @@ export default function EventPage() {
   const getEvent = () => {
     getOneEvent(id)
       .then((event) => event.json())
-      .then((data => setSingleEvent(data.event)))
+      .then((data => {
+        setSingleEvent(data.event)
+        setIsAttending(data.event.attendees.includes(getPayloadFromToken().userId))
+      }))
+      
       .catch((error) => console.log(error.message))
   }
 
@@ -69,6 +78,7 @@ export default function EventPage() {
       const attendees = [...singleEvent.attendees, userId]
       // singleEvent state is spread into an object and the attendees key is updated with the new attendees array.
       const eventData = { ...singleEvent, attendees: attendees }
+      setIsAttending(true)
       // We update the backend with the new event data.
       updateOneEvent(eventData._id, eventData)
     }
@@ -161,8 +171,13 @@ export default function EventPage() {
           </div>
           <div className="attending-area">
             <p>People attending: {singleEvent.attendees.length} </p>
+
+//             {tokenExp() && <button 
+//              className={`normal-btn ${isAttending? 'animate__animated animate__zoomOutRight': ''}`} id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+=======
             {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>Unattend</button>}
             {tokenExp() && !singleEvent.attendees.includes(userId) && <button className="normal-btn" id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+
           </div>
         </div>
       </div>
