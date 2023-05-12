@@ -530,11 +530,11 @@ input:checked + .slider:before {
    display: block;
  }
 
- .sign-up-error-false{
+ .error-false{
   display: none;
 }
 
-.sign-up-error{
+.error{
   font-size: 1.2rem;
   margin-bottom: 1rem;
   color: rgb(194, 23, 23);

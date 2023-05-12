@@ -161,7 +161,7 @@ export default function EventPage() {
           </div>
           <div className="attending-area">
             <p>People attending: {singleEvent.attendees.length} </p>
-            {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>Unattend</button>}
+            {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>I changed my mind</button>}
             {tokenExp() && !singleEvent.attendees.includes(userId) && <button className="normal-btn" id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
           </div>
         </div>
