@@ -1,20 +1,16 @@
 import { apiUrl } from './apiConfig'
 
-
 // Get all the events (INDEX)
-
 export const getAllEvents = () => {
   return fetch(`${apiUrl}/events`)
 }
 
 // Get one event (SHOW)
-
 export const getOneEvent = (id) => {
   return fetch(`${apiUrl}/events/${id}`)
 }
 
 // Create one event (CREATE) 
-
 export const createEvent = (newEvent) => {
   return fetch(`${apiUrl}/events`, {
     method: 'POST',

@@ -46,7 +46,7 @@ export default function SignUp() {
     <div className="auth-page">
       <h2>SIGN UP</h2>
       <div className="sign-up-div">
-        <div className={isError ? 'sign-up-error' : 'sign-up-error-false'}>
+        <div className={isError ? 'error' : 'error-false'}>
           Username already exists
         </div>
         <form>

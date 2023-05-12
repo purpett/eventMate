@@ -44,10 +44,10 @@ export default function Login() {
   return (
     <div className="auth-page">
       <h2>LOGIN</h2>
-      <div className={isError ? "error-message" : "error-message-false"}>
-        Please Enter Valid Credentials
-      </div>
       <div className="sign-up-div">
+        <div className={isError ? "error" : "error-false"}>
+          Please Enter Valid Credentials
+        </div>
         <form onSubmit={(e) => { isUserAuthenticated(e) }}>
           <div className="auth-form-username-container">
             <label className="auth-username">Username</label>

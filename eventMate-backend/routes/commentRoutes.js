@@ -1,17 +1,13 @@
 const express = require('express')
-
 const Event = require('../models/event')
-
-
 const router = express.Router()
 
 /*
 Action: CREATE
 Method: Post
-URI: /api/events/:id/comment
+URI: /api/events/e585b9q283u49/comment
 Description: Create a new Comment
 */
-
 
 router.post('/api/events/:id/comments', (req, res) => {
   if (req.body.hideAuthor === "false") {
@@ -34,10 +30,11 @@ router.post('/api/events/:id/comments', (req, res) => {
         })
     })
 })
+
 /*
 Action: DESTROY
 Method: Delete
-URI: /api/events/:id/comments/:id
+URI: /api/events/bvyufFAFGlo23/comments/e585b9q283u49
 Description: Delete an Comment by its Comment ID
  */
 
@@ -64,8 +61,6 @@ Description: Update an Comment by its ID
 router.put('/api/events/:id/comments/:commentId', (req, res) => {
   Event.findById(req.params.id)
     .then((event) => {
-      const commentId = req.params.commentId
-
       // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
       const comment = event.comments.id(req.params.commentId)
       comment.text = req.body.text;

@@ -1,5 +1,6 @@
 import { loadToken } from "../tokenLogic/tokenLogic"
 import { apiUrl } from './apiConfig'
+
 // Get a single User
 export const getUser = (id) => {
   const token = JSON.parse(loadToken())
@@ -30,8 +31,7 @@ export const createUser = (userInfo) => {
 export const deleteUser = (id) => {
   return fetch(`${apiUrl}/users/${id}`, {
     method: 'DELETE'
-  }
-  )
+  })
 }
 
 // Update single User
@@ -47,8 +47,7 @@ export const updateUser = (id, userChanges, userInfo) => {
       password: `${userChanges.password ? userChanges.password : userInfo.password}`,
       attending: [...userInfo.attending, userChanges.attending]
     })
-  }
-  )
+  })
 }
 
 // Find all events that include a given user id

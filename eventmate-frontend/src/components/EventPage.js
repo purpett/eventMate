@@ -35,7 +35,7 @@ export default function EventPage() {
         setSingleEvent(data.event)
         setIsAttending(data.event.attendees.includes(getPayloadFromToken().userId))
       }))
-      
+
       .catch((error) => console.log(error.message))
   }
 
@@ -104,6 +104,13 @@ export default function EventPage() {
     updateOneEvent(newEvent._id, newEvent)
   }
 
+  // To close the form with esc key
+  function handleEscForm(e) {
+    if (e.keyCode === 27) {
+      setShowEventForm(false)
+    }
+  }
+
   return (
     <div className="event-page">
       <div className="event-container">
@@ -121,49 +128,55 @@ export default function EventPage() {
           </div>
           <div className="description">{singleEvent.description}</div>
         </div>}
-        {showEventForm && <form className="edit-event-form" onSubmit={() => updateOneEvent(id, editedEvent)}>
-          <div className="edit-event-form-input">
-            <label>Title</label>
-            <input
-              name='title'
-              onChange={handleInputOnChange}
-              value={editedEvent.title}
-            />
-          </div>
-          <div className="where-and-when">
+        {showEventForm &&
+          <form
+            className="edit-event-form"
+            onSubmit={() => updateOneEvent(id, editedEvent)}
+            onKeyDown={handleEscForm}
+          >
             <div className="edit-event-form-input">
-              <label>Where</label>
+              <label>Title</label>
               <input
-                name='location'
-                autoComplete="off"
+                name='title'
                 onChange={handleInputOnChange}
-                value={editedEvent.location}
+                autoFocus="true"
+                value={editedEvent.title}
               />
             </div>
-            <div className="edit-event-form-input">
-              <label>When</label>
-              <input
-                name='date'
-                type="date"
-                onChange={handleInputOnChange}
-                min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
-                placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
-                value={editedEvent.date}
-              />
+            <div className="where-and-when">
+              <div className="edit-event-form-input">
+                <label>Where</label>
+                <input
+                  name='location'
+                  autoComplete="off"
+                  onChange={handleInputOnChange}
+                  value={editedEvent.location}
+                />
+              </div>
+              <div className="edit-event-form-input">
+                <label>When</label>
+                <input
+                  name='date'
+                  type="date"
+                  onChange={handleInputOnChange}
+                  min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
+                  placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
+                  value={editedEvent.date}
+                />
+              </div>
             </div>
-          </div>
-          <div className="description-submit">
-            <div className="edit-event-form-input">
-              <label>Description</label>
-              <textarea
-                name='description'
-                onChange={handleInputOnChange}
-                value={editedEvent.description}
-              />
+            <div className="description-submit">
+              <div className="edit-event-form-input">
+                <label>Description</label>
+                <textarea
+                  name='description'
+                  onChange={handleInputOnChange}
+                  value={editedEvent.description}
+                />
+              </div>
             </div>
-          </div>
-          <button className="normal-btn" type="submit">Save changes</button>
-        </form>}
+            <button className="normal-btn" type="submit">Save changes</button>
+          </form>}
         <div className="event-actions-area">
           <div className="event-btns">
             {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="normal-btn" onClick={toggleForm}>Edit Event</button>}
@@ -171,13 +184,9 @@ export default function EventPage() {
           </div>
           <div className="attending-area">
             <p>People attending: {singleEvent.attendees.length} </p>
-
-//             {tokenExp() && <button 
-//              className={`normal-btn ${isAttending? 'animate__animated animate__zoomOutRight': ''}`} id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
-=======
-            {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>Unattend</button>}
+            {/* {tokenExp() && <button className={`normal-btn ${isAttending? 'animate__animated animate__zoomOutRight': ''}`} id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>} */}
             {tokenExp() && !singleEvent.attendees.includes(userId) && <button className="normal-btn" id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
-
+            {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>I changed my mind</button>}
           </div>
         </div>
       </div>
