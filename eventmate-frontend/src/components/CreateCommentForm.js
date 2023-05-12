@@ -51,13 +51,13 @@ export default function CreateCommentForm({ id, setSingleEvent }) {
           </label>
           <label className="switch">
             <input
-            type="checkbox"
-            id="_checkbox"
-            name="hideAuthor"
-            checked={newCommentInput.hideAuthor}
-            onChange={handleHiddenNameInput}
-          />
-          <span className="slider round"></span>
+              type="checkbox"
+              id="_checkbox"
+              name="hideAuthor"
+              checked={newCommentInput.hideAuthor}
+              onChange={handleHiddenNameInput}
+            />
+            <span className="slider round"></span>
           </label>
         </div>
         <button className="normal-btn"

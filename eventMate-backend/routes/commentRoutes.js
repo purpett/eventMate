@@ -14,20 +14,25 @@ Description: Create a new Comment
 
 
 router.post('/api/events/:id/comments', (req, res) => {
-    if (req.body.hideAuthor === "false") {
-        req.body.hideAuthor = false
-    } else {
-        req.body.hideAuthor = true
-    }
-    Event.findById(req.params.id)
+  if (req.body.hideAuthor === "false") {
+    req.body.hideAuthor = false
+  } else {
+    req.body.hideAuthor = true
+  }
+
+  if (req.body.text.length === 0) {
+    return res.status(500).json({ error: "No text" });
+  }
+
+  Event.findById(req.params.id)
+    .then((event) => {
+      const comment = req.body
+      event.comments.push(comment);
+      event.save()
         .then((event) => {
-            const comment = req.body
-            event.comments.push(comment);
-            event.save()
-                .then((event) => {
-                    res.status(201).json(event)
-                })
+          res.status(201).json(event)
         })
+    })
 })
 /*
 Action: DESTROY
@@ -37,16 +42,16 @@ Description: Delete an Comment by its Comment ID
  */
 
 router.delete('/api/events/:id/comments/:commentId', (req, res) => {
-    Event.findById(req.params.id)
+  Event.findById(req.params.id)
+    .then((event) => {
+      const commentId = req.params.commentId
+      // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
+      event.comments.id(commentId).deleteOne();
+      event.save()
         .then((event) => {
-            const commentId = req.params.commentId
-            // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
-            event.comments.id(commentId).deleteOne();
-            event.save()
-                .then((event) => {
-                    res.status(201).json(event)
-                })
+          res.status(201).json(event)
         })
+    })
 })
 
 /*
@@ -57,18 +62,18 @@ Description: Update an Comment by its ID
 */
 
 router.put('/api/events/:id/comments/:commentId', (req, res) => {
-    Event.findById(req.params.id)
-        .then((event) => {
-            const commentId = req.params.commentId
+  Event.findById(req.params.id)
+    .then((event) => {
+      const commentId = req.params.commentId
 
-            // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
-            const comment = event.comments.id(req.params.commentId)
-            comment.text = req.body.text;
-            event.save()
-                .then((event) => {
-                    res.status(201).json(event)
-                })
+      // https://mongoosejs.com/docs/subdocs.html#removing-subdocs
+      const comment = event.comments.id(req.params.commentId)
+      comment.text = req.body.text;
+      event.save()
+        .then((event) => {
+          res.status(201).json(event)
         })
+    })
 })
 
 module.exports = router

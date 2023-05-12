@@ -28,7 +28,7 @@ export default function ProfilePage() {
         navigate('../login')
       })
 
-      // Function to get all of a users events
+    // Function to get all of a users events
     findEventsByUserId()
   }, [])
 
@@ -73,11 +73,18 @@ export default function ProfilePage() {
       <h2>Upcoming events</h2>
       {/* Maps over upcoming events */}
       {upcoming.map((event) => <UserEvent event={event} key={event._id} />)}
+      {upcoming.length === 0 && (
+        <span>No upcoming events</span>
+      )}
 
       <hr />
       <h2>Past events</h2>
       {/* Maps over past events */}
       {past.map((event) => <UserEvent event={event} key={event._id} />)}
+
+      {past.length === 0 && (
+        <span>No past events</span>
+      )}
     </div>
   )
 }

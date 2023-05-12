@@ -12,11 +12,11 @@ Description: Get all Events
 */
 
 router.get('/api/events', (req, res) => {
-  Event.find({})
+  Event.find({}).sort({ attendees: -1 })
     .then((allEvents) => {
-      res.json( { events: allEvents })
-    } )
-    .catch((error) => res.status(500).json( {error: error.message}))
+      res.json({ events: allEvents })
+    })
+    .catch((error) => res.status(500).json({ error: error.message }))
 })
 
 /* 
@@ -30,7 +30,7 @@ router.get('/api/events/:id', (req, res) => {
   Event.findById(req.params.id)
     .then((event) => {
       if (event) {
-        res.json({event: event})
+        res.json({ event: event })
         // If we cannot find an Event with the ID
       } else {
         res.status(404).json("The provided ID does not match any documents")
@@ -48,9 +48,9 @@ Description: Create a new Event
 
 router.post('/api/events', (req, res) => {
   Event.create(req.body)
-  // On a successful creation respond with 201 http status
-  // and the content of the new Event
-    .then((newEvent) => res.status(201).json({event: newEvent}))
+    // On a successful creation respond with 201 http status
+    // and the content of the new Event
+    .then((newEvent) => res.status(201).json({ event: newEvent }))
     // Catch any error that may occur
     .catch((error) => res.status(500).json(error.message))
 })
@@ -64,16 +64,16 @@ Description: Delete an Event by its Event ID
 
 router.delete('/api/events/:id', (req, res) => {
   Event.findByIdAndRemove(req.params.id)
-  .then((event) => {
-    if(event) {
-      res.json({event: event})
-      // If we cannot find an Event with the ID
-    } else {
-      res.status(404).json("The provided ID does not match any documents")
-    }
-  })
-  // Catch an error
-  .catch((error) => res.status(500).json(error.message))
+    .then((event) => {
+      if (event) {
+        res.json({ event: event })
+        // If we cannot find an Event with the ID
+      } else {
+        res.status(404).json("The provided ID does not match any documents")
+      }
+    })
+    // Catch an error
+    .catch((error) => res.status(500).json(error.message))
 })
 
 /*
@@ -84,10 +84,10 @@ Description: Update an Event by its ID
 */
 
 router.put('/api/events/:id', (req, res) => {
-  Event.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  Event.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(event => {
-      if(event) {
-        res.json({event: event})
+      if (event) {
+        res.json({ event: event })
         // if we cannot find an Event matching the ID
       } else {
         res.status(404).json("The provided ID does not match any documents")

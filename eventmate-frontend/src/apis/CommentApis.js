@@ -13,7 +13,7 @@ export const createComment = (eventId, newComment) => {
       text: `${newComment.text}`,
       hideAuthor: `${newComment.hideAuthor}`,
       author: `${newComment.author}`
-  })
+    })
   })
 }
 

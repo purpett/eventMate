@@ -27,13 +27,13 @@ export default function SignUp() {
   // call the createUser api with the newUser as an argument
   function createOneUser() {
     createUser(newUser)
-    .then((user) => user.json())
-    .then(data => {
+      .then((user) => user.json())
+      .then(data => {
         if (data.user) {
-            navigate(`/Login`)
+          navigate(`/Login`)
         } else if (data.errors.username) {
-            setIsError(true)
-            setNewUser({username: "", password: ""})
+          setIsError(true)
+          setNewUser({ username: "", password: "" })
         }
       })
       .catch((error) => console.log(error))
@@ -63,23 +63,24 @@ export default function SignUp() {
           </div>
           <div className="auth-form-password-container">
             <div className="auth-password">Password</div>
-            <input
-              name='password'
-              value={newUser.password}
-              type= {showPassword? 'text': 'password'}
-              onChange={handleSignUpTextInput}
-              placeholder="Enter Your Password"
-              required
-              autoComplete="off"
-            />
+            <div className="password-area">
+              <input
+                name='password'
+                value={newUser.password}
+                type={showPassword ? 'text' : 'password'}
+                onChange={handleSignUpTextInput}
+                placeholder="Enter Your Password"
+                required
+                autoComplete="off"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? '😱' : '😎'}
+              </button>
+            </div>
           </div>
-          <button
-            className="normal-btn"
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword? '😱' : '😎'}
-          </button>
           <button className="normal-btn auth-btn" onClick={(e) => {
             e.preventDefault();
             createOneUser()
