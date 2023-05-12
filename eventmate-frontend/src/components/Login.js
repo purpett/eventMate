@@ -22,7 +22,6 @@ export default function Login() {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
 
-
   function isUserAuthenticated(e) {
     //Stops page refreshing
     e.preventDefault()
@@ -31,12 +30,15 @@ export default function Login() {
       // Converts to Json
       .then((response) => response.json())
       .then((token) => {
-        // Stores just the token in local storage
-        storeToken(token.token)
         // If the token is created successfully navigate the user to the homepage else change the state isError which will bring up a message on the screen
-        if (token.success) navigate('/')
+        if (token.success) {
+          // Stores just the token in local storage
+          storeToken(token.token)
+          return navigate('/')
+        }
         else setIsError(true)
       })
+      .then(() => setIsError(true))
   }
 
   return (
@@ -60,23 +62,29 @@ export default function Login() {
           </div>
           <div className="auth-form-password-container">
             <label className="auth-password">Password</label>
-            <input
-              name='password'
-              type='password'
-              placeholder="Enter Your Password"
-              required
-              autoComplete="off"
-              value={userCredentials.password}
-              onChange={handleTextInput}
-            />
+            <div className="password-area">
+              <input
+                name='password'
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Enter Your Password"
+                required
+                autoComplete="off"
+                value={userCredentials.password}
+                onChange={handleTextInput}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? '😱' : '😎'}
+              </button>
+            </div>
           </div>
-          {/* <button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? '👀' : '🙈'}
-          </button> */}
+
           <button className="normal-btn auth-btn" type="submit">Login</button>
-        </form>
-      </div>
-    </div>
+        </form >
+      </div >
+    </div >
   )
 }
 

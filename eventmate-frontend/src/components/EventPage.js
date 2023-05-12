@@ -117,7 +117,7 @@ export default function EventPage() {
             <input
               name='title'
               onChange={handleInputOnChange}
-              placeholder={singleEvent.title}
+              value={editedEvent.title}
             />
           </div>
           <div className="where-and-when">
@@ -125,8 +125,9 @@ export default function EventPage() {
               <label>Where</label>
               <input
                 name='location'
+                autoComplete="off"
                 onChange={handleInputOnChange}
-                placeholder={singleEvent.location}
+                value={editedEvent.location}
               />
             </div>
             <div className="edit-event-form-input">
@@ -135,7 +136,7 @@ export default function EventPage() {
                 name='date'
                 type="date"
                 onChange={handleInputOnChange}
-                min={new Date().toISOString().split("T")[0]}
+                min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
                 placeholder={singleEvent.date ? new Date(singleEvent.date).toLocaleDateString() : ''}
                 value={editedEvent.date}
               />
@@ -147,7 +148,7 @@ export default function EventPage() {
               <textarea
                 name='description'
                 onChange={handleInputOnChange}
-                placeholder={singleEvent.description}
+                value={editedEvent.description}
               />
             </div>
           </div>
@@ -158,7 +159,6 @@ export default function EventPage() {
             {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="normal-btn" onClick={toggleForm}>Edit Event</button>}
             {tokenExp() && isOrganiser(singleEvent.organiser) && <button className="danger-btn" onClick={deleteOneEvent}>Delete Event</button>}
           </div>
-          { }
           <div className="attending-area">
             <p>People attending: {singleEvent.attendees.length} </p>
             {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>Unattend</button>}
@@ -169,12 +169,14 @@ export default function EventPage() {
       <hr />
       <div className="comments-container">
         <h3 className="comments-title">Comments</h3>
-        {/* If the showCommentForm is true to Comment form will appear and pass down the id of the event. */}
-        {tokenExp() && <div className="create-comment-form">
-          <CreateCommentForm
-            setSingleEvent={setSingleEvent}
-            id={id} />
-        </div>}
+        {/* If the there is a valid token in local storage and it has not expired show the create comment form */}
+        {
+          tokenExp() && <div className="create-comment-form">
+            <CreateCommentForm
+              setSingleEvent={setSingleEvent}
+              id={id} />
+          </div>
+        }
         {/* This will be where the comments will be generated. The whole event information is passed down */}
         <Comments
           comments={singleEvent.comments}
