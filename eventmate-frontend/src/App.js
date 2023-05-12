@@ -4,7 +4,7 @@ import NavBar from './components/NavBar';
 import { Routes, Route } from 'react-router-dom';
 import EventPage from './components/EventPage';
 import CreateEventPage from './components/CreateEventPage';
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ProfilePage from './components/ProfilePage';

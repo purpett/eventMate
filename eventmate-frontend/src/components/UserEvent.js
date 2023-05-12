@@ -7,9 +7,10 @@ export default function UserEvent(props) {
   return (
     <div className='event-card' id="user-event">
       <Link to={`../${event._id}`}>
-      <span className='event-title'>{event.title}</span></Link>
-      |
-      <span>{transformDate(event.date)}</span>
+        <span className='event-title'>{event.title}</span>
+        |
+        <span>{transformDate(event.date)}</span>
+      </Link>
     </div>
   )
 }

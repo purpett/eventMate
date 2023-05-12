@@ -4,7 +4,9 @@ import Comments from "./Comments"
 import CreateCommentForm from "./CreateCommentForm"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+
 import "animate.css"
+
 
 import { getPayloadFromToken, tokenExp, isOrganiser } from "../tokenLogic/tokenLogic"
 import transformDate from '../transformDate'
@@ -20,6 +22,10 @@ export default function EventPage() {
   const [isAttending, setIsAttending] = useState(false)
   // Grab the event Id from the url and store it in the variable called id.
   const { id } = useParams()
+
+  // Grabs payload from local storage, then we get the user id from the saved token
+  const payloadFromToken = getPayloadFromToken()
+  const userId = payloadFromToken.userId
 
   // Function that calls the fetch request get one event and then sets it in the singleEvent state
   const getEvent = () => {
@@ -64,14 +70,10 @@ export default function EventPage() {
 
   // Function to add a user's id to the event attendees array. 
   function addUserIdToAttendees() {
-    // Grabs payload from local storage and saves in variable
-    const payloadFromToken = getPayloadFromToken()
-    // Stores userid key value from the variable above in another variable
-    const userId = payloadFromToken.userId
-    // Checks to see if the userid is already in the attendees list and if it is then nothing happens
     if (singleEvent.attendees.includes(userId)) {
       return
-      // Else all the current attendees are spread into an array with the userid added in and this is stored in a variable called attendees.
+      // Current attendees are spread into an array with the userid added in
+      // which is then stored in a variable called attendees.
     } else {
       const attendees = [...singleEvent.attendees, userId]
       // singleEvent state is spread into an object and the attendees key is updated with the new attendees array.
@@ -92,9 +94,18 @@ export default function EventPage() {
     setShowEventForm(!showEventForm)
   }
 
+  // Function for unattend button. 
+  // The attendees array is filtered by selecting all ids different from logged in user id
+  // A new event is created with the info of the current event, plus the new attendees array
+  // Then the backend gets updated
+  function removeUserIdFromAttending() {
+    const newAttendees = singleEvent.attendees.filter((id) => id !== userId)
+    const newEvent = { ...singleEvent, attendees: newAttendees }
+    updateOneEvent(newEvent._id, newEvent)
+  }
+
   return (
     <div className="event-page">
-
       <div className="event-container">
         {!showEventForm && <div className="event-content">
           {/* Checks to see if the fetch request is complete before showing the event information */}
@@ -124,6 +135,7 @@ export default function EventPage() {
               <label>Where</label>
               <input
                 name='location'
+                autoComplete="off"
                 onChange={handleInputOnChange}
                 value={editedEvent.location}
               />
@@ -140,13 +152,15 @@ export default function EventPage() {
               />
             </div>
           </div>
-          <div className="edit-event-form-input">
-            <label>Description</label>
-            <textarea
-              name='description'
-              onChange={handleInputOnChange}
-              value={editedEvent.description}
-            />
+          <div className="description-submit">
+            <div className="edit-event-form-input">
+              <label>Description</label>
+              <textarea
+                name='description'
+                onChange={handleInputOnChange}
+                value={editedEvent.description}
+              />
+            </div>
           </div>
           <button className="normal-btn" type="submit">Save changes</button>
         </form>}
@@ -157,24 +171,27 @@ export default function EventPage() {
           </div>
           <div className="attending-area">
             <p>People attending: {singleEvent.attendees.length} </p>
-            {tokenExp() && <button 
-            className={`normal-btn ${isAttending? 'animate__animated animate__zoomOutRight': ''}`} id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+
+//             {tokenExp() && <button 
+//              className={`normal-btn ${isAttending? 'animate__animated animate__zoomOutRight': ''}`} id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+=======
+            {tokenExp() && singleEvent.attendees.includes(userId) && <button className="danger-btn" onClick={removeUserIdFromAttending}>Unattend</button>}
+            {tokenExp() && !singleEvent.attendees.includes(userId) && <button className="normal-btn" id="attend-btn" onClick={addUserIdToAttendees}>Attend</button>}
+
           </div>
         </div>
       </div>
-
-    
-
-
       <hr />
       <div className="comments-container">
-        COMMENTS
+        <h3 className="comments-title">Comments</h3>
         {/* If the there is a valid token in local storage and it has not expired show the create comment form */}
-        {tokenExp() && <div className="create-comment-form">
-          <CreateCommentForm
-            setSingleEvent={setSingleEvent}
-            id={id} />
-        </div>}
+        {
+          tokenExp() && <div className="create-comment-form">
+            <CreateCommentForm
+              setSingleEvent={setSingleEvent}
+              id={id} />
+          </div>
+        }
         {/* This will be where the comments will be generated. The whole event information is passed down */}
         <Comments
           comments={singleEvent.comments}

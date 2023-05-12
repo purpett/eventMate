@@ -80,7 +80,7 @@ export default function Comment({ singleComment, eventId, setSingleEvent }) {
           </form>
         }
         {singleComment.author === `${payload.username}` ?
-          <div>
+          <div className="comment-btns">
             <button className="normal-btn" onClick={toggleForm}>Edit Comment</button>
             <button className="danger-btn" onClick={deleteOneComment}>Delete Comment</button>
           </div> : null}
