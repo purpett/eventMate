@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-
 const commentSchema = new Schema({
   author: { type: String },
   text: { type: String, required: true },
-  hideAuthor: {type: Boolean, default: false}
+  hideAuthor: { type: Boolean, default: false }
 })
 
 const eventSchema = new Schema({
